@@ -1,0 +1,75 @@
+# Birla Caps Corporate Website
+
+## Overview
+
+This is a corporate website for Aditya Birla Capital Limited (Birla Caps), a leading financial services company in India. The website serves as a comprehensive platform for investor relations, corporate governance, and stakeholder communication. It features document management for financial reports, policy repositories, grievance submission systems, and detailed company information presentation.
+
+## User Preferences
+
+Preferred communication style: Simple, everyday language.
+
+## System Architecture
+
+### Frontend Architecture
+- **Framework**: React with TypeScript using Vite as the build tool
+- **UI Library**: Shadcn/ui components with Radix UI primitives for accessible, customizable components
+- **Styling**: Tailwind CSS with custom design tokens for corporate branding
+- **State Management**: TanStack Query (React Query) for server state management and caching
+- **Routing**: Wouter for lightweight client-side routing
+- **Form Handling**: React Hook Form with Zod validation for type-safe form management
+
+### Backend Architecture
+- **Runtime**: Node.js with Express.js for the REST API server
+- **Database ORM**: Drizzle ORM with PostgreSQL dialect for type-safe database operations
+- **File Handling**: Multer middleware for file uploads with local storage and security validation
+- **API Design**: RESTful endpoints organized by domain (documents, grievances, policies, announcements)
+
+### Database Schema Design
+The application uses a PostgreSQL database with the following key entities:
+- **Users**: Admin authentication with role-based access control
+- **Investor Documents**: Financial reports with metadata, versioning, and download tracking
+- **Grievances**: Public complaint system with status tracking and file attachments
+- **Policies**: Corporate governance documents with version control
+- **Announcements**: Company communications and updates
+- **Company Info**: Dynamic content management for corporate information
+
+### Component Architecture
+- **Layout Components**: Reusable header, footer, and navigation with responsive design
+- **Page Components**: Route-specific components for different sections (About, Investor Relations, etc.)
+- **UI Components**: Consistent design system using Shadcn/ui for forms, cards, buttons, and data display
+- **Section Components**: Modular content blocks like hero sections, statistics, and management team displays
+
+### File Upload System
+- **Security**: File type validation for documents (PDF, DOC, images) with size limits
+- **Storage**: Local file system with organized directory structure
+- **Access Control**: Secure file serving with appropriate headers for downloads
+
+### Data Management Patterns
+- **Type Safety**: End-to-end TypeScript with Zod schemas for runtime validation
+- **Caching**: Query-based caching with TanStack Query for optimal performance
+- **Error Handling**: Consistent error boundaries and user feedback systems
+
+## External Dependencies
+
+### Database
+- **Neon Database**: Serverless PostgreSQL database with connection pooling
+- **Drizzle Kit**: Database migrations and schema management
+
+### UI and Styling
+- **Radix UI**: Unstyled, accessible UI primitives
+- **Tailwind CSS**: Utility-first CSS framework
+- **Lucide React**: Modern icon library
+
+### Development Tools
+- **Vite**: Fast build tool with TypeScript support
+- **Replit Integration**: Development environment plugins for Replit platform
+
+### File Processing
+- **Multer**: Multipart form data handling for file uploads
+- **File System**: Node.js native file operations for document storage
+
+### Form and Validation
+- **React Hook Form**: Performance-optimized form library
+- **Zod**: TypeScript-first schema validation
+
+The architecture emphasizes type safety, performance, and maintainability while providing a comprehensive corporate website solution for financial services compliance and stakeholder communication.
