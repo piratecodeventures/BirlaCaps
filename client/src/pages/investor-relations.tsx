@@ -17,8 +17,8 @@ export default function InvestorRelations() {
     queryKey: ["/api/documents", { type: documentType, fiscalYear }],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (documentType) params.append('type', documentType);
-      if (fiscalYear) params.append('fiscalYear', fiscalYear);
+      if (documentType && documentType !== 'ALL') params.append('type', documentType);
+      if (fiscalYear && fiscalYear !== 'ALL') params.append('fiscalYear', fiscalYear);
       
       const response = await fetch(`/api/documents?${params}`);
       if (!response.ok) throw new Error('Failed to fetch documents');
@@ -106,7 +106,7 @@ export default function InvestorRelations() {
                       <SelectValue placeholder="All Document Types" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Document Types</SelectItem>
+                      <SelectItem value="ALL">All Document Types</SelectItem>
                       <SelectItem value="ANNUAL_REPORT">Annual Reports</SelectItem>
                       <SelectItem value="QUARTERLY_RESULT">Quarterly Results</SelectItem>
                       <SelectItem value="ANNOUNCEMENT">Announcements</SelectItem>
@@ -118,7 +118,7 @@ export default function InvestorRelations() {
                       <SelectValue placeholder="All Years" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Years</SelectItem>
+                      <SelectItem value="ALL">All Years</SelectItem>
                       <SelectItem value="2024">2024</SelectItem>
                       <SelectItem value="2023">2023</SelectItem>
                       <SelectItem value="2022">2022</SelectItem>

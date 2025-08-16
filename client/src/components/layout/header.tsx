@@ -12,16 +12,16 @@ export default function Header() {
   const isActive = (path: string) => location === path;
 
   const aboutLinks = [
-    { href: "/about", label: "Company Overview" },
-    { href: "/about#mission", label: "Mission & Vision" },
-    { href: "/about#management", label: "Management Team" },
-    { href: "/about#committees", label: "Board Committees" },
+    { href: "/about", label: "Company Overview", section: null },
+    { href: "/about", label: "Mission & Vision", section: "mission" },
+    { href: "/about", label: "Management Team", section: "management" },
+    { href: "/about", label: "Board Committees", section: "committees" },
   ];
 
   const investorLinks = [
-    { href: "/investor-relations", label: "Financial Reports" },
-    { href: "/investor-relations#announcements", label: "Announcements" },
-    { href: "/investor-relations#governance", label: "Governance" },
+    { href: "/investor-relations", label: "Financial Reports", section: null },
+    { href: "/investor-relations", label: "Announcements", section: "announcements" },
+    { href: "/investor-relations", label: "Governance", section: "governance" },
   ];
 
   return (
@@ -59,8 +59,21 @@ export default function Header() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   {aboutLinks.map((link) => (
-                    <DropdownMenuItem key={link.href} asChild>
-                      <Link href={link.href} data-testid={`nav-${link.href}`}>
+                    <DropdownMenuItem key={link.label} asChild>
+                      <Link 
+                        href={link.href} 
+                        data-testid={`nav-${link.href}${link.section ? '#' + link.section : ''}`}
+                        onClick={() => {
+                          if (link.section) {
+                            setTimeout(() => {
+                              const element = document.getElementById(link.section!);
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                              }
+                            }, 100);
+                          }
+                        }}
+                      >
                         {link.label}
                       </Link>
                     </DropdownMenuItem>
@@ -74,8 +87,21 @@ export default function Header() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   {investorLinks.map((link) => (
-                    <DropdownMenuItem key={link.href} asChild>
-                      <Link href={link.href} data-testid={`nav-${link.href}`}>
+                    <DropdownMenuItem key={link.label} asChild>
+                      <Link 
+                        href={link.href} 
+                        data-testid={`nav-${link.href}${link.section ? '#' + link.section : ''}`}
+                        onClick={() => {
+                          if (link.section) {
+                            setTimeout(() => {
+                              const element = document.getElementById(link.section!);
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                              }
+                            }, 100);
+                          }
+                        }}
+                      >
                         {link.label}
                       </Link>
                     </DropdownMenuItem>
