@@ -5,6 +5,8 @@ import {
   policies,
   announcements,
   companyInfo,
+  boardDirectors,
+  promoters,
   type User,
   type InsertUser,
   type InvestorDocument,
@@ -17,6 +19,10 @@ import {
   type InsertAnnouncement,
   type CompanyInfo,
   type InsertCompanyInfo,
+  type BoardDirector,
+  type InsertBoardDirector,
+  type Promoter,
+  type InsertPromoter,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, or, ilike, sql } from "drizzle-orm";
@@ -60,6 +66,20 @@ export interface IStorage {
   // Company info operations
   getCompanyInfo(section?: string): Promise<CompanyInfo[]>;
   updateCompanyInfo(section: string, info: InsertCompanyInfo): Promise<CompanyInfo>;
+  
+  // Board of Directors operations
+  getBoardDirectors(): Promise<BoardDirector[]>;
+  getBoardDirector(id: string): Promise<BoardDirector | undefined>;
+  createBoardDirector(director: InsertBoardDirector): Promise<BoardDirector>;
+  updateBoardDirector(id: string, director: Partial<BoardDirector>): Promise<BoardDirector>;
+  deleteBoardDirector(id: string): Promise<void>;
+  
+  // Promoters operations
+  getPromoters(): Promise<Promoter[]>;
+  getPromoter(id: string): Promise<Promoter | undefined>;
+  createPromoter(promoter: InsertPromoter): Promise<Promoter>;
+  updatePromoter(id: string, promoter: Partial<Promoter>): Promise<Promoter>;
+  deletePromoter(id: string): Promise<void>;
   
   // Dashboard stats
   getDashboardStats(): Promise<{
@@ -293,6 +313,74 @@ export class DatabaseStorage implements IStorage {
       })
       .returning();
     return updated;
+  }
+
+  // Board of Directors operations
+  async getBoardDirectors(): Promise<BoardDirector[]> {
+    return await db
+      .select()
+      .from(boardDirectors)
+      .orderBy(boardDirectors.sortOrder, boardDirectors.name);
+  }
+
+  async getBoardDirector(id: string): Promise<BoardDirector | undefined> {
+    const [director] = await db.select().from(boardDirectors).where(eq(boardDirectors.id, id));
+    return director;
+  }
+
+  async createBoardDirector(director: InsertBoardDirector): Promise<BoardDirector> {
+    const [newDirector] = await db
+      .insert(boardDirectors)
+      .values(director)
+      .returning();
+    return newDirector;
+  }
+
+  async updateBoardDirector(id: string, director: Partial<BoardDirector>): Promise<BoardDirector> {
+    const [updated] = await db
+      .update(boardDirectors)
+      .set({ ...director, updatedAt: new Date() })
+      .where(eq(boardDirectors.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteBoardDirector(id: string): Promise<void> {
+    await db.delete(boardDirectors).where(eq(boardDirectors.id, id));
+  }
+
+  // Promoters operations
+  async getPromoters(): Promise<Promoter[]> {
+    return await db
+      .select()
+      .from(promoters)
+      .orderBy(promoters.sortOrder, promoters.name);
+  }
+
+  async getPromoter(id: string): Promise<Promoter | undefined> {
+    const [promoter] = await db.select().from(promoters).where(eq(promoters.id, id));
+    return promoter;
+  }
+
+  async createPromoter(promoter: InsertPromoter): Promise<Promoter> {
+    const [newPromoter] = await db
+      .insert(promoters)
+      .values(promoter)
+      .returning();
+    return newPromoter;
+  }
+
+  async updatePromoter(id: string, promoter: Partial<Promoter>): Promise<Promoter> {
+    const [updated] = await db
+      .update(promoters)
+      .set({ ...promoter, updatedAt: new Date() })
+      .where(eq(promoters.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deletePromoter(id: string): Promise<void> {
+    await db.delete(promoters).where(eq(promoters.id, id));
   }
 
   // Dashboard stats

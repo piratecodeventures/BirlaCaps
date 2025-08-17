@@ -1,0 +1,209 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useQuery } from "@tanstack/react-query";
+import { Users, Building2, Phone, Mail, MapPin, Calendar, Building } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { BoardDirector, Promoter } from "@shared/schema";
+
+function LoadingSkeleton() {
+  return (
+    <div className="space-y-6">
+      {[1, 2, 3].map((i) => (
+        <Card key={i}>
+          <CardHeader>
+            <Skeleton className="h-6 w-3/4" />
+            <Skeleton className="h-4 w-1/2" />
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
+
+interface DirectorCardProps {
+  director: BoardDirector;
+}
+
+function DirectorCard({ director }: DirectorCardProps) {
+  return (
+    <Card className="hover:shadow-lg transition-shadow duration-300" data-testid={`card-director-${director.id}`}>
+      <CardHeader>
+        <div className="flex items-start justify-between">
+          <div>
+            <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100" data-testid={`text-director-name-${director.id}`}>
+              {director.name}
+            </CardTitle>
+            <CardDescription className="text-lg font-medium text-blue-600 dark:text-blue-400 mt-1" data-testid={`text-director-designation-${director.id}`}>
+              {director.designation}
+            </CardDescription>
+          </div>
+          <Badge variant="outline" className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300" data-testid={`badge-director-din-${director.id}`}>
+            DIN: {director.din}
+          </Badge>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="flex items-start gap-3">
+          <MapPin className="h-5 w-5 text-gray-500 dark:text-gray-400 mt-0.5 flex-shrink-0" />
+          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed" data-testid={`text-director-address-${director.id}`}>
+            {director.address}
+          </p>
+        </div>
+        <div className="flex items-start gap-3">
+          <Users className="h-5 w-5 text-gray-500 dark:text-gray-400 mt-0.5 flex-shrink-0" />
+          <p className="text-gray-700 dark:text-gray-300 text-sm" data-testid={`text-director-experience-${director.id}`}>
+            {director.experience}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+interface PromotersSectionProps {
+  promoters: Promoter[];
+}
+
+function PromotersSection({ promoters }: PromotersSectionProps) {
+  const individuals = promoters.filter(p => p.category === 'Individual');
+  const companies = promoters.filter(p => p.category === 'Company');
+
+  return (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+          <Users className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+          Individual Promoters
+        </h3>
+        <div className="grid gap-3">
+          {individuals.map((promoter) => (
+            <Card key={promoter.id} className="bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800" data-testid={`card-individual-promoter-${promoter.id}`}>
+              <CardContent className="p-4">
+                <p className="font-medium text-gray-900 dark:text-gray-100" data-testid={`text-individual-promoter-name-${promoter.id}`}>
+                  {promoter.name}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+          <Building2 className="h-6 w-6 text-green-600 dark:text-green-400" />
+          Company Promoters
+        </h3>
+        <div className="grid gap-3">
+          {companies.map((promoter) => (
+            <Card key={promoter.id} className="bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800" data-testid={`card-company-promoter-${promoter.id}`}>
+              <CardContent className="p-4">
+                <p className="font-medium text-gray-900 dark:text-gray-100" data-testid={`text-company-promoter-name-${promoter.id}`}>
+                  {promoter.name}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function BoardDirectors() {
+  const { data: directors, isLoading: directorsLoading } = useQuery<BoardDirector[]>({
+    queryKey: ['/api/board-directors'],
+  });
+
+  const { data: promoters, isLoading: promotersLoading } = useQuery<Promoter[]>({
+    queryKey: ['/api/promoters'],
+  });
+
+  if (directorsLoading || promotersLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center mb-12">
+            <Skeleton className="h-10 w-3/4 mx-auto mb-4" />
+            <Skeleton className="h-6 w-1/2 mx-auto" />
+          </div>
+          <LoadingSkeleton />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Hero Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4" data-testid="text-page-title">
+            Board of Directors & Promoters
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto" data-testid="text-page-description">
+            Meet our experienced leadership team and company promoters who guide our strategic direction and ensure strong corporate governance.
+          </p>
+        </div>
+
+        {/* Company Information */}
+        <div className="mb-12">
+          <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2" data-testid="text-company-info-title">
+                <Building className="h-7 w-7 text-blue-600 dark:text-blue-400" />
+                Birla Capital and Financial Services Limited
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="font-mono text-sm" data-testid="text-company-cin">
+                    CIN: L51900MH1985PLC036156
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                  <span className="text-sm text-gray-600 dark:text-gray-400" data-testid="text-company-incorporation">
+                    Incorporated: 07/05/1985
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400 mt-1 flex-shrink-0" />
+                <p className="text-sm text-gray-600 dark:text-gray-400" data-testid="text-company-address">
+                  5th Floor, 159, Industry House Churchgate Reclamation, Mumbai City, Mumbai: 400020
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Board of Directors */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center" data-testid="text-directors-section-title">
+            Board of Directors
+          </h2>
+          <div className="grid gap-8 lg:grid-cols-1 xl:grid-cols-2">
+            {directors?.map((director) => (
+              <DirectorCard key={director.id} director={director} />
+            ))}
+          </div>
+        </div>
+
+        {/* Promoters */}
+        <div>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center" data-testid="text-promoters-section-title">
+            Promoters of Our Company
+          </h2>
+          {promoters && <PromotersSection promoters={promoters} />}
+        </div>
+      </div>
+    </div>
+  );
+}

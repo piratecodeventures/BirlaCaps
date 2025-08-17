@@ -1,5 +1,8 @@
 import ManagementTeam from "@/components/sections/management-team";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+import { Users, ArrowRight } from "lucide-react";
 
 export default function About() {
   const committees = [
@@ -103,6 +106,23 @@ export default function About() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+
+            {/* Board of Directors Call-to-Action */}
+            <div className="mt-16 text-center bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8">
+              <Users className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4" data-testid="board-cta-title">
+                Meet Our Leadership Team
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto" data-testid="board-cta-description">
+                Discover our experienced Board of Directors and company promoters who guide our strategic vision and ensure robust corporate governance.
+              </p>
+              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white" data-testid="button-view-board">
+                <Link href="/board-directors">
+                  View Board of Directors & Promoters
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

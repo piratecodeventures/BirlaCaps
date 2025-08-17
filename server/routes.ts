@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertGrievanceSchema, insertDocumentSchema, insertPolicySchema, insertAnnouncementSchema } from "@shared/schema";
+import { insertGrievanceSchema, insertDocumentSchema, insertPolicySchema, insertAnnouncementSchema, insertBoardDirectorSchema, insertPromoterSchema } from "@shared/schema";
 import { z } from "zod";
 import multer from "multer";
 import path from "path";
@@ -277,6 +277,102 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Validation error", errors: error.errors });
       }
       res.status(500).json({ message: "Failed to create announcement" });
+    }
+  });
+
+  // Board of Directors routes
+  app.get('/api/board-directors', async (req, res) => {
+    try {
+      const directors = await storage.getBoardDirectors();
+      res.json(directors);
+    } catch (error) {
+      console.error("Error fetching board directors:", error);
+      res.status(500).json({ message: "Failed to fetch board directors" });
+    }
+  });
+
+  app.post('/api/admin/board-directors', async (req, res) => {
+    try {
+      const directorData = insertBoardDirectorSchema.parse(req.body);
+      const director = await storage.createBoardDirector(directorData);
+      res.status(201).json(director);
+    } catch (error) {
+      console.error("Error creating board director:", error);
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Validation error", errors: error.errors });
+      }
+      res.status(500).json({ message: "Failed to create board director" });
+    }
+  });
+
+  app.patch('/api/admin/board-directors/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updates = req.body;
+      const director = await storage.updateBoardDirector(id, updates);
+      res.json(director);
+    } catch (error) {
+      console.error("Error updating board director:", error);
+      res.status(500).json({ message: "Failed to update board director" });
+    }
+  });
+
+  app.delete('/api/admin/board-directors/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteBoardDirector(id);
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting board director:", error);
+      res.status(500).json({ message: "Failed to delete board director" });
+    }
+  });
+
+  // Promoters routes
+  app.get('/api/promoters', async (req, res) => {
+    try {
+      const promoters = await storage.getPromoters();
+      res.json(promoters);
+    } catch (error) {
+      console.error("Error fetching promoters:", error);
+      res.status(500).json({ message: "Failed to fetch promoters" });
+    }
+  });
+
+  app.post('/api/admin/promoters', async (req, res) => {
+    try {
+      const promoterData = insertPromoterSchema.parse(req.body);
+      const promoter = await storage.createPromoter(promoterData);
+      res.status(201).json(promoter);
+    } catch (error) {
+      console.error("Error creating promoter:", error);
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Validation error", errors: error.errors });
+      }
+      res.status(500).json({ message: "Failed to create promoter" });
+    }
+  });
+
+  app.patch('/api/admin/promoters/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updates = req.body;
+      const promoter = await storage.updatePromoter(id, updates);
+      res.json(promoter);
+    } catch (error) {
+      console.error("Error updating promoter:", error);
+      res.status(500).json({ message: "Failed to update promoter" });
+    }
+  });
+
+  app.delete('/api/admin/promoters/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deletePromoter(id);
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting promoter:", error);
+      res.status(500).json({ message: "Failed to delete promoter" });
     }
   });
 

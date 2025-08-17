@@ -88,6 +88,29 @@ export const companyInfo = pgTable("company_info", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+// Board of Directors table
+export const boardDirectors = pgTable("board_directors", {
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name", { length: 255 }).notNull(),
+  address: text("address").notNull(),
+  designation: varchar("designation", { length: 100 }).notNull(),
+  din: varchar("din", { length: 20 }).notNull().unique(), // Director Identification Number
+  experience: text("experience").notNull(),
+  sortOrder: integer("sort_order").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Promoters table
+export const promoters = pgTable("promoters", {
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name", { length: 255 }).notNull(),
+  category: varchar("category", { length: 50 }).notNull(), // 'Individual' or 'Company'
+  sortOrder: integer("sort_order").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -133,6 +156,18 @@ export const insertCompanyInfoSchema = createInsertSchema(companyInfo).omit({
   updatedAt: true,
 });
 
+export const insertBoardDirectorSchema = createInsertSchema(boardDirectors).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertPromoterSchema = createInsertSchema(promoters).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -151,3 +186,9 @@ export type InsertAnnouncement = z.infer<typeof insertAnnouncementSchema>;
 
 export type CompanyInfo = typeof companyInfo.$inferSelect;
 export type InsertCompanyInfo = z.infer<typeof insertCompanyInfoSchema>;
+
+export type BoardDirector = typeof boardDirectors.$inferSelect;
+export type InsertBoardDirector = z.infer<typeof insertBoardDirectorSchema>;
+
+export type Promoter = typeof promoters.$inferSelect;
+export type InsertPromoter = z.infer<typeof insertPromoterSchema>;

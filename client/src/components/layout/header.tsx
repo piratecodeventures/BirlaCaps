@@ -110,6 +110,16 @@ export default function Header() {
               </DropdownMenu>
 
               <Link 
+                href="/board-directors" 
+                className={`transition-colors ${
+                  isActive('/board-directors') ? 'text-primary' : 'text-gray-900 hover:text-primary'
+                }`}
+                data-testid="nav-board-directors"
+              >
+                Board & Promoters
+              </Link>
+              
+              <Link 
                 href="/company-secretary" 
                 className={`transition-colors ${
                   isActive('/company-secretary') ? 'text-primary' : 'text-gray-900 hover:text-primary'
@@ -159,6 +169,9 @@ export default function Header() {
                   </Link>
                   <Link href="/investor-relations" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-investor">
                     Investor Relations
+                  </Link>
+                  <Link href="/board-directors" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-board-directors">
+                    Board & Promoters
                   </Link>
                   <Link href="/company-secretary" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-secretary">
                     Company Secretary

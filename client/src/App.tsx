@@ -10,6 +10,7 @@ import InvestorRelations from "@/pages/investor-relations";
 import CompanySecretary from "@/pages/company-secretary";
 import Grievances from "@/pages/grievances";
 import Policies from "@/pages/policies";
+import BoardDirectors from "@/pages/board-directors";
 import AdminDashboard from "@/pages/admin/dashboard";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -26,6 +27,7 @@ function Router() {
           <Route path="/company-secretary" component={CompanySecretary} />
           <Route path="/grievances" component={Grievances} />
           <Route path="/policies" component={Policies} />
+          <Route path="/board-directors" component={BoardDirectors} />
           <Route path="/admin" component={AdminDashboard} />
           <Route component={NotFound} />
         </Switch>

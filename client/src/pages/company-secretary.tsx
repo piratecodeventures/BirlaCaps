@@ -3,11 +3,11 @@ import { Mail, Phone, MapPin, Printer, User } from "lucide-react";
 
 export default function CompanySecretary() {
   const secretaryInfo = {
-    name: "Ms. Anita Verma",
+    name: "Mr. HEMANT AGARWAL",
     position: "Company Secretary & Compliance Officer",
-    address: "Birla Centre, 4th Floor, S K Ahire Marg, Worli, Mumbai - 400030",
-    mobile: "+91 98765 43210",
-    email: "companysecretary@birlacaps.com",
+    address: "5th Floor, 159, Industry House Churchgate Reclamation, Mumbai City, Mumbai: 400020",
+    mobile: "+91 9819153922",
+    email: "info@birlainternational.net",
     fax: "+91 22 6652 1234"
   };
 

@@ -32,12 +32,15 @@ The application uses a PostgreSQL database with the following key entities:
 - **Policies**: Corporate governance documents with version control
 - **Announcements**: Company communications and updates
 - **Company Info**: Dynamic content management for corporate information
+- **Board Directors**: Real board of directors information with DIN numbers and experience details
+- **Promoters**: Company promoters categorized as individuals or companies
 
 ### Component Architecture
 - **Layout Components**: Reusable header, footer, and navigation with responsive design
-- **Page Components**: Route-specific components for different sections (About, Investor Relations, etc.)
+- **Page Components**: Route-specific components for different sections (About, Investor Relations, Board & Promoters, etc.)
 - **UI Components**: Consistent design system using Shadcn/ui for forms, cards, buttons, and data display
 - **Section Components**: Modular content blocks like hero sections, statistics, and management team displays
+- **Data Display Components**: Director cards with DIN badges, promoter categorization, and company information cards
 
 ### File Upload System
 - **Security**: File type validation for documents (PDF, DOC, images) with size limits
