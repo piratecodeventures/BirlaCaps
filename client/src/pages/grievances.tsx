@@ -116,6 +116,36 @@ export default function Grievances() {
 
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Grievance Officer Information */}
+          <Card className="mb-8 border-blue-200 bg-blue-50">
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-bold text-blue-900 mb-4" data-testid="grievance-officer-title">
+                Grievance Officer
+              </h2>
+              <div className="space-y-3">
+                <div>
+                  <span className="font-semibold text-blue-800">Name:</span>
+                  <span className="ml-2 text-gray-700">Hemant Agrawal</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-blue-800">Designation:</span>
+                  <span className="ml-2 text-gray-700">Chief Grievance Officer</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-blue-800">Email:</span>
+                  <span className="ml-2 text-gray-700">hemant.agrawal@birlacaps.com</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-blue-800">Phone:</span>
+                  <span className="ml-2 text-gray-700">+91 22 6789 1234</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-blue-800">Office Hours:</span>
+                  <span className="ml-2 text-gray-700">Monday to Friday, 9:00 AM to 6:00 PM</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           <Card className="glass-card hover-lift shimmer-effect fade-in-up">
             <CardContent className="p-6 sm:p-8 lg:p-12 mobile-form">

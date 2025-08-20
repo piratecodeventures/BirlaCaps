@@ -107,35 +107,27 @@ export const sampleCompanyInfo: InsertCompanyInfo[] = [
 
 export const sampleBoardDirectors: InsertBoardDirector[] = [
   {
-    name: "Rajesh Kumar Agarwal",
+    name: "Minal",
     address: "Mumbai, Maharashtra - 400001",
     designation: "Chairman & Managing Director",
-    din: "DIN00123456",
-    experience: "Over 25 years of experience in financial services, banking, and corporate leadership. Previously held senior positions at leading financial institutions and has extensive expertise in strategic planning and business development.",
+    din: "DIN00123001",
+    experience: "Over 20 years of experience in financial services, corporate governance, and strategic leadership. Extensive expertise in business development, regulatory compliance, and stakeholder management.",
     sortOrder: 1
   },
   {
-    name: "Priya Sharma",
+    name: "Abhijit",
     address: "Delhi, New Delhi - 110001",
-    designation: "Independent Director",
-    din: "DIN00234567",
-    experience: "Distinguished career spanning 20 years in corporate governance, risk management, and regulatory compliance. Former senior executive at RBI with deep expertise in financial regulations and policy frameworks.",
+    designation: "Executive Director",
+    din: "DIN00123002",
+    experience: "15 years of operational excellence in financial services with focus on technology integration, risk management, and customer experience enhancement. Expert in digital transformation and process optimization.",
     sortOrder: 2
   },
   {
-    name: "Amit Singh Rathore",
+    name: "Satyanarayan",
     address: "Bangalore, Karnataka - 560001",
-    designation: "Executive Director - Operations",
-    din: "DIN00345678",
-    experience: "15 years of operational excellence in financial services with focus on technology integration, process optimization, and customer experience enhancement. Expert in digital transformation initiatives.",
-    sortOrder: 3
-  },
-  {
-    name: "Dr. Meera Krishnan",
-    address: "Chennai, Tamil Nadu - 600001",
     designation: "Independent Director",
-    din: "DIN00456789",
-    experience: "Academic and industry expert with PhD in Economics and 18 years of experience in economic research, policy analysis, and financial market dynamics. Published researcher in financial economics.",
-    sortOrder: 4
+    din: "DIN00123003",
+    experience: "Distinguished career spanning 18 years in corporate governance, financial analysis, and regulatory frameworks. Former senior executive with deep expertise in financial regulations and policy development.",
+    sortOrder: 3
   }
 ];
