@@ -40,16 +40,6 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:block">
             <div className="flex items-center space-x-6">
-              <Link 
-                href="/" 
-                className={`font-medium transition-colors py-2 px-3 rounded-md ${
-                  isActive('/') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
-                }`}
-                data-testid="nav-home"
-              >
-                Home
-              </Link>
-              
               <DropdownMenu>
                 <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md whitespace-nowrap" data-testid="nav-about-dropdown">
                   About Us <ChevronDown className="ml-1 h-4 w-4" />
@@ -158,9 +148,6 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
                 <nav className="flex flex-col space-y-4 mt-8">
-                  <Link href="/" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-home">
-                    Home
-                  </Link>
                   <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-about">
                     About Us
                   </Link>
