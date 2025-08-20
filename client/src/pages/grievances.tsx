@@ -118,10 +118,10 @@ export default function Grievances() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <Card className="glass-card hover-lift shimmer-effect fade-in-up">
-            <CardContent className="p-12">
+            <CardContent className="p-6 sm:p-8 lg:p-12 mobile-form">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" data-testid="grievance-form">
-                  <div className="grid md:grid-cols-2 gap-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" data-testid="grievance-form">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mobile-card-grid">
                     <FormField
                       control={form.control}
                       name="name"

@@ -4,7 +4,7 @@ import { TrendingUp, Shield, Zap, Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white py-20 gradient-shift particle-bg">
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white py-16 sm:py-20 gradient-shift particle-bg mobile-section">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-4 -left-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 float-animation"></div>
@@ -16,40 +16,40 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4 stagger-children">
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight gradient-text typewriter" data-testid="hero-title">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight gradient-text typewriter hero-title" data-testid="hero-title">
                 Building India's Financial Future
               </h1>
-              <p className="text-xl text-blue-100 leading-relaxed fade-in-left" data-testid="hero-description">
+              <p className="text-lg sm:text-xl text-blue-100 leading-relaxed fade-in-left mobile-text-lg" data-testid="hero-description">
                 Aditya Birla Capital Limited is a leading financial services company offering comprehensive solutions in loans, investments, insurance, and payments across India.
               </p>
             </div>
             
             {/* Feature highlights */}
-            <div className="grid grid-cols-3 gap-4 py-6 fade-in-up">
-              <div className="text-center glass-card p-4 hover-lift">
-                <TrendingUp className="h-8 w-8 mx-auto mb-2 text-green-400 bounce-in" />
-                <p className="text-sm text-blue-200">Growth Focused</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 py-4 sm:py-6 fade-in-up mobile-card-grid">
+              <div className="text-center glass-card p-3 sm:p-4 hover-lift">
+                <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-green-400 bounce-in" />
+                <p className="text-xs sm:text-sm text-blue-200 mobile-text-base">Growth Focused</p>
               </div>
-              <div className="text-center glass-card p-4 hover-lift">
-                <Shield className="h-8 w-8 mx-auto mb-2 text-blue-400 bounce-in" style={{animationDelay: '0.2s'}} />
-                <p className="text-sm text-blue-200">Secure & Trusted</p>
+              <div className="text-center glass-card p-3 sm:p-4 hover-lift">
+                <Shield className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-blue-400 bounce-in" style={{animationDelay: '0.2s'}} />
+                <p className="text-xs sm:text-sm text-blue-200 mobile-text-base">Secure & Trusted</p>
               </div>
-              <div className="text-center glass-card p-4 hover-lift">
-                <Sparkles className="h-8 w-8 mx-auto mb-2 text-purple-400 bounce-in" style={{animationDelay: '0.4s'}} />
-                <p className="text-sm text-blue-200">Innovation Driven</p>
+              <div className="text-center glass-card p-3 sm:p-4 hover-lift">
+                <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-purple-400 bounce-in" style={{animationDelay: '0.4s'}} />
+                <p className="text-xs sm:text-sm text-blue-200 mobile-text-base">Innovation Driven</p>
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 stagger-children">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100 btn-interactive hover-glow" asChild data-testid="button-explore-services">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 stagger-children">
+              <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100 btn-interactive hover-glow py-3 px-6 text-sm sm:text-base" asChild data-testid="button-explore-services">
                 <Link href="/about">
-                  <Zap className="h-5 w-5 mr-2 rotate-slow" />
+                  <Zap className="h-4 w-4 sm:h-5 sm:w-5 mr-2 rotate-slow" />
                   Explore Our Services
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-900 btn-interactive hover-glow" asChild data-testid="button-investor-relations">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-900 btn-interactive hover-glow py-3 px-6 text-sm sm:text-base" asChild data-testid="button-investor-relations">
                 <Link href="/investor-relations">
-                  <TrendingUp className="h-5 w-5 mr-2 heartbeat" />
+                  <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 mr-2 heartbeat" />
                   Investor Relations
                 </Link>
               </Button>

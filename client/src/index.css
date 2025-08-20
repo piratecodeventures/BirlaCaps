@@ -409,6 +409,87 @@
   opacity: 1;
 }
 
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem !important;
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem !important;
+    padding: 0 1rem;
+  }
+  
+  .glass-card {
+    margin: 0.5rem;
+    padding: 1rem !important;
+  }
+  
+  .btn-interactive {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Mobile-specific particle effects */
+  .particle-bg::before {
+    opacity: 0.05 !important;
+  }
+  
+  /* Mobile card layouts */
+  .mobile-card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Mobile section padding */
+  .mobile-section {
+    padding: 3rem 1rem !important;
+  }
+  
+  /* Mobile text improvements */
+  .mobile-text-center {
+    text-align: center !important;
+    padding: 0 1rem;
+  }
+  
+  /* Mobile hero adjustments */
+  .mobile-hero {
+    padding: 4rem 1rem 2rem 1rem !important;
+  }
+  
+  /* Mobile form improvements */
+  .mobile-form {
+    padding: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem !important;
+  }
+  
+  .glass-card {
+    padding: 0.75rem !important;
+    margin: 0.25rem;
+  }
+  
+  /* Extra small mobile adjustments */
+  .xs-mobile-padding {
+    padding: 2rem 0.75rem !important;
+  }
+  
+  /* XS mobile text */
+  .xs-mobile-text {
+    font-size: 0.875rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
 .modern-card > * {
   position: relative;
   z-index: 2;
