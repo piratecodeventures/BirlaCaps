@@ -12,16 +12,36 @@ export default function Header() {
   const isActive = (path: string) => location === path;
 
   const aboutLinks = [
-    { href: "/about", label: "Company Overview", section: null },
+    { href: "/about", label: "Company Details", section: "company" },
     { href: "/about", label: "Mission & Vision", section: "mission" },
-    { href: "/about", label: "Management Team", section: "management" },
-    { href: "/about", label: "Board Committees", section: "committees" },
+    { href: "/about", label: "Management", section: "management" },
+    { href: "/about", label: "Promoter", section: "promoter" },
+    { href: "/about", label: "Compliance Officer", section: "compliance" },
+    { href: "/about", label: "Committees", section: "committees" },
   ];
 
   const investorLinks = [
-    { href: "/investor-relations", label: "Financial Reports", section: null },
     { href: "/investor-relations", label: "Announcements", section: "announcements" },
-    { href: "/investor-relations", label: "Governance", section: "governance" },
+    { href: "/investor-relations", label: "Annual Report", section: "annual-reports" },
+    { href: "/investor-relations", label: "Annual Return", section: "annual-returns" },
+    { href: "/investor-relations", label: "Shareholding Pattern", section: "shareholding" },
+    { href: "/investor-relations", label: "Quarterly Result", section: "quarterly-results" },
+    { href: "/investor-relations", label: "Quarterly Corporate Governance Report", section: "governance-reports" },
+    { href: "/investor-relations", label: "Offer Documents", section: "offer-documents" },
+    { href: "/investor-relations", label: "Familiarizations Programme", section: "familiarization" },
+  ];
+
+  const policiesLinks = [
+    { href: "/policies", label: "Code of Conduct", section: "conduct" },
+    { href: "/policies", label: "Code of Governance", section: "governance" },
+    { href: "/policies", label: "Risk Management Policy", section: "risk-management" },
+    { href: "/policies", label: "Policy Related to Party Transaction", section: "party-transaction" },
+    { href: "/policies", label: "Nomination & Remuneration Policy", section: "nomination-remuneration" },
+    { href: "/policies", label: "Code for Prohibition of Insider Trading", section: "insider-trading" },
+    { href: "/policies", label: "Whistle Blower Policy", section: "whistle-blower" },
+    { href: "/policies", label: "Material Subsidiary Policy", section: "material-subsidiary" },
+    { href: "/policies", label: "Archival Policy", section: "archival" },
+    { href: "/policies", label: "Independent Director", section: "independent-director" },
   ];
 
   return (
@@ -72,7 +92,7 @@ export default function Header() {
                 <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md whitespace-nowrap" data-testid="nav-investor-dropdown">
                   Investor Relations <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent className="max-h-96 overflow-y-auto">
                   {investorLinks.map((link) => (
                     <DropdownMenuItem key={link.label} asChild>
                       <Link 
@@ -97,16 +117,6 @@ export default function Header() {
               </DropdownMenu>
 
               <Link 
-                href="/board-directors" 
-                className={`font-medium transition-colors py-2 px-3 rounded-md ${
-                  isActive('/board-directors') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
-                }`}
-                data-testid="nav-board-directors"
-              >
-                Board & Promoters
-              </Link>
-              
-              <Link 
                 href="/company-secretary" 
                 className={`font-medium transition-colors py-2 px-3 rounded-md ${
                   isActive('/company-secretary') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
@@ -115,7 +125,7 @@ export default function Header() {
               >
                 Company Secretary
               </Link>
-              
+
               <Link 
                 href="/grievances" 
                 className={`font-medium transition-colors py-2 px-3 rounded-md ${
@@ -123,18 +133,38 @@ export default function Header() {
                 }`}
                 data-testid="nav-grievances"
               >
-                Grievances
+                Investor Grievances
               </Link>
-              
-              <Link 
-                href="/policies" 
-                className={`font-medium transition-colors py-2 px-3 rounded-md ${
-                  isActive('/policies') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
-                }`}
-                data-testid="nav-policies"
-              >
-                Policies
-              </Link>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md whitespace-nowrap" data-testid="nav-policies-dropdown">
+                  Code and Policies <ChevronDown className="ml-1 h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="max-h-96 overflow-y-auto">
+                  {policiesLinks.map((link) => (
+                    <DropdownMenuItem key={link.label} asChild>
+                      <Link 
+                        href={link.href} 
+                        data-testid={`nav-${link.href}${link.section ? '#' + link.section : ''}`}
+                        onClick={() => {
+                          if (link.section) {
+                            setTimeout(() => {
+                              const element = document.getElementById(link.section!);
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                              }
+                            }, 100);
+                          }
+                        }}
+                      >
+                        {link.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+
             </div>
           </nav>
 
@@ -154,17 +184,14 @@ export default function Header() {
                   <Link href="/investor-relations" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-investor">
                     Investor Relations
                   </Link>
-                  <Link href="/board-directors" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-board-directors">
-                    Board & Promoters
-                  </Link>
                   <Link href="/company-secretary" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-secretary">
                     Company Secretary
                   </Link>
                   <Link href="/grievances" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-grievances">
-                    Grievances
+                    Investor Grievances
                   </Link>
                   <Link href="/policies" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-policies">
-                    Policies
+                    Code and Policies
                   </Link>
                   <Link href="/admin" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-nav-admin">
                     Admin

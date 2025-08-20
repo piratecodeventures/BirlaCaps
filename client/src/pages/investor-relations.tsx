@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Search, Download, Calendar, FileText, TrendingUp, BarChart3, Bell, Shield, Star, Filter } from "lucide-react";
+import { Search, Download, Calendar, FileText, TrendingUp, BarChart3, Bell, Shield, Star, Filter, Users } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import PDFViewer from "@/components/pdf/pdf-viewer";
 import { 
@@ -325,6 +325,160 @@ export default function InvestorRelations() {
                 ))}
               </div>
             )}
+          </div>
+
+          {/* Comprehensive Sections as per document structure */}
+          <div className="mt-16 space-y-16">
+            {/* Annual Reports Section */}
+            <div id="annual-reports" className="scroll-mt-8">
+              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Annual Reports</h2>
+              <Card className="glass-card">
+                <CardContent className="p-8">
+                  <p className="text-gray-600 text-center mb-6">
+                    Comprehensive annual reports showcasing our financial performance, strategic initiatives, and business outlook.
+                  </p>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {["2023-24", "2022-23", "2021-22"].map((year) => (
+                      <Button key={year} variant="outline" className="h-12">
+                        <FileText className="mr-2 h-4 w-4" />
+                        Annual Report {year}
+                      </Button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Annual Returns Section */}
+            <div id="annual-returns" className="scroll-mt-8">
+              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Annual Returns</h2>
+              <Card className="glass-card">
+                <CardContent className="p-8">
+                  <p className="text-gray-600 text-center mb-6">
+                    Statutory annual return filings as required by regulatory authorities.
+                  </p>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {["2023-24", "2022-23", "2021-22"].map((year) => (
+                      <Button key={year} variant="outline" className="h-12">
+                        <TrendingUp className="mr-2 h-4 w-4" />
+                        Annual Return {year}
+                      </Button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Shareholding Pattern Section */}
+            <div id="shareholding" className="scroll-mt-8">
+              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Shareholding Pattern</h2>
+              <Card className="glass-card">
+                <CardContent className="p-8">
+                  <p className="text-gray-600 text-center mb-6">
+                    Detailed shareholding pattern showing distribution of shares among different categories of shareholders.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="text-center">
+                      <h3 className="font-semibold text-lg mb-4">Current Shareholding</h3>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span>Promoter & Promoter Group</span>
+                          <span className="font-medium">75.2%</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Public Shareholders</span>
+                          <span className="font-medium">24.8%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24"].map((quarter) => (
+                        <Button key={quarter} variant="outline" size="sm" className="w-full">
+                          <BarChart3 className="mr-2 h-4 w-4" />
+                          {quarter} Report
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Quarterly Results Section */}
+            <div id="quarterly-results" className="scroll-mt-8">
+              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Quarterly Results</h2>
+              <Card className="glass-card">
+                <CardContent className="p-8">
+                  <p className="text-gray-600 text-center mb-6">
+                    Quarterly financial results and performance updates.
+                  </p>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24", "Q1 2023-24"].map((quarter) => (
+                      <Button key={quarter} variant="outline" className="h-12">
+                        <Star className="mr-2 h-4 w-4" />
+                        {quarter}
+                      </Button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Corporate Governance Reports Section */}
+            <div id="governance-reports" className="scroll-mt-8">
+              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Quarterly Corporate Governance Report</h2>
+              <Card className="glass-card">
+                <CardContent className="p-8">
+                  <p className="text-gray-600 text-center mb-6">
+                    Quarterly reports on corporate governance compliance and board activities.
+                  </p>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24"].map((quarter) => (
+                      <Button key={quarter} variant="outline" className="h-12">
+                        <Shield className="mr-2 h-4 w-4" />
+                        {quarter} Governance Report
+                      </Button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Offer Documents Section */}
+            <div id="offer-documents" className="scroll-mt-8">
+              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Offer Documents</h2>
+              <Card className="glass-card">
+                <CardContent className="p-8">
+                  <p className="text-gray-600 text-center mb-6">
+                    Public offering documents, prospectuses, and related regulatory filings.
+                  </p>
+                  <div className="text-center">
+                    <Button variant="outline" className="h-12">
+                      <FileText className="mr-2 h-4 w-4" />
+                      View Offer Documents
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Familiarization Programme Section */}
+            <div id="familiarization" className="scroll-mt-8">
+              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Familiarizations Programme</h2>
+              <Card className="glass-card">
+                <CardContent className="p-8">
+                  <p className="text-gray-600 text-center mb-6">
+                    Director familiarization programmes designed to enhance board effectiveness and governance.
+                  </p>
+                  <div className="text-center">
+                    <Button variant="outline" className="h-12">
+                      <Users className="mr-2 h-4 w-4" />
+                      View Familiarization Details
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

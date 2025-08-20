@@ -70,6 +70,18 @@ export default function About() {
               />
             </div>
             <div className="space-y-8 fade-in-right">
+              <div id="company" className="glass-card p-6 hover-lift">
+                <div className="flex items-center mb-4">
+                  <Building2 className="h-8 w-8 text-blue-600 mr-3" />
+                  <h3 className="text-2xl font-bold text-gray-900">Company Details</h3>
+                </div>
+                <p className="text-gray-600 leading-relaxed">
+                  Aditya Birla Capital Limited (Birla Caps) is a leading Non-Banking Financial Company (NBFC) 
+                  committed to providing comprehensive financial services across India. We serve individual and 
+                  corporate clients with innovative financial solutions tailored to their unique needs.
+                </p>
+              </div>
+
               <div className="space-y-8">
                 <div id="mission" className="glass-card p-6 hover-lift">
                   <div className="flex items-center mb-4">
@@ -113,6 +125,80 @@ export default function About() {
 
           <div id="management">
             <ManagementTeam />
+          </div>
+
+          {/* Promoter Section */}
+          <div className="mt-20" id="promoter">
+            <h2 className="text-3xl font-bold gradient-text mb-12 text-center fade-in-up">
+              Company Promoters
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card className="glass-card hover-lift">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <Building2 className="h-8 w-8 text-blue-600 mr-4" />
+                    <h3 className="text-xl font-semibold">Individual Promoters</h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Our individual promoters bring decades of experience in financial services and corporate leadership.
+                  </p>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href="/board-directors#promoters">
+                      View Individual Promoters
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card className="glass-card hover-lift">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <Building2 className="h-8 w-8 text-purple-600 mr-4" />
+                    <h3 className="text-xl font-semibold">Corporate Promoters</h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Strategic corporate entities that provide backing and support for our business operations.
+                  </p>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href="/board-directors#promoters">
+                      View Corporate Promoters
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Compliance Officer Section */}
+          <div className="mt-20" id="compliance">
+            <h2 className="text-3xl font-bold gradient-text mb-12 text-center fade-in-up">
+              Compliance Officer
+            </h2>
+            <Card className="glass-card hover-lift max-w-4xl mx-auto">
+              <CardContent className="p-8">
+                <div className="text-center">
+                  <Shield className="h-16 w-16 text-green-600 mx-auto mb-6" />
+                  <h3 className="text-2xl font-bold mb-4">Chief Compliance Officer</h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    Our Chief Compliance Officer ensures adherence to all regulatory requirements, 
+                    maintains corporate governance standards, and oversees risk management across all operations.
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-6 text-left">
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
+                      <p className="text-gray-600 text-sm">Mumbai, Maharashtra - 400001</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Mobile No</h4>
+                      <p className="text-gray-600 text-sm">+91 98765 43210</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Email Id</h4>
+                      <p className="text-gray-600 text-sm">compliance@birlacaps.com</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Board Committees */}

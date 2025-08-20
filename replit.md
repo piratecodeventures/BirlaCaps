@@ -8,6 +8,17 @@ This is a corporate website for Aditya Birla Capital Limited (Birla Caps), a lea
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes (August 20, 2025)
+
+✓ Implemented comprehensive website navigation structure as per client document requirements
+✓ Updated header navigation with dropdown menus for About Us, Investor Relations, and Code & Policies
+✓ Expanded About page with all required sections: Company Details, Mission/Vision, Management, Promoters, Compliance Officer, and Board Committees
+✓ Enhanced Investor Relations page with comprehensive sections: Annual Reports, Annual Returns, Shareholding Pattern, Quarterly Results, Corporate Governance Reports, Offer Documents, and Familiarization Programme
+✓ Created complete Code & Policies page with all 10 policy sections as specified
+✓ Updated Company Secretary page with detailed contact information structure
+✓ Maintained authentic board director information and contact details
+✓ All navigation links now properly route to appropriate sections within pages
+
 ## System Architecture
 
 ### Frontend Architecture
