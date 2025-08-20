@@ -93,20 +93,32 @@ export default function Grievances() {
   ];
 
   return (
-    <div className="min-h-screen">
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-20 pb-16 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white gradient-shift particle-bg">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-4 -left-4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation"></div>
+          <div className="absolute -top-4 -right-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation" style={{animationDelay: '3s'}}></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4" data-testid="grievances-title">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 gradient-text slide-in-top" data-testid="grievances-title">
               Investor Grievances
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-testid="grievances-subtitle">
+            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed fade-in-up" data-testid="grievances-subtitle">
               Submit your grievances and concerns. We are committed to addressing all issues promptly and transparently.
             </p>
           </div>
+        </div>
+      </section>
 
-          <Card className="shadow-lg">
-            <CardContent className="p-8">
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <Card className="glass-card hover-lift shimmer-effect fade-in-up">
+            <CardContent className="p-12">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" data-testid="grievance-form">
                   <div className="grid md:grid-cols-2 gap-6">

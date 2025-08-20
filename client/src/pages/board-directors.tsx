@@ -32,32 +32,32 @@ interface DirectorCardProps {
 
 function DirectorCard({ director }: DirectorCardProps) {
   return (
-    <Card className="hover:shadow-lg transition-shadow duration-300" data-testid={`card-director-${director.id}`}>
+    <Card className="glass-card hover-lift shimmer-effect" data-testid={`card-director-${director.id}`}>
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
-            <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100" data-testid={`text-director-name-${director.id}`}>
+            <CardTitle className="text-xl font-semibold text-gray-900 gradient-text" data-testid={`text-director-name-${director.id}`}>
               {director.name}
             </CardTitle>
-            <CardDescription className="text-lg font-medium text-blue-600 dark:text-blue-400 mt-1" data-testid={`text-director-designation-${director.id}`}>
+            <CardDescription className="text-lg font-medium text-blue-600 mt-1" data-testid={`text-director-designation-${director.id}`}>
               {director.designation}
             </CardDescription>
           </div>
-          <Badge variant="outline" className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300" data-testid={`badge-director-din-${director.id}`}>
+          <Badge variant="outline" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white border-none hover-glow" data-testid={`badge-director-din-${director.id}`}>
             DIN: {director.din}
           </Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex items-start gap-3">
-          <MapPin className="h-5 w-5 text-gray-500 dark:text-gray-400 mt-0.5 flex-shrink-0" />
-          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed" data-testid={`text-director-address-${director.id}`}>
+        <div className="flex items-start gap-3 fade-in-up">
+          <MapPin className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0 bounce-in" />
+          <p className="text-gray-700 text-sm leading-relaxed" data-testid={`text-director-address-${director.id}`}>
             {director.address}
           </p>
         </div>
-        <div className="flex items-start gap-3">
-          <Users className="h-5 w-5 text-gray-500 dark:text-gray-400 mt-0.5 flex-shrink-0" />
-          <p className="text-gray-700 dark:text-gray-300 text-sm" data-testid={`text-director-experience-${director.id}`}>
+        <div className="flex items-start gap-3 fade-in-up">
+          <Users className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0 bounce-in" style={{animationDelay: '0.2s'}} />
+          <p className="text-gray-700 text-sm" data-testid={`text-director-experience-${director.id}`}>
             {director.experience}
           </p>
         </div>
@@ -139,44 +139,55 @@ export default function BoardDirectors() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4" data-testid="text-page-title">
-            Board of Directors & Promoters
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto" data-testid="text-page-description">
-            Meet our experienced leadership team and company promoters who guide our strategic direction and ensure strong corporate governance.
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-20 pb-16 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white gradient-shift particle-bg">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-4 -left-4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation"></div>
+          <div className="absolute -top-4 -right-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation" style={{animationDelay: '3s'}}></div>
         </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 gradient-text slide-in-top" data-testid="text-page-title">
+              Board of Directors & Promoters
+            </h1>
+            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed fade-in-up" data-testid="text-page-description">
+              Meet our experienced leadership team and company promoters who guide our strategic direction and ensure strong corporate governance
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* Company Information */}
-        <div className="mb-12">
-          <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800">
+        <div className="mb-16 fade-in-up">
+          <Card className="glass-card hover-lift shimmer-effect">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2" data-testid="text-company-info-title">
-                <Building className="h-7 w-7 text-blue-600 dark:text-blue-400" />
+              <CardTitle className="text-2xl font-bold gradient-text flex items-center gap-2" data-testid="text-company-info-title">
+                <Building className="h-7 w-7 text-blue-600 bounce-in" />
                 Birla Capital and Financial Services Limited
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-4 stagger-children">
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="font-mono text-sm" data-testid="text-company-cin">
+                  <Badge variant="outline" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white border-none font-mono text-sm hover-glow" data-testid="text-company-cin">
                     CIN: L51900MH1985PLC036156
                   </Badge>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                  <span className="text-sm text-gray-600 dark:text-gray-400" data-testid="text-company-incorporation">
+                  <Calendar className="h-4 w-4 text-blue-600 bounce-in" />
+                  <span className="text-sm text-gray-600" data-testid="text-company-incorporation">
                     Incorporated: 07/05/1985
                   </span>
                 </div>
               </div>
-              <div className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400 mt-1 flex-shrink-0" />
-                <p className="text-sm text-gray-600 dark:text-gray-400" data-testid="text-company-address">
+              <div className="flex items-start gap-2 fade-in-up">
+                <MapPin className="h-4 w-4 text-purple-600 mt-1 flex-shrink-0 bounce-in" />
+                <p className="text-sm text-gray-600" data-testid="text-company-address">
                   5th Floor, 159, Industry House Churchgate Reclamation, Mumbai City, Mumbai: 400020
                 </p>
               </div>
@@ -185,11 +196,11 @@ export default function BoardDirectors() {
         </div>
 
         {/* Board of Directors */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center" data-testid="text-directors-section-title">
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold gradient-text mb-12 text-center fade-in-up" data-testid="text-directors-section-title">
             Board of Directors
           </h2>
-          <div className="grid gap-8 lg:grid-cols-1 xl:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-1 xl:grid-cols-2 stagger-children">
             {directors?.map((director) => (
               <DirectorCard key={director.id} director={director} />
             ))}
@@ -197,8 +208,8 @@ export default function BoardDirectors() {
         </div>
 
         {/* Promoters */}
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center" data-testid="text-promoters-section-title">
+        <div className="fade-in-up">
+          <h2 className="text-3xl font-bold gradient-text mb-12 text-center" data-testid="text-promoters-section-title">
             Promoters of Our Company
           </h2>
           {promoters && <PromotersSection promoters={promoters} />}

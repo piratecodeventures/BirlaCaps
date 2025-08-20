@@ -2,75 +2,105 @@ import ManagementTeam from "@/components/sections/management-team";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Users, ArrowRight } from "lucide-react";
+import { Users, ArrowRight, Target, Eye, Award, TrendingUp, Shield, Building2 } from "lucide-react";
 
 export default function About() {
   const committees = [
     {
-      icon: "fas fa-search-dollar",
+      icon: TrendingUp,
       title: "Audit Committee",
-      description: "Oversees financial reporting, internal controls, and audit processes"
+      description: "Oversees financial reporting, internal controls, and audit processes",
+      color: "text-blue-400"
     },
     {
-      icon: "fas fa-users",
+      icon: Users,
       title: "Nomination & Remuneration",
-      description: "Manages board composition, succession planning, and compensation"
+      description: "Manages board composition, succession planning, and compensation",
+      color: "text-green-400"
     },
     {
-      icon: "fas fa-handshake",
+      icon: Shield,
       title: "Stakeholder Relationship",
-      description: "Ensures effective communication with shareholders and stakeholders"
+      description: "Ensures effective communication with shareholders and stakeholders",
+      color: "text-purple-400"
     }
   ];
 
   return (
-    <div className="min-h-screen">
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-20 pb-16 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white gradient-shift particle-bg">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-4 -left-4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation"></div>
+          <div className="absolute -top-4 -right-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation" style={{animationDelay: '3s'}}></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4" data-testid="about-title">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 gradient-text slide-in-top" data-testid="about-title">
               About Birla Caps
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-testid="about-subtitle">
-              A legacy of trust and innovation in India's financial services sector
+            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed fade-in-up" data-testid="about-subtitle">
+              A legacy of trust and innovation in India's financial services sector, building the future of finance
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 gradient-text">
+              Our Story
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Building trust through excellence and innovation
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center stagger-children">
+            <div className="fade-in-left">
               <img 
                 src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
                 alt="Professional business team in corporate meeting" 
-                className="rounded-lg shadow-lg"
+                className="rounded-2xl shadow-2xl hover-lift shimmer-effect glass-card"
                 data-testid="about-image"
               />
             </div>
-            <div>
-              <div className="space-y-6">
-                <div id="mission">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-3" data-testid="mission-title">
-                    Our Mission
-                  </h2>
+            <div className="space-y-8 fade-in-right">
+              <div className="space-y-8">
+                <div id="mission" className="glass-card p-6 hover-lift">
+                  <div className="flex items-center mb-4">
+                    <Target className="h-8 w-8 text-blue-600 mr-3 bounce-in" />
+                    <h2 className="text-2xl font-semibold text-gray-900 gradient-text" data-testid="mission-title">
+                      Our Mission
+                    </h2>
+                  </div>
                   <p className="text-gray-600 leading-relaxed" data-testid="mission-text">
                     To democratize financial services across India by providing accessible, innovative, and customer-centric solutions that empower individuals and businesses to achieve their financial goals.
                   </p>
                 </div>
-                <div>
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-3" data-testid="vision-title">
-                    Our Vision
-                  </h2>
+                <div className="glass-card p-6 hover-lift">
+                  <div className="flex items-center mb-4">
+                    <Eye className="h-8 w-8 text-purple-600 mr-3 bounce-in" style={{animationDelay: '0.2s'}} />
+                    <h2 className="text-2xl font-semibold text-gray-900 gradient-text" data-testid="vision-title">
+                      Our Vision
+                    </h2>
+                  </div>
                   <p className="text-gray-600 leading-relaxed" data-testid="vision-text">
                     To be India's most trusted and preferred financial services partner, driving financial inclusion and economic growth through technology and innovation.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 mt-8">
-                  <span className="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium" data-testid="service-loans">
+                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect" data-testid="service-loans">
                     Loans
                   </span>
-                  <span className="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium" data-testid="service-investments">
+                  <span className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect" data-testid="service-investments">
                     Investments
                   </span>
-                  <span className="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium" data-testid="service-insurance">
+                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect" data-testid="service-insurance">
                     Insurance
                   </span>
                   <span className="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium" data-testid="service-payments">
@@ -86,41 +116,45 @@ export default function About() {
           </div>
 
           {/* Board Committees */}
-          <div className="mt-16" id="committees">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center" data-testid="committees-title">
+          <div className="mt-20" id="committees">
+            <h2 className="text-3xl font-bold gradient-text mb-12 text-center fade-in-up" data-testid="committees-title">
               Board Committees
             </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {committees.map((committee, index) => (
-                <Card key={index} data-testid={`committee-${index}`}>
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <i className={`${committee.icon} text-primary text-2xl mr-3`} data-testid={`committee-icon-${index}`}></i>
-                      <h3 className="text-lg font-semibold text-gray-900" data-testid={`committee-title-${index}`}>
-                        {committee.title}
-                      </h3>
-                    </div>
-                    <p className="text-gray-600 text-sm" data-testid={`committee-description-${index}`}>
-                      {committee.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="grid md:grid-cols-3 gap-8 stagger-children">
+              {committees.map((committee, index) => {
+                const IconComponent = committee.icon;
+                return (
+                  <Card key={index} className="glass-card hover-lift shimmer-effect" data-testid={`committee-${index}`}>
+                    <CardContent className="p-8">
+                      <div className="flex items-center mb-6">
+                        <IconComponent className={`h-8 w-8 ${committee.color} mr-4 bounce-in heartbeat`} style={{animationDelay: `${index * 0.2}s`}} data-testid={`committee-icon-${index}`} />
+                        <h3 className="text-xl font-semibold gradient-text" data-testid={`committee-title-${index}`}>
+                          {committee.title}
+                        </h3>
+                      </div>
+                      <p className="text-gray-600 leading-relaxed" data-testid={`committee-description-${index}`}>
+                        {committee.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
 
             {/* Board of Directors Call-to-Action */}
-            <div className="mt-16 text-center bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8">
-              <Users className="h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4" data-testid="board-cta-title">
+            <div className="mt-20 text-center glass-card p-12 hover-lift fade-in-up">
+              <Users className="h-16 w-16 text-blue-600 mx-auto mb-6 bounce-in float-animation" />
+              <h3 className="text-3xl font-bold gradient-text mb-6" data-testid="board-cta-title">
                 Meet Our Leadership Team
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto" data-testid="board-cta-description">
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-lg leading-relaxed" data-testid="board-cta-description">
                 Discover our experienced Board of Directors and company promoters who guide our strategic vision and ensure robust corporate governance.
               </p>
-              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white" data-testid="button-view-board">
+              <Button asChild className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white btn-interactive hover-glow" data-testid="button-view-board">
                 <Link href="/board-directors">
+                  <Building2 className="mr-2 h-5 w-5 rotate-slow" />
                   View Board of Directors & Promoters
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-5 w-5 heartbeat" />
                 </Link>
               </Button>
             </div>

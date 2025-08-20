@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Printer, User } from "lucide-react";
+import { Mail, Phone, MapPin, Printer, User, UserCheck } from "lucide-react";
 
 export default function CompanySecretary() {
   const secretaryInfo = {
@@ -12,55 +12,68 @@ export default function CompanySecretary() {
   };
 
   return (
-    <div className="min-h-screen">
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-20 pb-16 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white gradient-shift particle-bg">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-4 -left-4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation"></div>
+          <div className="absolute -top-4 -right-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation" style={{animationDelay: '3s'}}></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4" data-testid="secretary-title">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 gradient-text slide-in-top" data-testid="secretary-title">
               Company Secretary Details
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-testid="secretary-subtitle">
+            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed fade-in-up" data-testid="secretary-subtitle">
               Contact information for company secretary and compliance officer
             </p>
           </div>
+        </div>
+      </section>
 
-          <Card className="shadow-lg">
-            <CardContent className="p-8">
-              <div className="space-y-6">
-                <div className="text-center mb-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2" data-testid="secretary-position">
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <Card className="glass-card hover-lift shimmer-effect fade-in-up">
+            <CardContent className="p-12">
+              <div className="space-y-8">
+                <div className="text-center mb-12">
+                  <UserCheck className="h-16 w-16 text-blue-600 mx-auto mb-6 bounce-in float-animation" />
+                  <h2 className="text-3xl font-bold gradient-text mb-4" data-testid="secretary-position">
                     {secretaryInfo.position}
                   </h2>
                 </div>
 
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <User className="text-primary mt-1 h-5 w-5 flex-shrink-0" />
+                <div className="space-y-8 stagger-children">
+                  <div className="flex items-start space-x-6 fade-in-up">
+                    <User className="text-blue-600 mt-1 h-6 w-6 flex-shrink-0 bounce-in" />
                     <div>
-                      <span className="font-semibold text-gray-900">Name:</span>
-                      <span className="ml-2 text-gray-700" data-testid="secretary-name">
+                      <span className="font-semibold text-gray-900 text-lg">Name:</span>
+                      <span className="ml-3 text-gray-700 text-lg" data-testid="secretary-name">
                         {secretaryInfo.name}
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
-                    <MapPin className="text-primary mt-1 h-5 w-5 flex-shrink-0" />
+                  <div className="flex items-start space-x-6 fade-in-up">
+                    <MapPin className="text-purple-600 mt-1 h-6 w-6 flex-shrink-0 bounce-in" style={{animationDelay: '0.2s'}} />
                     <div>
-                      <span className="font-semibold text-gray-900">Address:</span>
-                      <span className="ml-2 text-gray-700" data-testid="secretary-address">
+                      <span className="font-semibold text-gray-900 text-lg">Address:</span>
+                      <span className="ml-3 text-gray-700 text-lg" data-testid="secretary-address">
                         {secretaryInfo.address}
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-4">
-                    <Phone className="text-primary h-5 w-5 flex-shrink-0" />
+                  <div className="flex items-center space-x-6 fade-in-up">
+                    <Phone className="text-green-600 h-6 w-6 flex-shrink-0 bounce-in heartbeat" style={{animationDelay: '0.4s'}} />
                     <div>
-                      <span className="font-semibold text-gray-900">Mobile:</span>
+                      <span className="font-semibold text-gray-900 text-lg">Mobile:</span>
                       <a 
                         href={`tel:${secretaryInfo.mobile}`}
-                        className="ml-2 text-primary hover:underline"
+                        className="ml-3 text-blue-600 hover:text-blue-800 text-lg btn-interactive hover-glow"
                         data-testid="secretary-mobile"
                       >
                         {secretaryInfo.mobile}
@@ -68,8 +81,8 @@ export default function CompanySecretary() {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-4">
-                    <Mail className="text-primary h-5 w-5 flex-shrink-0" />
+                  <div className="flex items-center space-x-6 fade-in-up">
+                    <Mail className="text-blue-600 h-6 w-6 flex-shrink-0 bounce-in" style={{animationDelay: '0.6s'}} />
                     <div>
                       <span className="font-semibold text-gray-900">Email:</span>
                       <a 
