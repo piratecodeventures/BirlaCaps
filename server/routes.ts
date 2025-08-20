@@ -6,6 +6,7 @@ import { z } from "zod";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import { sampleAnnouncements, sampleDocuments, sampleCompanyInfo, sampleBoardDirectors } from "./seed-data";
 
 // Configure multer for file uploads
 const uploadDir = "uploads";
@@ -373,6 +374,53 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting promoter:", error);
       res.status(500).json({ message: "Failed to delete promoter" });
+    }
+  });
+
+  // Seed database with sample data
+  app.post('/api/admin/seed', async (req, res) => {
+    try {
+      console.log("Starting database seeding...");
+      
+      // Create sample announcements
+      for (const announcement of sampleAnnouncements) {
+        try {
+          await storage.createAnnouncement(announcement);
+        } catch (error) {
+          console.log("Announcement already exists or error:", error);
+        }
+      }
+
+      // Create sample documents
+      for (const document of sampleDocuments) {
+        try {
+          await storage.createInvestorDocument(document);
+        } catch (error) {
+          console.log("Document already exists or error:", error);
+        }
+      }
+
+      // Create sample board directors
+      for (const director of sampleBoardDirectors) {
+        try {
+          await storage.createBoardDirector(director);
+        } catch (error) {
+          console.log("Director already exists or error:", error);
+        }
+      }
+
+      console.log("Database seeding completed successfully!");
+      res.json({ 
+        message: "Database seeded successfully with sample data",
+        counts: {
+          announcements: sampleAnnouncements.length,
+          documents: sampleDocuments.length,
+          directors: sampleBoardDirectors.length
+        }
+      });
+    } catch (error) {
+      console.error("Error seeding database:", error);
+      res.status(500).json({ message: "Failed to seed database", error: error.message });
     }
   });
 

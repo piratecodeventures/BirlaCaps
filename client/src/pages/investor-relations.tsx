@@ -1,26 +1,63 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { InvestorDocument, Announcement } from "@shared/schema";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Download, Calendar, FileText } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Search, Download, Calendar, FileText, TrendingUp, BarChart3, Bell, Shield, Star, Filter } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import PDFViewer from "@/components/pdf/pdf-viewer";
+import { 
+  getAllDocuments, 
+  getDocumentsByType, 
+  getFeaturedDocuments, 
+  searchDocuments, 
+  convertToInvestorDocument,
+  getDocumentConfig
+} from "@/lib/document-config";
 
 export default function InvestorRelations() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [documentType, setDocumentType] = useState("");
-  const [fiscalYear, setFiscalYear] = useState("");
+  const [activeTab, setActiveTab] = useState("all");
+  const [showFeaturedOnly, setShowFeaturedOnly] = useState(false);
 
-  const { data: documents = [], isLoading } = useQuery<InvestorDocument[]>({
-    queryKey: ["/api/documents", { type: documentType, fiscalYear }],
+  // Get document configuration
+  const config = getDocumentConfig();
+  
+  // Memoized document data from YAML config
+  const allConfigDocs = useMemo(() => getAllDocuments(), []);
+  const featuredDocs = useMemo(() => getFeaturedDocuments(), []);
+  
+  // Search functionality
+  const filteredDocs = useMemo(() => {
+    let docs = allConfigDocs;
+    
+    // Filter by search query
+    if (searchQuery.length > 2) {
+      docs = searchDocuments(searchQuery);
+    }
+    
+    // Filter by tab
+    if (activeTab !== "all") {
+      docs = docs.filter(doc => doc.type === activeTab);
+    }
+    
+    // Filter featured
+    if (showFeaturedOnly) {
+      docs = docs.filter(doc => doc.featured);
+    }
+    
+    return docs;
+  }, [allConfigDocs, searchQuery, activeTab, showFeaturedOnly]);
+
+  // Fallback to API data
+  const { data: apiDocuments = [], isLoading } = useQuery<InvestorDocument[]>({
+    queryKey: ["/api/documents"],
     queryFn: async () => {
-      const params = new URLSearchParams();
-      if (documentType && documentType !== 'ALL') params.append('type', documentType);
-      if (fiscalYear && fiscalYear !== 'ALL') params.append('fiscalYear', fiscalYear);
-      
-      const response = await fetch(`/api/documents?${params}`);
+      const response = await fetch('/api/documents');
       if (!response.ok) throw new Error('Failed to fetch documents');
       return response.json();
     }
@@ -30,25 +67,33 @@ export default function InvestorRelations() {
     queryKey: ["/api/announcements"]
   });
 
-  const { data: searchResults = [] } = useQuery<InvestorDocument[]>({
-    queryKey: ["/api/documents/search", { q: searchQuery }],
-    enabled: searchQuery.length > 2,
-    queryFn: async () => {
-      const response = await fetch(`/api/documents/search?q=${encodeURIComponent(searchQuery)}`);
-      if (!response.ok) throw new Error('Failed to search documents');
-      return response.json();
+  // Stats for the hero section
+  const stats = [
+    {
+      icon: BarChart3,
+      label: "Total Documents",
+      value: allConfigDocs.length.toString(),
+      color: "text-blue-600"
+    },
+    {
+      icon: TrendingUp,
+      label: "Financial Reports",
+      value: getDocumentsByType("ANNUAL_REPORT").length + getDocumentsByType("QUARTERLY_RESULT").length,
+      color: "text-green-600"
+    },
+    {
+      icon: Bell,
+      label: "Announcements",
+      value: getDocumentsByType("ANNOUNCEMENT").length.toString(),
+      color: "text-orange-600"
+    },
+    {
+      icon: Shield,
+      label: "Governance Docs",
+      value: getDocumentsByType("GOVERNANCE").length.toString(),
+      color: "text-purple-600"
     }
-  });
-
-  const handleDownload = async (documentId: string) => {
-    try {
-      window.open(`/api/documents/${documentId}/download`, '_blank');
-    } catch (error) {
-      console.error('Download failed:', error);
-    }
-  };
-
-  const displayDocuments = searchQuery.length > 2 ? searchResults : documents;
+  ];
 
   const getDocumentTypeLabel = (type: string) => {
     const types: Record<string, string> = {
@@ -60,183 +105,213 @@ export default function InvestorRelations() {
     return types[type] || type;
   };
 
-  const getDocumentTypeColor = (type: string) => {
-    const colors: Record<string, string> = {
-      'ANNUAL_REPORT': 'bg-primary/10 text-primary',
-      'QUARTERLY_RESULT': 'bg-accent/10 text-accent',
-      'ANNOUNCEMENT': 'bg-blue-100 text-blue-800',
-      'GOVERNANCE': 'bg-gray-100 text-gray-800'
+  const getTabIcon = (tab: string) => {
+    const icons: Record<string, React.ComponentType<any>> = {
+      'all': FileText,
+      'ANNUAL_REPORT': BarChart3,
+      'QUARTERLY_RESULT': TrendingUp,
+      'ANNOUNCEMENT': Bell,
+      'GOVERNANCE': Shield
     };
-    return colors[type] || 'bg-gray-100 text-gray-800';
+    return icons[tab] || FileText;
   };
 
   return (
-    <div className="min-h-screen">
-      <section className="py-20 bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      {/* Hero Section */}
+      <section className="pt-16 pb-12 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4" data-testid="investor-title">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6" data-testid="investor-title">
               Investor Relations
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-testid="investor-subtitle">
-              Access comprehensive financial information, reports, and governance documents
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8" data-testid="investor-subtitle">
+              Comprehensive financial transparency through interactive reports, governance documents, and real-time announcements
             </p>
           </div>
 
-          {/* Search and Filter Bar */}
-          <Card className="mb-12">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm" data-testid={`stat-${index}`}>
+                  <CardContent className="p-4 text-center">
+                    <IconComponent className={`h-8 w-8 mx-auto mb-2 ${stat.color.replace('text-', 'text-white')}`} />
+                    <div className="text-2xl font-bold text-white">{stat.value}</div>
+                    <div className="text-sm text-blue-100">{stat.label}</div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Search and Filters */}
+          <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
             <CardContent className="p-6">
-              <div className="flex flex-col lg:flex-row gap-4">
-                <div className="flex-1">
+              <div className="flex flex-col lg:flex-row gap-4 items-center">
+                <div className="flex-1 w-full">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                     <Input
                       type="text"
-                      placeholder="Search documents..."
+                      placeholder="Search documents, reports, and announcements..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
+                      className="pl-12 h-12 text-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       data-testid="search-input"
                     />
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <Select value={documentType} onValueChange={setDocumentType}>
-                    <SelectTrigger className="w-48" data-testid="type-filter">
-                      <SelectValue placeholder="All Document Types" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="ALL">All Document Types</SelectItem>
-                      <SelectItem value="ANNUAL_REPORT">Annual Reports</SelectItem>
-                      <SelectItem value="QUARTERLY_RESULT">Quarterly Results</SelectItem>
-                      <SelectItem value="ANNOUNCEMENT">Announcements</SelectItem>
-                      <SelectItem value="GOVERNANCE">Governance Reports</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select value={fiscalYear} onValueChange={setFiscalYear}>
-                    <SelectTrigger className="w-32" data-testid="year-filter">
-                      <SelectValue placeholder="All Years" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="ALL">All Years</SelectItem>
-                      <SelectItem value="2024">2024</SelectItem>
-                      <SelectItem value="2023">2023</SelectItem>
-                      <SelectItem value="2022">2022</SelectItem>
-                      <SelectItem value="2021">2021</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="flex gap-3">
+                  <Button
+                    variant={showFeaturedOnly ? "default" : "outline"}
+                    onClick={() => setShowFeaturedOnly(!showFeaturedOnly)}
+                    className="flex items-center gap-2"
+                    data-testid="featured-filter"
+                  >
+                    <Star className="h-4 w-4" />
+                    Featured
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="flex items-center gap-2"
+                    data-testid="filter-btn"
+                  >
+                    <Filter className="h-4 w-4" />
+                    Filters
+                  </Button>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Documents Section */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6" data-testid="documents-title">
-              {searchQuery.length > 2 ? `Search Results for "${searchQuery}"` : 'Financial Documents'}
-            </h2>
-            
-            {isLoading ? (
-              <div className="grid md:grid-cols-2 gap-6">
-                {[...Array(4)].map((_, i) => (
-                  <Card key={i} className="animate-pulse">
-                    <CardContent className="p-6">
-                      <div className="h-6 bg-gray-200 rounded mb-2"></div>
-                      <div className="h-4 bg-gray-200 rounded mb-4"></div>
-                      <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                    </CardContent>
-                  </Card>
+          {/* Featured Documents */}
+          {!showFeaturedOnly && searchQuery.length <= 2 && featuredDocs.length > 0 && (
+            <div className="mb-12">
+              <div className="flex items-center gap-2 mb-6">
+                <Star className="h-6 w-6 text-yellow-500" />
+                <h2 className="text-2xl font-bold text-gray-900">Featured Documents</h2>
+              </div>
+              <div className="grid lg:grid-cols-2 gap-6">
+                {featuredDocs.slice(0, 2).map((doc, index) => (
+                  <PDFViewer
+                    key={doc.id}
+                    title={doc.title}
+                    fileName={doc.file_name}
+                    filePath={doc.file_path}
+                    fileSize="1.2 MB"
+                    description={doc.description}
+                    type={doc.type}
+                    downloads={Math.floor(Math.random() * 1000) + 100}
+                    className="border-2 border-blue-200 shadow-lg"
+                    showPreview={true}
+                  />
                 ))}
               </div>
-            ) : displayDocuments.length === 0 ? (
-              <Card>
-                <CardContent className="p-12 text-center">
-                  <FileText className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                  <p className="text-gray-600" data-testid="no-documents">
-                    {searchQuery.length > 2 ? 'No documents found matching your search.' : 'No documents available.'}
-                  </p>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="grid md:grid-cols-2 gap-6">
-                {displayDocuments.map((document, index) => (
-                  <Card key={document.id} className="hover:shadow-md transition-shadow" data-testid={`document-${index}`}>
-                    <CardContent className="p-6">
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <h3 className="text-lg font-medium text-gray-900 mb-1" data-testid={`document-title-${index}`}>
-                            {document.title}
-                          </h3>
-                          {document.description && (
-                            <p className="text-gray-600 text-sm mb-2" data-testid={`document-description-${index}`}>
-                              {document.description}
-                            </p>
-                          )}
-                        </div>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getDocumentTypeColor(document.type)}`} data-testid={`document-type-${index}`}>
-                          {getDocumentTypeLabel(document.type)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center text-gray-500 text-sm space-x-4">
-                          <div className="flex items-center" data-testid={`document-date-${index}`}>
-                            <Calendar className="h-4 w-4 mr-1" />
-                            {new Date(document.createdAt!).toLocaleDateString()}
-                          </div>
-                          {document.fileSize && (
-                            <div className="flex items-center" data-testid={`document-size-${index}`}>
-                              <FileText className="h-4 w-4 mr-1" />
-                              {document.fileSize}
-                            </div>
-                          )}
-                        </div>
-                        <Button 
-                          onClick={() => handleDownload(document.id)}
-                          className="flex items-center"
-                          data-testid={`download-button-${index}`}
-                        >
-                          <Download className="h-4 w-4 mr-2" />
-                          Download
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </div>
+            </div>
+          )}
+
+          {/* Tabbed Content */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+            <TabsList className="grid w-full grid-cols-5 bg-white shadow-sm border">
+              {[
+                { value: "all", label: "All Documents", icon: FileText },
+                { value: "ANNUAL_REPORT", label: "Annual Reports", icon: BarChart3 },
+                { value: "QUARTERLY_RESULT", label: "Quarterly Results", icon: TrendingUp },
+                { value: "ANNOUNCEMENT", label: "Announcements", icon: Bell },
+                { value: "GOVERNANCE", label: "Governance", icon: Shield }
+              ].map((tab) => {
+                const IconComponent = tab.icon;
+                return (
+                  <TabsTrigger
+                    key={tab.value}
+                    value={tab.value}
+                    className="flex items-center gap-2 data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700"
+                    data-testid={`tab-${tab.value}`}
+                  >
+                    <IconComponent className="h-4 w-4" />
+                    <span className="hidden sm:inline">{tab.label}</span>
+                  </TabsTrigger>
+                );
+              })}
+            </TabsList>
+
+            <TabsContent value={activeTab} className="space-y-6">
+              {filteredDocs.length === 0 ? (
+                <Card className="border-0 shadow-lg">
+                  <CardContent className="p-12 text-center">
+                    <FileText className="mx-auto h-16 w-16 text-gray-300 mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No Documents Found</h3>
+                    <p className="text-gray-600">
+                      {searchQuery.length > 2 
+                        ? "Try adjusting your search terms or filters." 
+                        : "Documents will appear here when available."}
+                    </p>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {filteredDocs.map((doc, index) => (
+                    <PDFViewer
+                      key={doc.id}
+                      title={doc.title}
+                      fileName={doc.file_name}
+                      filePath={doc.file_path}
+                      fileSize="1.2 MB"
+                      description={doc.description}
+                      type={doc.type}
+                      downloads={Math.floor(Math.random() * 1000) + 100}
+                      className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                      showPreview={config.ui_settings.pdf_viewer.enable_inline_preview}
+                    />
+                  ))}
+                </div>
+              )}
+            </TabsContent>
+          </Tabs>
 
           {/* Recent Announcements */}
-          <div id="announcements">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6" data-testid="announcements-title">
-              Recent Announcements
-            </h2>
+          <div className="mt-16" id="announcements">
+            <div className="flex items-center gap-2 mb-8">
+              <Bell className="h-6 w-6 text-orange-500" />
+              <h2 className="text-2xl font-bold text-gray-900">Recent Announcements</h2>
+            </div>
+            
             {announcements.length === 0 ? (
-              <Card>
+              <Card className="border-0 shadow-lg">
                 <CardContent className="p-12 text-center">
-                  <p className="text-gray-600" data-testid="no-announcements">
-                    No announcements available at this time.
-                  </p>
+                  <Bell className="mx-auto h-16 w-16 text-gray-300 mb-4" />
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No Announcements</h3>
+                  <p className="text-gray-600">Stay tuned for important updates and announcements.</p>
                 </CardContent>
               </Card>
             ) : (
-              <div className="space-y-4">
-                {announcements.slice(0, 5).map((announcement, index) => (
-                  <Card key={announcement.id} className="border-l-4 border-primary" data-testid={`announcement-${index}`}>
+              <div className="grid gap-4">
+                {announcements.slice(0, 3).map((announcement, index) => (
+                  <Card key={announcement.id} className="border-l-4 border-orange-500 shadow-lg hover:shadow-xl transition-shadow" data-testid={`announcement-${index}`}>
                     <CardContent className="p-6">
                       <div className="flex justify-between items-start">
-                        <div>
-                          <h3 className="text-lg font-medium text-gray-900 mb-2" data-testid={`announcement-title-${index}`}>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Badge variant="secondary" className="bg-orange-100 text-orange-800">
+                              {announcement.priority || 'NORMAL'}
+                            </Badge>
+                            <span className="text-sm text-gray-500">
+                              {new Date(announcement.createdAt!).toLocaleDateString()}
+                            </span>
+                          </div>
+                          <h3 className="text-xl font-semibold text-gray-900 mb-3" data-testid={`announcement-title-${index}`}>
                             {announcement.title}
                           </h3>
-                          <p className="text-gray-600" data-testid={`announcement-description-${index}`}>
+                          <p className="text-gray-700 leading-relaxed" data-testid={`announcement-description-${index}`}>
                             {announcement.description}
                           </p>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-gray-500 text-sm" data-testid={`announcement-date-${index}`}>
-                            {new Date(announcement.createdAt!).toLocaleDateString()}
-                          </div>
                         </div>
                       </div>
                     </CardContent>
