@@ -107,27 +107,27 @@ export const sampleCompanyInfo: InsertCompanyInfo[] = [
 
 export const sampleBoardDirectors: InsertBoardDirector[] = [
   {
-    name: "Minal",
-    address: "Mumbai, Maharashtra - 400001",
-    designation: "Chairman & Managing Director",
-    din: "DIN00123001",
-    experience: "Over 20 years of experience in financial services, corporate governance, and strategic leadership. Extensive expertise in business development, regulatory compliance, and stakeholder management.",
+    name: "Satyanarayana Sharma Dahagama",
+    address: "8, Suneel Building, B-Wing, Ground Floor, Near Bank of Baroda, Shimpoli Road, Borivali West, Mumbai: 400092",
+    designation: "Director",
+    din: "01346189",
+    experience: "10+ year experience in serving as Director in Company",
     sortOrder: 1
   },
   {
-    name: "Abhijit",
-    address: "Delhi, New Delhi - 110001",
-    designation: "Executive Director",
-    din: "DIN00123002",
-    experience: "15 years of operational excellence in financial services with focus on technology integration, risk management, and customer experience enhancement. Expert in digital transformation and process optimization.",
+    name: "Minal Umesh Pote",
+    address: "Ramaniwas, Vasai (West), Tarkhad, Bassein, Vasai, Thane: 401201",
+    designation: "Director",
+    din: "07163539",
+    experience: "6+ year experience in serving as Director in Company",
     sortOrder: 2
   },
   {
-    name: "Satyanarayan",
-    address: "Bangalore, Karnataka - 560001",
-    designation: "Independent Director",
-    din: "DIN00123003",
-    experience: "Distinguished career spanning 18 years in corporate governance, financial analysis, and regulatory frameworks. Former senior executive with deep expertise in financial regulations and policy development.",
+    name: "Abhijeet Namdeo Bhingarde",
+    address: "Flat No-14, BLDG No.4, Samarpan Soc, Opp Shankar Mandir, Yashodhan NGR, Pada No-2, Thane: 400606",
+    designation: "Director",
+    din: "06376231",
+    experience: "6+ year experience in serving as Director in Company",
     sortOrder: 3
   }
 ];
