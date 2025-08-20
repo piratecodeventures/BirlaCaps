@@ -16,11 +16,16 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4 stagger-children">
+              <div className="mb-4">
+                <div className="inline-block bg-gradient-to-r from-blue-400 to-purple-400 text-white px-8 py-4 rounded-xl font-bold text-4xl sm:text-5xl lg:text-7xl shadow-2xl transform hover:scale-105 transition-transform duration-300 glow-on-hover" data-testid="company-logo">
+                  BIRLA CAPS
+                </div>
+              </div>
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight gradient-text typewriter hero-title" data-testid="hero-title">
                 Building India's Financial Future
               </h1>
               <p className="text-lg sm:text-xl text-blue-100 leading-relaxed fade-in-left mobile-text-lg" data-testid="hero-description">
-                Birla Caps is a leading financial services company offering comprehensive solutions in loans, investments, insurance, and payments across India.
+                Leading financial services company offering comprehensive solutions in loans, investments, insurance, and payments across India.
               </p>
             </div>
             
