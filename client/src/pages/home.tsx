@@ -99,20 +99,20 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
                 <Card 
                   key={index} 
-                  className={`text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 ${feature.borderColor} ${feature.bgColor}`} 
+                  className={`text-center modern-card hover-lift shimmer-effect border-2 ${feature.borderColor} ${feature.bgColor}`} 
                   data-testid={`feature-${index}`}
                 >
                   <CardContent className="pt-6">
-                    <div className={`mb-4 ${feature.bgColor} ${feature.color} p-3 rounded-full w-16 h-16 mx-auto flex items-center justify-center`} data-testid={`feature-icon-${index}`}>
-                      <IconComponent className="h-8 w-8" />
+                    <div className={`mb-4 ${feature.bgColor} ${feature.color} p-3 rounded-full w-16 h-16 mx-auto flex items-center justify-center float-animation hover-glow`} data-testid={`feature-icon-${index}`}>
+                      <IconComponent className="h-8 w-8 hover-rotate" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2" data-testid={`feature-title-${index}`}>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 gradient-text-blue" data-testid={`feature-title-${index}`}>
                       {feature.title}
                     </h3>
                     <p className="text-gray-600 text-sm leading-relaxed" data-testid={`feature-description-${index}`}>
@@ -138,28 +138,28 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-8 stagger-children">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg" data-testid={`service-${index}`}>
+                <Card key={index} className="group glass-card hover-lift shimmer-effect border-0 shadow-xl" data-testid={`service-${index}`}>
                   <CardHeader className="text-center pb-4">
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full w-20 h-20 mx-auto flex items-center justify-center mb-4">
-                      <IconComponent className="h-10 w-10" />
+                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full w-20 h-20 mx-auto flex items-center justify-center mb-4 gradient-shift heartbeat hover-glow">
+                      <IconComponent className="h-10 w-10 hover-rotate" />
                     </div>
-                    <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors" data-testid={`service-title-${index}`}>
+                    <CardTitle className="text-xl font-bold gradient-text group-hover:scale-105 transition-transform duration-300" data-testid={`service-title-${index}`}>
                       {service.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="text-center">
-                    <p className="text-gray-600 mb-6 leading-relaxed" data-testid={`service-description-${index}`}>
+                    <p className="text-gray-700 mb-6 leading-relaxed fade-in-up" data-testid={`service-description-${index}`}>
                       {service.description}
                     </p>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       {service.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center justify-center gap-2 text-sm text-gray-700">
-                          <Star className="h-4 w-4 text-yellow-500" />
-                          {feature}
+                        <div key={featureIndex} className="flex items-center justify-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-300 hover-lift">
+                          <Star className="h-4 w-4 text-yellow-500 bounce-in" style={{animationDelay: `${featureIndex * 0.1}s`}} />
+                          <span className="hover:scale-105 transition-transform duration-300">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -187,27 +187,27 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-8 mb-12 stagger-children">
               {announcements.slice(0, 4).map((announcement, index) => (
-                <Card key={announcement.id} className="border-l-4 border-orange-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white/80 backdrop-blur-sm" data-testid={`announcement-${index}`}>
+                <Card key={announcement.id} className="border-l-4 border-orange-500 glass-card hover-lift shimmer-effect" data-testid={`announcement-${index}`}>
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-3">
-                      <Badge variant="secondary" className="bg-orange-100 text-orange-800">
+                      <Badge variant="secondary" className="bg-gradient-to-r from-orange-500 to-red-500 text-white hover-glow pulse-effect">
                         Important
                       </Badge>
-                      <div className="text-sm text-gray-500" data-testid={`announcement-date-${index}`}>
+                      <div className="text-sm text-gray-500 fade-in-right" data-testid={`announcement-date-${index}`}>
                         {new Date(announcement.createdAt!).toLocaleDateString()}
                       </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight" data-testid={`announcement-title-${index}`}>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight gradient-text-blue hover:scale-105 transition-transform duration-300" data-testid={`announcement-title-${index}`}>
                       {announcement.title}
                     </h3>
-                    <p className="text-gray-700 mb-4 leading-relaxed" data-testid={`announcement-description-${index}`}>
+                    <p className="text-gray-700 mb-4 leading-relaxed fade-in-up" data-testid={`announcement-description-${index}`}>
                       {announcement.description}
                     </p>
-                    <Button variant="outline" size="sm" className="group">
+                    <Button variant="outline" size="sm" className="group btn-interactive hover-glow">
                       Read More
-                      <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-2 transition-transform duration-300 bounce-in" />
                     </Button>
                   </CardContent>
                 </Card>
@@ -241,27 +241,27 @@ export default function Home() {
               Join thousands of satisfied customers who trust Birla Caps for their financial journey. 
               Experience excellence in banking, investment, and wealth management services.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center stagger-children">
               <Button 
                 size="lg" 
-                className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-xl transform hover:scale-105 transition-all duration-300" 
+                className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4 text-lg font-semibold btn-interactive hover-glow bounce-in" 
                 asChild 
                 data-testid="button-learn-more"
               >
                 <Link href="/about">
-                  <Zap className="h-5 w-5 mr-2" />
+                  <Zap className="h-5 w-5 mr-2 rotate-slow" />
                   Discover Our Story
                 </Link>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg font-semibold shadow-xl transform hover:scale-105 transition-all duration-300" 
+                className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg font-semibold btn-interactive hover-glow bounce-in" 
                 asChild 
                 data-testid="button-contact-us"
               >
                 <Link href="/grievances">
-                  <Users className="h-5 w-5 mr-2" />
+                  <Users className="h-5 w-5 mr-2 heartbeat" />
                   Get Started Today
                 </Link>
               </Button>

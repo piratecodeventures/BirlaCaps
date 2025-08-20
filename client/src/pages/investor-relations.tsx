@@ -119,27 +119,33 @@ export default function InvestorRelations() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       {/* Hero Section */}
-      <section className="pt-16 pb-12 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6" data-testid="investor-title">
+      <section className="relative overflow-hidden pt-20 pb-16 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white gradient-shift particle-bg">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-4 -left-4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation"></div>
+          <div className="absolute -top-4 -right-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation" style={{animationDelay: '3s'}}></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 gradient-text slide-in-top" data-testid="investor-title">
               Investor Relations
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8" data-testid="investor-subtitle">
+            <p className="text-xl text-blue-100 max-w-4xl mx-auto mb-8 leading-relaxed fade-in-up" data-testid="investor-subtitle">
               Comprehensive financial transparency through interactive reports, governance documents, and real-time announcements
             </p>
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16 stagger-children">
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-sm" data-testid={`stat-${index}`}>
-                  <CardContent className="p-4 text-center">
-                    <IconComponent className={`h-8 w-8 mx-auto mb-2 ${stat.color.replace('text-', 'text-white')}`} />
-                    <div className="text-2xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm text-blue-100">{stat.label}</div>
+                <Card key={index} className="glass-card text-white hover-lift shimmer-effect" data-testid={`stat-${index}`}>
+                  <CardContent className="p-6 text-center">
+                    <IconComponent className={`h-10 w-10 mx-auto mb-3 text-white bounce-in heartbeat`} style={{animationDelay: `${index * 0.2}s`}} />
+                    <div className="text-3xl font-bold text-white mb-2 gradient-text">{stat.value}</div>
+                    <div className="text-sm text-blue-200">{stat.label}</div>
                   </CardContent>
                 </Card>
               );
