@@ -31,13 +31,10 @@ export default function Header() {
           {/* Logo Section */}
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0" data-testid="logo-link">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl shadow-lg">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-bold text-2xl shadow-lg">
                 BIRLA CAPS
               </div>
             </Link>
-            <div className="ml-4 hidden lg:block">
-              <p className="text-sm text-gray-600">Financial Services Limited</p>
-            </div>
           </div>
           
           {/* Desktop Navigation */}
@@ -54,7 +51,7 @@ export default function Header() {
               </Link>
               
               <DropdownMenu>
-                <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md" data-testid="nav-about-dropdown">
+                <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md whitespace-nowrap" data-testid="nav-about-dropdown">
                   About Us <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -82,7 +79,7 @@ export default function Header() {
               </DropdownMenu>
 
               <DropdownMenu>
-                <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md" data-testid="nav-investor-dropdown">
+                <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md whitespace-nowrap" data-testid="nav-investor-dropdown">
                   Investor Relations <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
