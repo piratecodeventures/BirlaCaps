@@ -420,7 +420,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       console.error("Error seeding database:", error);
-      res.status(500).json({ message: "Failed to seed database", error: error.message });
+      res.status(500).json({ message: "Failed to seed database", error: error instanceof Error ? error.message : String(error) });
     }
   });
 
