@@ -72,7 +72,7 @@ export default function Footer() {
         <div className="border-t border-blue-600 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-blue-200 mb-4 md:mb-0">
-              © 2024 Aditya Birla Capital Limited. All rights reserved.
+              © 2024 Birla Caps. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-blue-200 hover:text-white transition-colors" data-testid="footer-privacy">Privacy Policy</a>

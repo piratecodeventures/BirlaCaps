@@ -20,7 +20,7 @@ export default function Hero() {
                 Building India's Financial Future
               </h1>
               <p className="text-lg sm:text-xl text-blue-100 leading-relaxed fade-in-left mobile-text-lg" data-testid="hero-description">
-                Aditya Birla Capital Limited is a leading financial services company offering comprehensive solutions in loans, investments, insurance, and payments across India.
+                Birla Caps is a leading financial services company offering comprehensive solutions in loans, investments, insurance, and payments across India.
               </p>
             </div>
             

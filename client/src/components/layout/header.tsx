@@ -31,22 +31,22 @@ export default function Header() {
           {/* Logo Section */}
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0" data-testid="logo-link">
-              <div className="bg-primary text-white px-4 py-2 rounded font-bold text-xl">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl shadow-lg">
                 BIRLA CAPS
               </div>
             </Link>
             <div className="ml-4 hidden lg:block">
-              <p className="text-sm text-secondary">Aditya Birla Capital Limited</p>
+              <p className="text-sm text-gray-600">Financial Services Limited</p>
             </div>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:block">
-            <div className="flex space-x-8">
+            <div className="flex items-center space-x-6">
               <Link 
                 href="/" 
-                className={`font-medium transition-colors ${
-                  isActive('/') ? 'text-primary' : 'text-gray-900 hover:text-primary'
+                className={`font-medium transition-colors py-2 px-3 rounded-md ${
+                  isActive('/') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
                 }`}
                 data-testid="nav-home"
               >
@@ -54,7 +54,7 @@ export default function Header() {
               </Link>
               
               <DropdownMenu>
-                <DropdownMenuTrigger className="text-gray-900 hover:text-primary transition-colors flex items-center" data-testid="nav-about-dropdown">
+                <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md" data-testid="nav-about-dropdown">
                   About Us <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -82,7 +82,7 @@ export default function Header() {
               </DropdownMenu>
 
               <DropdownMenu>
-                <DropdownMenuTrigger className="text-gray-900 hover:text-primary transition-colors flex items-center" data-testid="nav-investor-dropdown">
+                <DropdownMenuTrigger className="text-gray-900 hover:text-primary hover:bg-blue-50 transition-colors flex items-center py-2 px-3 rounded-md" data-testid="nav-investor-dropdown">
                   Investor Relations <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -111,8 +111,8 @@ export default function Header() {
 
               <Link 
                 href="/board-directors" 
-                className={`transition-colors ${
-                  isActive('/board-directors') ? 'text-primary' : 'text-gray-900 hover:text-primary'
+                className={`font-medium transition-colors py-2 px-3 rounded-md ${
+                  isActive('/board-directors') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
                 }`}
                 data-testid="nav-board-directors"
               >
@@ -121,8 +121,8 @@ export default function Header() {
               
               <Link 
                 href="/company-secretary" 
-                className={`transition-colors ${
-                  isActive('/company-secretary') ? 'text-primary' : 'text-gray-900 hover:text-primary'
+                className={`font-medium transition-colors py-2 px-3 rounded-md ${
+                  isActive('/company-secretary') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
                 }`}
                 data-testid="nav-company-secretary"
               >
@@ -131,8 +131,8 @@ export default function Header() {
               
               <Link 
                 href="/grievances" 
-                className={`transition-colors ${
-                  isActive('/grievances') ? 'text-primary' : 'text-gray-900 hover:text-primary'
+                className={`font-medium transition-colors py-2 px-3 rounded-md ${
+                  isActive('/grievances') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
                 }`}
                 data-testid="nav-grievances"
               >
@@ -141,8 +141,8 @@ export default function Header() {
               
               <Link 
                 href="/policies" 
-                className={`transition-colors ${
-                  isActive('/policies') ? 'text-primary' : 'text-gray-900 hover:text-primary'
+                className={`font-medium transition-colors py-2 px-3 rounded-md ${
+                  isActive('/policies') ? 'text-primary bg-blue-50' : 'text-gray-900 hover:text-primary hover:bg-blue-50'
                 }`}
                 data-testid="nav-policies"
               >
