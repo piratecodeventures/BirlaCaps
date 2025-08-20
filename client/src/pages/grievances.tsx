@@ -141,7 +141,7 @@ export default function Grievances() {
                 </div>
                 <div>
                   <span className="font-semibold text-blue-800">Office Hours:</span>
-                  <span className="ml-2 text-gray-700">Monday to Friday, 9:00 AM to 6:00 PM</span>
+                  <span className="ml-2 text-gray-700">Monday to Friday, 10:00 AM to 6:00 PM</span>
                 </div>
               </div>
             </CardContent>
