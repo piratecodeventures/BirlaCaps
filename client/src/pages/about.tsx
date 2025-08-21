@@ -232,52 +232,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Compliance Officer Section */}
-          <div className="mt-20" id="compliance">
-            <h2 className="text-3xl font-bold gradient-text mb-12 text-center fade-in-up">
-              Compliance Officer
-            </h2>
-            <Card className="glass-card hover-lift max-w-4xl mx-auto">
-              <CardContent className="p-8">
-                <div className="text-center">
-                  <Shield className="h-16 w-16 text-green-600 mx-auto mb-6" />
-                  <h3 className="text-2xl font-bold mb-4">
-                    Chief Compliance Officer
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    Our Chief Compliance Officer ensures adherence to all
-                    regulatory requirements, maintains corporate governance
-                    standards, and oversees risk management across all
-                    operations.
-                  </p>
-                  <div className="grid md:grid-cols-3 gap-6 text-left">
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        Address
-                      </h4>
-                      <p className="text-gray-600 text-sm">
-                        Mumbai, Maharashtra - 400001
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        Mobile No
-                      </h4>
-                      <p className="text-gray-600 text-sm">+91 98765 43210</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        Email Id
-                      </h4>
-                      <p className="text-gray-600 text-sm">
-                        compliance@birlacaps.com
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
 
           {/* Board Committees */}
           <div className="mt-20" id="committees">
