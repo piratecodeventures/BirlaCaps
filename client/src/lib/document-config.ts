@@ -133,7 +133,7 @@ const documentConfig: YAMLConfig = {
   metadata: {
     last_updated: "2024-12-20",
     version: "1.0",
-    maintained_by: "Birla Caps IT Team"
+    maintained_by: "Birla Capital and Financial Services Limited IT Team"
   }
 };
 

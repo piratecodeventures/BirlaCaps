@@ -92,7 +92,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4" data-testid="features-title">
-              Why Choose Birla Caps
+              Why Choose Birla Capital and Financial Services Limited
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-testid="features-subtitle">
               Leading the financial services sector with innovation, trust, and excellence
@@ -238,7 +238,7 @@ export default function Home() {
               </h2>
             </div>
             <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed" data-testid="cta-description">
-              Join thousands of satisfied customers who trust Birla Caps for their financial journey. 
+              Join thousands of satisfied customers who trust Birla Capital and Financial Services Limited for their financial journey. 
               Experience excellence in banking, investment, and wealth management services.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center stagger-children">

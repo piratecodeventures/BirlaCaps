@@ -39,7 +39,7 @@ export default function About() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 gradient-text slide-in-top" data-testid="about-title">
-              About Birla Caps
+              About Birla Capital and Financial Services Limited
             </h1>
             <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed fade-in-up" data-testid="about-subtitle">
               A legacy of trust and innovation in India's financial services sector, building the future of finance
@@ -76,7 +76,7 @@ export default function About() {
                   <h3 className="text-2xl font-bold text-gray-900">Company Details</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  Aditya Birla Capital Limited (Birla Caps) is a leading Non-Banking Financial Company (NBFC) 
+                  Birla Capital and Financial Services Limited is a leading Non-Banking Financial Company (NBFC) 
                   committed to providing comprehensive financial services across India. We serve individual and 
                   corporate clients with innovative financial solutions tailored to their unique needs.
                 </p>

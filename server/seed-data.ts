@@ -4,7 +4,7 @@ import { InsertAnnouncement, InsertInvestorDocument, InsertCompanyInfo, InsertBo
 export const sampleAnnouncements: InsertAnnouncement[] = [
   {
     title: "Q4 FY2024 Financial Results Declared",
-    description: "Birla Caps announces strong financial performance for Q4 FY2024 with revenue growth of 15% YoY and improved profitability metrics.",
+    description: "Birla Capital and Financial Services Limited announces strong financial performance for Q4 FY2024 with revenue growth of 15% YoY and improved profitability metrics.",
     content: "Our company continues to demonstrate robust financial health with consistent growth across all business segments. Key highlights include increased market share, enhanced operational efficiency, and strong customer acquisition.",
     priority: "HIGH"
   },
@@ -99,8 +99,8 @@ export const sampleCompanyInfo: InsertCompanyInfo[] = [
     title: "Company Secretary Information",
     content: "The Company Secretary plays a crucial role in ensuring corporate governance compliance, maintaining statutory records, and facilitating effective communication between the board, management, and stakeholders.",
     metadata: {
-      contactEmail: "companysecretary@birlacaps.com",
-      officeAddress: "Birla Caps Corporate Office, Mumbai - 400001"
+      contactEmail: "companysecretary@bcfsl.com",
+      officeAddress: "Birla Capital and Financial Services Limited Corporate Office, Mumbai - 400001"
     }
   }
 ];

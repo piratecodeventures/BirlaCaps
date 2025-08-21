@@ -52,7 +52,7 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0" data-testid="logo-link">
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-bold text-2xl shadow-lg">
-                BIRLA CAPS
+                BCFSL
               </div>
             </Link>
           </div>

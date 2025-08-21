@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center mb-6">
               <div className="bg-white text-primary px-4 py-2 rounded font-bold text-xl">
-                BIRLA CAPS
+                BCFSL
               </div>
             </div>
             <p className="text-blue-100 mb-4">
@@ -55,7 +55,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center">
                 <i className="fas fa-map-marker-alt mr-3"></i>
-                <span className="text-blue-200">Birla Centre, Worli, Mumbai - 400030</span>
+                <span className="text-blue-200">5th Floor, 159, Industry House Churchgate Reclamation, Mumbai - 400020</span>
               </div>
               <div className="flex items-center">
                 <i className="fas fa-phone mr-3"></i>
@@ -63,7 +63,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <i className="fas fa-envelope mr-3"></i>
-                <span className="text-blue-200">info@birlacaps.com</span>
+                <span className="text-blue-200">info@bcfsl.com</span>
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function Footer() {
         <div className="border-t border-blue-600 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-blue-200 mb-4 md:mb-0">
-              © 2024 Birla Caps. All rights reserved.
+              © 2024 Birla Capital and Financial Services Limited. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-blue-200 hover:text-white transition-colors" data-testid="footer-privacy">Privacy Policy</a>

@@ -1,14 +1,23 @@
-# Birla Caps Corporate Website
+# Birla Capital and Financial Services Limited Corporate Website
 
 ## Overview
 
-This is a corporate website for Aditya Birla Capital Limited (Birla Caps), a leading financial services company in India. The website serves as a comprehensive platform for investor relations, corporate governance, and stakeholder communication. It features document management for financial reports, policy repositories, grievance submission systems, and detailed company information presentation.
+This is a corporate website for Birla Capital and Financial Services Limited, a leading financial services company in India. The website serves as a comprehensive platform for investor relations, corporate governance, and stakeholder communication. It features document management for financial reports, policy repositories, grievance submission systems, and detailed company information presentation.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes (August 20, 2025)
+## Recent Changes (August 21, 2025)
+
+✓ Updated company name throughout application from "Aditya Birla Capital Limited (Birla Caps)" to "Birla Capital and Financial Services Limited"
+✓ Changed brand logos from "BIRLA CAPS" to "BCFSL" across header, footer, and hero sections
+✓ Updated all references in pages (About, Home, Board Directors, etc.) to use the new company name
+✓ Modified contact information to reflect new company branding (email: info@bcfsl.com)
+✓ Updated seed data, documentation, and configuration files with new company name
+✓ Maintained consistent corporate identity and contact details throughout the application
+
+## Previous Changes (August 20, 2025)
 
 ✓ Implemented comprehensive website navigation structure as per client document requirements
 ✓ Updated header navigation with dropdown menus for About Us, Investor Relations, and Code & Policies
