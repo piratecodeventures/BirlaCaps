@@ -21,7 +21,7 @@ export default function Hero() {
                   BIRLA CAPS
                 </div>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight text-white typewriter hero-title" data-testid="hero-title">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight text-white drop-shadow-lg typewriter hero-title" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)'}} data-testid="hero-title">
                 Birla Capital and Financial Services Limited
               </h1>
               <p className="text-lg sm:text-xl text-blue-100 leading-relaxed fade-in-left mobile-text-lg" data-testid="hero-description">
@@ -54,7 +54,7 @@ export default function Hero() {
               </Button>
               <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-900 btn-interactive hover-glow py-3 px-6 text-sm sm:text-base" asChild data-testid="button-investor-relations">
                 <Link href="/investor-relations">
-                  <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 mr-2 heartbeat" />
+                  <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 mr-2 rotate-slow" />
                   Investor Relations
                 </Link>
               </Button>
