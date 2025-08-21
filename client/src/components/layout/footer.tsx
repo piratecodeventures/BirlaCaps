@@ -55,15 +55,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center">
                 <i className="fas fa-map-marker-alt mr-3"></i>
-                <span className="text-blue-200">5th Floor, 159, Industry House Churchgate Reclamation, Mumbai - 400020</span>
+                <span className="text-blue-200">5th floor, 159, Industry House, Churchgate Reclamation, Mumbai</span>
               </div>
               <div className="flex items-center">
                 <i className="fas fa-phone mr-3"></i>
-                <span className="text-blue-200">+91 22 6652 0000</span>
+                <span className="text-blue-200">+91 22 666521234</span>
               </div>
               <div className="flex items-center">
                 <i className="fas fa-envelope mr-3"></i>
-                <span className="text-blue-200">info@bcfsl.com</span>
+                <span className="text-blue-200">Info@birlaInternational.com.net</span>
               </div>
             </div>
           </div>
