@@ -21,8 +21,8 @@ export default function Hero() {
                   BIRLA CAPS
                 </div>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight gradient-text typewriter hero-title" data-testid="hero-title">
-                Building India's Financial Future
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight text-white typewriter hero-title" data-testid="hero-title">
+                Birla Capital and Financial Services Limited
               </h1>
               <p className="text-lg sm:text-xl text-blue-100 leading-relaxed fade-in-left mobile-text-lg" data-testid="hero-description">
                 Leading financial services company offering comprehensive solutions in loans, investments, insurance, and payments across India.
