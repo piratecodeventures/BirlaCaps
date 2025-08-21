@@ -255,8 +255,7 @@ export default function Home() {
               </Button>
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg font-semibold btn-interactive hover-glow bounce-in" 
+                className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4 text-lg font-semibold btn-interactive hover-glow bounce-in" 
                 asChild 
                 data-testid="button-contact-us"
               >
