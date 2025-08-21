@@ -63,8 +63,8 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 items-center stagger-children">
             <div className="fade-in-left">
               <img 
-                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                alt="Professional business team in corporate meeting" 
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                alt="Abstract futuristic digital financial technology visualization" 
                 className="rounded-2xl shadow-2xl hover-lift shimmer-effect glass-card"
                 data-testid="about-image"
               />
