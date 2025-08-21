@@ -302,6 +302,31 @@ export default function Policies() {
                 </CardContent>
               </Card>
             </div>
+
+            {/* Familiarizations Programme Section */}
+            <div id="familiarization" className="scroll-mt-8">
+              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Familiarizations Programme</h2>
+              <Card className="glass-card hover-lift">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-center mb-6">
+                    <Users className="h-12 w-12 text-pink-600 mr-4" />
+                    <div>
+                      <h3 className="text-xl font-semibold">Director Familiarization Programme</h3>
+                      <p className="text-gray-600">Board effectiveness and governance enhancement programs</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 mb-6 text-center">
+                    Director familiarization programmes designed to enhance board effectiveness and governance.
+                  </p>
+                  <div className="text-center">
+                    <Button className="bg-pink-600 hover:bg-pink-700">
+                      <Download className="mr-2 h-4 w-4" />
+                      View Familiarization Details
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {isLoading ? (

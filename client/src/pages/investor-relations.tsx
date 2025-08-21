@@ -462,23 +462,6 @@ export default function InvestorRelations() {
               </Card>
             </div>
 
-            {/* Familiarization Programme Section */}
-            <div id="familiarization" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Familiarizations Programme</h2>
-              <Card className="glass-card">
-                <CardContent className="p-8">
-                  <p className="text-gray-600 text-center mb-6">
-                    Director familiarization programmes designed to enhance board effectiveness and governance.
-                  </p>
-                  <div className="text-center">
-                    <Button variant="outline" className="h-12">
-                      <Users className="mr-2 h-4 w-4" />
-                      View Familiarization Details
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </section>
