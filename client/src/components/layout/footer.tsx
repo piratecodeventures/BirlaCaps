@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center mb-6">
               <div className="bg-white text-primary px-4 py-2 rounded font-bold text-xl">
-                BCFSL
+                BIRLA CAPS
               </div>
             </div>
             <p className="text-blue-100 mb-4">

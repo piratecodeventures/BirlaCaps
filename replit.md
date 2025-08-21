@@ -11,7 +11,7 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes (August 21, 2025)
 
 ✓ Updated company name throughout application from "Aditya Birla Capital Limited (Birla Caps)" to "Birla Capital and Financial Services Limited"
-✓ Changed brand logos from "BIRLA CAPS" to "BCFSL" across header, footer, and hero sections
+✓ Updated brand logos to "BIRLA CAPS" across header, footer, and hero sections
 ✓ Updated all references in pages (About, Home, Board Directors, etc.) to use the new company name
 ✓ Modified contact information to reflect new company branding (email: info@bcfsl.com)
 ✓ Updated seed data, documentation, and configuration files with new company name
