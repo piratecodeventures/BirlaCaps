@@ -2,28 +2,40 @@ import ManagementTeam from "@/components/sections/management-team";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Users, ArrowRight, Target, Eye, Award, TrendingUp, Shield, Building2 } from "lucide-react";
+import {
+  Users,
+  ArrowRight,
+  Target,
+  Eye,
+  Award,
+  TrendingUp,
+  Shield,
+  Building2,
+} from "lucide-react";
 
 export default function About() {
   const committees = [
     {
       icon: TrendingUp,
       title: "Audit Committee",
-      description: "Oversees financial reporting, internal controls, and audit processes",
-      color: "text-blue-400"
+      description:
+        "Oversees financial reporting, internal controls, and audit processes",
+      color: "text-blue-400",
     },
     {
       icon: Users,
       title: "Nomination & Remuneration",
-      description: "Manages board composition, succession planning, and compensation",
-      color: "text-green-400"
+      description:
+        "Manages board composition, succession planning, and compensation",
+      color: "text-green-400",
     },
     {
       icon: Shield,
       title: "Stakeholder Relationship",
-      description: "Ensures effective communication with shareholders and stakeholders",
-      color: "text-purple-400"
-    }
+      description:
+        "Ensures effective communication with shareholders and stakeholders",
+      color: "text-purple-400",
+    },
   ];
 
   return (
@@ -33,16 +45,26 @@ export default function About() {
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-4 -left-4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation"></div>
-          <div className="absolute -top-4 -right-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation" style={{animationDelay: '3s'}}></div>
+          <div
+            className="absolute -top-4 -right-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-15 float-animation"
+            style={{ animationDelay: "3s" }}
+          ></div>
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 gradient-text slide-in-top" data-testid="about-title">
+            <h1
+              className="text-4xl lg:text-6xl font-bold mb-6 gradient-text slide-in-top"
+              data-testid="about-title"
+            >
               About Birla Capital and Financial Services Limited
             </h1>
-            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed fade-in-up" data-testid="about-subtitle">
-              A legacy of trust and innovation in India's financial services sector, building the future of finance
+            <p
+              className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed fade-in-up"
+              data-testid="about-subtitle"
+            >
+              A legacy of trust and innovation in India's financial services
+              sector, building the future of finance
             </p>
           </div>
         </div>
@@ -62,9 +84,9 @@ export default function About() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center stagger-children">
             <div className="fade-in-left">
-              <img 
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                alt="Abstract futuristic digital financial technology visualization" 
+              <img
+                src="https://sl.bing.net/iYfgR09Sram&auto=format&fit=crop&w=800&h=600"
+                alt="Abstract futuristic digital financial technology visualization"
                 className="rounded-2xl shadow-2xl hover-lift shimmer-effect glass-card"
                 data-testid="about-image"
               />
@@ -73,12 +95,16 @@ export default function About() {
               <div id="company" className="glass-card p-6 hover-lift">
                 <div className="flex items-center mb-4">
                   <Building2 className="h-8 w-8 text-blue-600 mr-3" />
-                  <h3 className="text-2xl font-bold text-gray-900">Company Details</h3>
+                  <h3 className="text-2xl font-bold text-gray-900">
+                    Company Details
+                  </h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  Birla Capital and Financial Services Limited is a leading Non-Banking Financial Company (NBFC) 
-                  committed to providing comprehensive financial services across India. We serve individual and 
-                  corporate clients with innovative financial solutions tailored to their unique needs.
+                  Birla Capital and Financial Services Limited is a leading
+                  Non-Banking Financial Company (NBFC) committed to providing
+                  comprehensive financial services across India. We serve
+                  individual and corporate clients with innovative financial
+                  solutions tailored to their unique needs.
                 </p>
               </div>
 
@@ -86,36 +112,68 @@ export default function About() {
                 <div id="mission" className="glass-card p-6 hover-lift">
                   <div className="flex items-center mb-4">
                     <Target className="h-8 w-8 text-blue-600 mr-3 bounce-in" />
-                    <h2 className="text-2xl font-semibold text-gray-900 gradient-text" data-testid="mission-title">
+                    <h2
+                      className="text-2xl font-semibold text-gray-900 gradient-text"
+                      data-testid="mission-title"
+                    >
                       Our Mission
                     </h2>
                   </div>
-                  <p className="text-gray-600 leading-relaxed" data-testid="mission-text">
-                    To democratize financial services across India by providing accessible, innovative, and customer-centric solutions that empower individuals and businesses to achieve their financial goals.
+                  <p
+                    className="text-gray-600 leading-relaxed"
+                    data-testid="mission-text"
+                  >
+                    To democratize financial services across India by providing
+                    accessible, innovative, and customer-centric solutions that
+                    empower individuals and businesses to achieve their
+                    financial goals.
                   </p>
                 </div>
                 <div className="glass-card p-6 hover-lift">
                   <div className="flex items-center mb-4">
-                    <Eye className="h-8 w-8 text-purple-600 mr-3 bounce-in" style={{animationDelay: '0.2s'}} />
-                    <h2 className="text-2xl font-semibold text-gray-900 gradient-text" data-testid="vision-title">
+                    <Eye
+                      className="h-8 w-8 text-purple-600 mr-3 bounce-in"
+                      style={{ animationDelay: "0.2s" }}
+                    />
+                    <h2
+                      className="text-2xl font-semibold text-gray-900 gradient-text"
+                      data-testid="vision-title"
+                    >
                       Our Vision
                     </h2>
                   </div>
-                  <p className="text-gray-600 leading-relaxed" data-testid="vision-text">
-                    To be India's most trusted and preferred financial services partner, driving financial inclusion and economic growth through technology and innovation.
+                  <p
+                    className="text-gray-600 leading-relaxed"
+                    data-testid="vision-text"
+                  >
+                    To be India's most trusted and preferred financial services
+                    partner, driving financial inclusion and economic growth
+                    through technology and innovation.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 mt-8">
-                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect" data-testid="service-loans">
+                  <span
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect"
+                    data-testid="service-loans"
+                  >
                     Loans
                   </span>
-                  <span className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect" data-testid="service-investments">
+                  <span
+                    className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect"
+                    data-testid="service-investments"
+                  >
                     Investments
                   </span>
-                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect" data-testid="service-insurance">
+                  <span
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full text-sm font-medium hover-lift shimmer-effect"
+                    data-testid="service-insurance"
+                  >
                     Insurance
                   </span>
-                  <span className="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium" data-testid="service-payments">
+                  <span
+                    className="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium"
+                    data-testid="service-payments"
+                  >
                     Payments
                   </span>
                 </div>
@@ -137,10 +195,13 @@ export default function About() {
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
                     <Building2 className="h-8 w-8 text-blue-600 mr-4" />
-                    <h3 className="text-xl font-semibold">Individual Promoters</h3>
+                    <h3 className="text-xl font-semibold">
+                      Individual Promoters
+                    </h3>
                   </div>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    Our individual promoters bring decades of experience in financial services and corporate leadership.
+                    Our individual promoters bring decades of experience in
+                    financial services and corporate leadership.
                   </p>
                   <Button asChild variant="outline" className="w-full">
                     <Link href="/board-directors#promoters">
@@ -153,10 +214,13 @@ export default function About() {
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
                     <Building2 className="h-8 w-8 text-purple-600 mr-4" />
-                    <h3 className="text-xl font-semibold">Corporate Promoters</h3>
+                    <h3 className="text-xl font-semibold">
+                      Corporate Promoters
+                    </h3>
                   </div>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    Strategic corporate entities that provide backing and support for our business operations.
+                    Strategic corporate entities that provide backing and
+                    support for our business operations.
                   </p>
                   <Button asChild variant="outline" className="w-full">
                     <Link href="/board-directors#promoters">
@@ -177,23 +241,37 @@ export default function About() {
               <CardContent className="p-8">
                 <div className="text-center">
                   <Shield className="h-16 w-16 text-green-600 mx-auto mb-6" />
-                  <h3 className="text-2xl font-bold mb-4">Chief Compliance Officer</h3>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Chief Compliance Officer
+                  </h3>
                   <p className="text-gray-600 leading-relaxed mb-6">
-                    Our Chief Compliance Officer ensures adherence to all regulatory requirements, 
-                    maintains corporate governance standards, and oversees risk management across all operations.
+                    Our Chief Compliance Officer ensures adherence to all
+                    regulatory requirements, maintains corporate governance
+                    standards, and oversees risk management across all
+                    operations.
                   </p>
                   <div className="grid md:grid-cols-3 gap-6 text-left">
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
-                      <p className="text-gray-600 text-sm">Mumbai, Maharashtra - 400001</p>
+                      <h4 className="font-semibold text-gray-900 mb-2">
+                        Address
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        Mumbai, Maharashtra - 400001
+                      </p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Mobile No</h4>
+                      <h4 className="font-semibold text-gray-900 mb-2">
+                        Mobile No
+                      </h4>
                       <p className="text-gray-600 text-sm">+91 98765 43210</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Email Id</h4>
-                      <p className="text-gray-600 text-sm">compliance@birlacaps.com</p>
+                      <h4 className="font-semibold text-gray-900 mb-2">
+                        Email Id
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        compliance@birlacaps.com
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -203,22 +281,39 @@ export default function About() {
 
           {/* Board Committees */}
           <div className="mt-20" id="committees">
-            <h2 className="text-3xl font-bold gradient-text mb-12 text-center fade-in-up" data-testid="committees-title">
+            <h2
+              className="text-3xl font-bold gradient-text mb-12 text-center fade-in-up"
+              data-testid="committees-title"
+            >
               Board Committees
             </h2>
             <div className="grid md:grid-cols-3 gap-8 stagger-children">
               {committees.map((committee, index) => {
                 const IconComponent = committee.icon;
                 return (
-                  <Card key={index} className="glass-card hover-lift shimmer-effect" data-testid={`committee-${index}`}>
+                  <Card
+                    key={index}
+                    className="glass-card hover-lift shimmer-effect"
+                    data-testid={`committee-${index}`}
+                  >
                     <CardContent className="p-8">
                       <div className="flex items-center mb-6">
-                        <IconComponent className={`h-8 w-8 ${committee.color} mr-4 bounce-in heartbeat`} style={{animationDelay: `${index * 0.2}s`}} data-testid={`committee-icon-${index}`} />
-                        <h3 className="text-xl font-semibold gradient-text" data-testid={`committee-title-${index}`}>
+                        <IconComponent
+                          className={`h-8 w-8 ${committee.color} mr-4 bounce-in heartbeat`}
+                          style={{ animationDelay: `${index * 0.2}s` }}
+                          data-testid={`committee-icon-${index}`}
+                        />
+                        <h3
+                          className="text-xl font-semibold gradient-text"
+                          data-testid={`committee-title-${index}`}
+                        >
                           {committee.title}
                         </h3>
                       </div>
-                      <p className="text-gray-600 leading-relaxed" data-testid={`committee-description-${index}`}>
+                      <p
+                        className="text-gray-600 leading-relaxed"
+                        data-testid={`committee-description-${index}`}
+                      >
                         {committee.description}
                       </p>
                     </CardContent>
@@ -230,13 +325,25 @@ export default function About() {
             {/* Board of Directors Call-to-Action */}
             <div className="mt-20 text-center glass-card p-12 hover-lift fade-in-up">
               <Users className="h-16 w-16 text-blue-600 mx-auto mb-6 bounce-in float-animation" />
-              <h3 className="text-3xl font-bold gradient-text mb-6" data-testid="board-cta-title">
+              <h3
+                className="text-3xl font-bold gradient-text mb-6"
+                data-testid="board-cta-title"
+              >
                 Meet Our Leadership Team
               </h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-lg leading-relaxed" data-testid="board-cta-description">
-                Discover our experienced Board of Directors and company promoters who guide our strategic vision and ensure robust corporate governance.
+              <p
+                className="text-gray-600 mb-8 max-w-2xl mx-auto text-lg leading-relaxed"
+                data-testid="board-cta-description"
+              >
+                Discover our experienced Board of Directors and company
+                promoters who guide our strategic vision and ensure robust
+                corporate governance.
               </p>
-              <Button asChild className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white btn-interactive hover-glow" data-testid="button-view-board">
+              <Button
+                asChild
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white btn-interactive hover-glow"
+                data-testid="button-view-board"
+              >
                 <Link href="/board-directors">
                   <Building2 className="mr-2 h-5 w-5 rotate-slow" />
                   View Board of Directors & Promoters
