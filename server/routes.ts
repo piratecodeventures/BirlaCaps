@@ -40,18 +40,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     next();
   });
 
-  // Serve PDF files from config/data directory
+  // Serve PDF files from config/data directory with production optimizations
   app.use('/config/data', (req, res, next) => {
     // Set appropriate headers for PDF files
     if (req.path.endsWith('.pdf')) {
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', 'inline'); // Display in browser instead of forcing download
+      // Cache PDF files for 1 day in production
+      if (process.env.NODE_ENV === 'production') {
+        res.setHeader('Cache-Control', 'public, max-age=86400');
+      }
     } else if (req.path.endsWith('.xlsx') || req.path.endsWith('.xls')) {
       res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
       res.setHeader('Content-Disposition', 'attachment'); // Force download for Excel files
+      // Cache Excel files for 1 hour in production
+      if (process.env.NODE_ENV === 'production') {
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+      }
     }
+    
+    // Security headers for static files
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    
     next();
-  }, express.static(path.join(import.meta.dirname, '..', 'config', 'data')));
+  }, express.static(path.join(import.meta.dirname, '..', 'config', 'data'), {
+    maxAge: process.env.NODE_ENV === 'production' ? '1d' : '0',
+    etag: true,
+    lastModified: true
+  }));
 
   // Public routes
   
