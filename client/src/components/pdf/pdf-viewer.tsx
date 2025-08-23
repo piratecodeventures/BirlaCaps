@@ -42,6 +42,7 @@ export default function PDFViewer({
   const [zoom, setZoom] = useState(1.0);
   const [rotation, setRotation] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const zoomLevels = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
@@ -151,16 +152,25 @@ export default function PDFViewer({
 
       {/* PDF Viewer */}
       <div className="relative">
-        <iframe
-          ref={iframeRef}
-          src={`${filePath}#zoom=${Math.round(zoom * 100)}&rotation=${rotation}`}
-          className={cn(
-            "w-full border rounded-lg",
-            isFullscreen ? "h-screen" : "h-96"
-          )}
-          title={`PDF Viewer - ${title}`}
-          data-testid="pdf-iframe"
-        />
+        {isDialogOpen ? (
+          <iframe
+            ref={iframeRef}
+            src={`${filePath}#zoom=${Math.round(zoom * 100)}&rotation=${rotation}`}
+            className={cn(
+              "w-full border rounded-lg",
+              isFullscreen ? "h-screen" : "h-96"
+            )}
+            title={`PDF Viewer - ${title}`}
+            data-testid="pdf-iframe"
+          />
+        ) : (
+          <div className="w-full h-96 border rounded-lg bg-gray-50 flex items-center justify-center">
+            <div className="text-center">
+              <FileText className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600">PDF will load when opened</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -213,19 +223,17 @@ export default function PDFViewer({
 
         {showPreview && (
           <div className="mb-4">
-            <div className="border rounded-lg overflow-hidden">
-              <iframe
-                src={`${filePath}#toolbar=0&navpanes=0&scrollbar=0&page=1&zoom=75`}
-                className="w-full h-48"
-                title={`Preview - ${title}`}
-                data-testid="pdf-preview"
-              />
+            <div className="border rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center h-48">
+              <div className="text-center">
+                <FileText className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                <p className="text-sm text-gray-600">Click "View PDF" to preview</p>
+              </div>
             </div>
           </div>
         )}
 
         <div className="flex flex-wrap gap-2">
-          <Dialog>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <Button variant="default" size="sm" className="flex-1" data-testid="view-pdf-btn">
                 <Eye className="h-4 w-4 mr-1" />
