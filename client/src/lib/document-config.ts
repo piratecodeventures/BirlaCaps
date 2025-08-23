@@ -4,9 +4,10 @@ import { InvestorDocument } from '@shared/schema';
 interface DocumentConfig {
   id: string;
   title: string;
-  type: 'ANNUAL_REPORT' | 'QUARTERLY_RESULT' | 'ANNOUNCEMENT' | 'GOVERNANCE';
+  type: 'ANNUAL_REPORT' | 'QUARTERLY_RESULT' | 'ANNOUNCEMENT' | 'POLICY' | 'ANNUAL_RETURN' | 'INVESTOR_GRIEVANCE' | 'SHAREHOLDING_PATTERN' | 'GOVERNANCE';
   description: string;
   fiscal_year?: number;
+  quarter?: string;
   file_path: string;
   file_name: string;
   category: string;
@@ -39,72 +40,517 @@ interface UISettings {
 interface YAMLConfig {
   documents: {
     financial_reports: DocumentConfig[];
-    announcements: DocumentConfig[];
     governance: DocumentConfig[];
+    investor_relations: DocumentConfig[];
   };
   ui_settings: UISettings;
   metadata: {
     last_updated: string;
     version: string;
     maintained_by: string;
+    documents_count?: number;
+    categories?: string[];
+    data_source?: string;
   };
 }
 
-// Mock YAML data (in production, this would be loaded from the YAML file)
+// Real document data loaded from config/documents.yaml
 const documentConfig: YAMLConfig = {
   documents: {
     financial_reports: [
+      // Annual Reports
       {
-        id: "annual_report_2024",
-        title: "Annual Report 2024",
+        id: "annual_report_2023_24",
+        title: "Annual Report 2023-24",
         type: "ANNUAL_REPORT",
-        description: "Comprehensive annual report showcasing financial performance, governance, and strategic initiatives for fiscal year 2024",
+        description: "Comprehensive annual report showcasing financial performance, governance, and strategic initiatives for fiscal year 2023-24",
         fiscal_year: 2024,
-        file_path: "/attached_assets/NISHAKANT-SHUKLA_1755673329540.pdf",
-        file_name: "Annual_Report_2024.pdf",
+        file_path: "/config/data/Annual Report/Annual Report_2023-24.pdf",
+        file_name: "Annual Report_2023-24.pdf",
         category: "finance",
         tags: ["annual", "performance", "governance", "financial"],
         priority: "HIGH",
         featured: true
       },
       {
-        id: "quarterly_q4_2024",
-        title: "Q4 2024 Quarterly Results",
+        id: "annual_report_2022_23",
+        title: "Annual Report 2022-23",
+        type: "ANNUAL_REPORT",
+        description: "Annual report for fiscal year 2022-23",
+        fiscal_year: 2023,
+        file_path: "/config/data/Annual Report/Annual Report 2022-23.pdf",
+        file_name: "Annual Report 2022-23.pdf",
+        category: "finance",
+        tags: ["annual", "performance", "governance", "financial"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "annual_report_2021_22",
+        title: "Annual Report 2021-22",
+        type: "ANNUAL_REPORT",
+        description: "Annual report for fiscal year 2021-22",
+        fiscal_year: 2022,
+        file_path: "/config/data/Annual Report/Annual Reporrt_2021-22.pdf",
+        file_name: "Annual Reporrt_2021-22.pdf",
+        category: "finance",
+        tags: ["annual", "performance", "governance", "financial"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "annual_report_2020_21",
+        title: "Annual Report 2020-21",
+        type: "ANNUAL_REPORT",
+        description: "Annual report for fiscal year 2020-21",
+        fiscal_year: 2021,
+        file_path: "/config/data/Annual Report/Annual Report 2020-21.pdf",
+        file_name: "Annual Report 2020-21.pdf",
+        category: "finance",
+        tags: ["annual", "performance", "governance", "financial"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "annual_report_2019_20",
+        title: "Annual Report 2019-20",
+        type: "ANNUAL_REPORT",
+        description: "Annual report for fiscal year 2019-20",
+        fiscal_year: 2020,
+        file_path: "/config/data/Annual Report/Annual Report 2019-20.pdf",
+        file_name: "Annual Report 2019-20.pdf",
+        category: "finance",
+        tags: ["annual", "performance", "governance", "financial"],
+        priority: "NORMAL",
+        featured: false
+      },
+      // Quarterly Results 2024-25
+      {
+        id: "quarterly_q4_2024_25",
+        title: "Q4 FY25 Financial Results",
         type: "QUARTERLY_RESULT",
-        description: "Fourth quarter financial results and business performance metrics",
-        fiscal_year: 2024,
-        file_path: "/attached_assets/Golu bhayai resume_1755673329540.pdf",
-        file_name: "Q4_2024_Results.pdf",
+        description: "Fourth quarter financial results for FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q4",
+        file_path: "/config/data/quater/24-25/FR_30.06.2024.pdf",
+        file_name: "FR_30.06.2024.pdf",
         category: "finance",
         tags: ["quarterly", "results", "performance"],
         priority: "HIGH",
         featured: true
-      }
-    ],
-    announcements: [
+      },
       {
-        id: "board_meeting_2024",
-        title: "Board Meeting Announcement - December 2024",
-        type: "ANNOUNCEMENT",
-        description: "Notice of upcoming board meeting and key agenda items for stakeholder review",
-        file_path: "/attached_assets/Keywords and Identifiers_1755673329541.pdf",
-        file_name: "Board_Meeting_Dec_2024.pdf",
-        category: "governance",
-        tags: ["board", "meeting", "governance"],
+        id: "quarterly_q3_2024_25",
+        title: "Q3 FY25 Financial Results",
+        type: "QUARTERLY_RESULT",
+        description: "Third quarter financial results for FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q3",
+        file_path: "/config/data/quater/24-25/FR_31.03.2025.pdf",
+        file_name: "FR_31.03.2025.pdf",
+        category: "finance",
+        tags: ["quarterly", "results", "performance"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "quarterly_q2_2024_25",
+        title: "Q2 FY25 Financial Results",
+        type: "QUARTERLY_RESULT",
+        description: "Second quarter financial results for FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q2",
+        file_path: "/config/data/quater/24-25/FR_31.12.2024.pdf",
+        file_name: "FR_31.12.2024.pdf",
+        category: "finance",
+        tags: ["quarterly", "results", "performance"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "quarterly_q1_2024_25",
+        title: "Q1 FY25 Financial Results",
+        type: "QUARTERLY_RESULT",
+        description: "First quarter financial results for FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q1",
+        file_path: "/config/data/quater/24-25/FR_30.09.2024.pdf",
+        file_name: "FR_30.09.2024.pdf",
+        category: "finance",
+        tags: ["quarterly", "results", "performance"],
+        priority: "HIGH",
+        featured: true
+      },
+      // Quarterly Results 2023-24
+      {
+        id: "quarterly_q4_2023_24",
+        title: "Q4 FY24 Financial Results",
+        type: "QUARTERLY_RESULT",
+        description: "Fourth quarter financial results for FY 2023-24",
+        fiscal_year: 2024,
+        quarter: "Q4",
+        file_path: "/config/data/quater/23-24/FR_31.03.2024.pdf",
+        file_name: "FR_31.03.2024.pdf",
+        category: "finance",
+        tags: ["quarterly", "results", "performance"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "quarterly_q3_2023_24",
+        title: "Q3 FY24 Financial Results",
+        type: "QUARTERLY_RESULT",
+        description: "Third quarter financial results for FY 2023-24",
+        fiscal_year: 2024,
+        quarter: "Q3",
+        file_path: "/config/data/quater/23-24/FR_31.12.2023.pdf",
+        file_name: "FR_31.12.2023.pdf",
+        category: "finance",
+        tags: ["quarterly", "results", "performance"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "quarterly_q2_2023_24",
+        title: "Q2 FY24 Financial Results",
+        type: "QUARTERLY_RESULT",
+        description: "Second quarter financial results for FY 2023-24",
+        fiscal_year: 2024,
+        quarter: "Q2",
+        file_path: "/config/data/quater/23-24/FR_30.09.2023.pdf",
+        file_name: "FR_30.09.2023.pdf",
+        category: "finance",
+        tags: ["quarterly", "results", "performance"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "quarterly_q1_2023_24",
+        title: "Q1 FY24 Financial Results",
+        type: "QUARTERLY_RESULT",
+        description: "First quarter financial results for FY 2023-24",
+        fiscal_year: 2024,
+        quarter: "Q1",
+        file_path: "/config/data/quater/23-24/FR_30.06.2023.pdf",
+        file_name: "FR_30.06.2023.pdf",
+        category: "finance",
+        tags: ["quarterly", "results", "performance"],
         priority: "NORMAL",
         featured: false
       }
     ],
     governance: [
+      // Corporate Policies
       {
-        id: "governance_policy_2024",
-        title: "Corporate Governance Policy 2024",
-        type: "GOVERNANCE",
-        description: "Updated corporate governance framework and compliance guidelines",
-        file_path: "/attached_assets/NISHAKANT-SHUKLA_1755673329540.pdf",
-        file_name: "Governance_Policy_2024.pdf",
+        id: "policy_materiality_event",
+        title: "Policy for Determining Materiality of Event",
+        type: "POLICY",
+        description: "Policy framework for determining materiality of events for disclosure purposes",
+        file_path: "/config/data/Policy/10_Policy for determining materiality of event.pdf",
+        file_name: "Policy for determining materiality of event.pdf",
         category: "governance",
-        tags: ["governance", "policy", "compliance"],
+        tags: ["policy", "materiality", "disclosure"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "policy_code_conduct_upsi",
+        title: "Code of Conduct for Unpublished Price Sensitive Information",
+        type: "POLICY",
+        description: "Code of conduct governing handling of unpublished price sensitive information",
+        file_path: "/config/data/Policy/11_Code of Conduct for unpublished price sensitive information.pdf",
+        file_name: "Code of Conduct for unpublished price sensitive information.pdf",
+        category: "governance",
+        tags: ["code", "conduct", "upsi", "compliance"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "policy_code_conduct",
+        title: "Code of Conduct",
+        type: "POLICY",
+        description: "General code of conduct for employees and directors",
+        file_path: "/config/data/Policy/12_Code of Conduct.pdf",
+        file_name: "Code of Conduct.pdf",
+        category: "governance",
+        tags: ["code", "conduct", "ethics"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "policy_auditor_appointment",
+        title: "Terms of Appointment of Independent Auditor",
+        type: "POLICY",
+        description: "Terms and conditions for appointment of independent auditors",
+        file_path: "/config/data/Policy/1_Terms of Appointment of Independent Auditor.pdf",
+        file_name: "Terms of Appointment of Independent Auditor.pdf",
+        category: "governance",
+        tags: ["auditor", "appointment", "independence"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "policy_familiarization_programme",
+        title: "Familiarization Programme of Independent Director",
+        type: "POLICY",
+        description: "Programme for familiarizing independent directors with company operations",
+        file_path: "/config/data/Policy/2_Familiarization Programme of Independent Director.pdf",
+        file_name: "Familiarization Programme of Independent Director.pdf",
+        category: "governance",
+        tags: ["director", "familiarization", "independence"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "policy_risk_management",
+        title: "Risk Management Policy",
+        type: "POLICY",
+        description: "Comprehensive risk management framework and guidelines",
+        file_path: "/config/data/Policy/3_Risk Management Policy.pdf",
+        file_name: "Risk Management Policy.pdf",
+        category: "governance",
+        tags: ["risk", "management", "framework"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "policy_archival",
+        title: "Archival Policy",
+        type: "POLICY",
+        description: "Policy for archival and retention of documents and records",
+        file_path: "/config/data/Policy/4_Archival Policy.pdf",
+        file_name: "Archival Policy.pdf",
+        category: "governance",
+        tags: ["archival", "retention", "records"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "policy_nomination_remuneration",
+        title: "Nomination and Remuneration Policy",
+        type: "POLICY",
+        description: "Policy governing nomination and remuneration of directors and senior management",
+        file_path: "/config/data/Policy/5_Nomination and Remuneration Policy.pdf",
+        file_name: "Nomination and Remuneration Policy.pdf",
+        category: "governance",
+        tags: ["nomination", "remuneration", "directors"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "policy_whistle_blower",
+        title: "Whistle Blower Policy",
+        type: "POLICY",
+        description: "Policy for reporting concerns and grievances through whistle blower mechanism",
+        file_path: "/config/data/Policy/6_Whistle Blower Policy.pdf",
+        file_name: "Whistle Blower Policy.pdf",
+        category: "governance",
+        tags: ["whistle", "blower", "grievances"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "policy_material_subsidiary",
+        title: "Policy for Determining Material Subsidiary",
+        type: "POLICY",
+        description: "Policy framework for determining material subsidiaries",
+        file_path: "/config/data/Policy/7_Policy for determining material subsidiary.pdf",
+        file_name: "Policy for determining material subsidiary.pdf",
+        category: "governance",
+        tags: ["subsidiary", "materiality", "policy"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "policy_related_party",
+        title: "Related Party Policy",
+        type: "POLICY",
+        description: "Policy governing related party transactions and disclosures",
+        file_path: "/config/data/Policy/8_Related Party Policy.pdf",
+        file_name: "Related Party Policy.pdf",
+        category: "governance",
+        tags: ["related", "party", "transactions"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "policy_insider_trading",
+        title: "Code of Conduct for Insider Trading Policy",
+        type: "POLICY",
+        description: "Code of conduct for prevention of insider trading",
+        file_path: "/config/data/Policy/9_Code of Conduct for Insider Trading Policy.pdf",
+        file_name: "Code of Conduct for Insider Trading Policy.pdf",
+        category: "governance",
+        tags: ["insider", "trading", "prevention"],
+        priority: "HIGH",
+        featured: true
+      },
+      // Annual Returns
+      {
+        id: "annual_return_2023_24",
+        title: "Annual Return MGT-7 (2023-24)",
+        type: "ANNUAL_RETURN",
+        description: "Annual return filed under section 92 of Companies Act for FY 2023-24",
+        fiscal_year: 2024,
+        file_path: "/config/data/Annual Return/MGT-7_2023-24.pdf",
+        file_name: "MGT-7_2023-24.pdf",
+        category: "governance",
+        tags: ["annual", "return", "mgt7", "compliance"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "annual_return_2022_23",
+        title: "Annual Return MGT-7 (2022-23)",
+        type: "ANNUAL_RETURN",
+        description: "Annual return filed under section 92 of Companies Act for FY 2022-23",
+        fiscal_year: 2023,
+        file_path: "/config/data/Annual Return/MGT-7_2022-23.pdf",
+        file_name: "MGT-7_2022-23.pdf",
+        category: "governance",
+        tags: ["annual", "return", "mgt7", "compliance"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "annual_return_2021_22",
+        title: "Annual Return MGT-7 (2021-22)",
+        type: "ANNUAL_RETURN",
+        description: "Annual return filed under section 92 of Companies Act for FY 2021-22",
+        fiscal_year: 2022,
+        file_path: "/config/data/Annual Return/MGT-7_2021-22.pdf",
+        file_name: "MGT-7_2021-22.pdf",
+        category: "governance",
+        tags: ["annual", "return", "mgt7", "compliance"],
+        priority: "NORMAL",
+        featured: false
+      },
+      {
+        id: "annual_return_2020_21",
+        title: "Annual Return MGT-7 (2020-21)",
+        type: "ANNUAL_RETURN",
+        description: "Annual return filed under section 92 of Companies Act for FY 2020-21",
+        fiscal_year: 2021,
+        file_path: "/config/data/Annual Return/MGT-7_2020-21.pdf",
+        file_name: "MGT-7_2020-21.pdf",
+        category: "governance",
+        tags: ["annual", "return", "mgt7", "compliance"],
+        priority: "NORMAL",
+        featured: false
+      }
+    ],
+    investor_relations: [
+      // Investor Grievance Reports 2024-25
+      {
+        id: "investor_grievance_q4_2024_25",
+        title: "Investor Grievance Report Q4 FY25",
+        type: "INVESTOR_GRIEVANCE",
+        description: "Quarterly investor grievance report for Q4 FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q4",
+        file_path: "/config/data/Investor Greviance/24-25/Birla Capital_IG_30.06.2024.pdf",
+        file_name: "Birla Capital_IG_30.06.2024.pdf",
+        category: "investor_relations",
+        tags: ["investor", "grievance", "quarterly"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "investor_grievance_q3_2024_25",
+        title: "Investor Grievance Report Q3 FY25",
+        type: "INVESTOR_GRIEVANCE",
+        description: "Quarterly investor grievance report for Q3 FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q3",
+        file_path: "/config/data/Investor Greviance/24-25/Birla capital_IG_31.03.2025.pdf",
+        file_name: "Birla capital_IG_31.03.2025.pdf",
+        category: "investor_relations",
+        tags: ["investor", "grievance", "quarterly"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "investor_grievance_q2_2024_25",
+        title: "Investor Grievance Report Q2 FY25",
+        type: "INVESTOR_GRIEVANCE",
+        description: "Quarterly investor grievance report for Q2 FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q2",
+        file_path: "/config/data/Investor Greviance/24-25/Birla capital_IG_31.12.2024.pdf",
+        file_name: "Birla capital_IG_31.12.2024.pdf",
+        category: "investor_relations",
+        tags: ["investor", "grievance", "quarterly"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "investor_grievance_q1_2024_25",
+        title: "Investor Grievance Report Q1 FY25",
+        type: "INVESTOR_GRIEVANCE",
+        description: "Quarterly investor grievance report for Q1 FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q1",
+        file_path: "/config/data/Investor Greviance/24-25/Birla capital_IG_30.09.2024.pdf",
+        file_name: "Birla capital_IG_30.09.2024.pdf",
+        category: "investor_relations",
+        tags: ["investor", "grievance", "quarterly"],
+        priority: "HIGH",
+        featured: true
+      },
+      // Shareholding Patterns 2024-25
+      {
+        id: "shareholding_pattern_q4_2024_25",
+        title: "Shareholding Pattern Q4 FY25",
+        type: "SHAREHOLDING_PATTERN",
+        description: "Quarterly shareholding pattern for Q4 FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q4",
+        file_path: "/config/data/Shareholding Pattern/24-25/Shareholding Pattern_30.06.2024.xlsx",
+        file_name: "Shareholding Pattern_30.06.2024.xlsx",
+        category: "investor_relations",
+        tags: ["shareholding", "pattern", "quarterly"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "shareholding_pattern_q3_2024_25",
+        title: "Shareholding Pattern Q3 FY25",
+        type: "SHAREHOLDING_PATTERN",
+        description: "Quarterly shareholding pattern for Q3 FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q3",
+        file_path: "/config/data/Shareholding Pattern/24-25/Shareholding Pattern_31.03.2025.xlsx",
+        file_name: "Shareholding Pattern_31.03.2025.xlsx",
+        category: "investor_relations",
+        tags: ["shareholding", "pattern", "quarterly"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "shareholding_pattern_q2_2024_25",
+        title: "Shareholding Pattern Q2 FY25",
+        type: "SHAREHOLDING_PATTERN",
+        description: "Quarterly shareholding pattern for Q2 FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q2",
+        file_path: "/config/data/Shareholding Pattern/24-25/Shareholding Pattern_31.12.2024.xlsx",
+        file_name: "Shareholding Pattern_31.12.2024.xlsx",
+        category: "investor_relations",
+        tags: ["shareholding", "pattern", "quarterly"],
+        priority: "HIGH",
+        featured: true
+      },
+      {
+        id: "shareholding_pattern_q1_2024_25",
+        title: "Shareholding Pattern Q1 FY25",
+        type: "SHAREHOLDING_PATTERN",
+        description: "Quarterly shareholding pattern for Q1 FY 2024-25",
+        fiscal_year: 2025,
+        quarter: "Q1",
+        file_path: "/config/data/Shareholding Pattern/24-25/Shareholding Pattern_30.09.2024.xlsx",
+        file_name: "Shareholding Pattern_30.09.2024.xlsx",
+        category: "investor_relations",
+        tags: ["shareholding", "pattern", "quarterly"],
         priority: "HIGH",
         featured: true
       }
@@ -131,9 +577,12 @@ const documentConfig: YAMLConfig = {
     }
   },
   metadata: {
-    last_updated: "2024-12-20",
-    version: "1.0",
-    maintained_by: "Birla Capital and Financial Services Limited IT Team"
+    last_updated: "2025-08-23",
+    version: "2.0",
+    maintained_by: "Birla Capital and Financial Services Limited IT Team",
+    documents_count: 47,
+    categories: ["finance", "governance", "investor_relations"],
+    data_source: "config/data"
   }
 };
 
@@ -145,8 +594,8 @@ export function getAllDocuments(): DocumentConfig[] {
   const config = getDocumentConfig();
   return [
     ...config.documents.financial_reports,
-    ...config.documents.announcements,
-    ...config.documents.governance
+    ...config.documents.governance,
+    ...config.documents.investor_relations
   ];
 }
 

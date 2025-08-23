@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertGrievanceSchema, insertDocumentSchema, insertPolicySchema, insertAnnouncementSchema, insertBoardDirectorSchema, insertPromoterSchema } from "@shared/schema";
@@ -38,6 +39,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.setHeader('Content-Disposition', 'attachment');
     next();
   });
+
+  // Serve PDF files from config/data directory
+  app.use('/config/data', (req, res, next) => {
+    // Set appropriate headers for PDF files
+    if (req.path.endsWith('.pdf')) {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'inline'); // Display in browser instead of forcing download
+    } else if (req.path.endsWith('.xlsx') || req.path.endsWith('.xls')) {
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader('Content-Disposition', 'attachment'); // Force download for Excel files
+    }
+    next();
+  }, express.static(path.join(import.meta.dirname, '..', 'config', 'data')));
 
   // Public routes
   
