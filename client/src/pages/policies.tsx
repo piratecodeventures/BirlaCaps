@@ -574,8 +574,6 @@ export default function Policies() {
             </div>
           </div>
 
-          {/* Dynamic API Policies */}
-          {isLoading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
               {[...Array(6)].map((_, i) => (
                 <Card key={i} className="glass-card animate-pulse">

@@ -136,6 +136,175 @@ export default function InvestorRelations() {
       {/* Main Content */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Search and Filters */}
+          <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+            <CardContent className="p-6">
+              <div className="flex flex-col lg:flex-row gap-4 items-center">
+                <div className="flex-1 w-full">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                    <Input
+                      type="text"
+                      placeholder="Search documents, reports, and announcements..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-12 h-12 text-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                      data-testid="search-input"
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Button
+                    variant={showFeaturedOnly ? "default" : "outline"}
+                    onClick={() => setShowFeaturedOnly(!showFeaturedOnly)}
+                    className="flex items-center gap-2"
+                    data-testid="featured-filter"
+                  >
+                    <Star className="h-4 w-4" />
+                    Featured
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="flex items-center gap-2"
+                    data-testid="filter-btn"
+                  >
+                    <Filter className="h-4 w-4" />
+                    Filters
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Featured Documents */}
+          {!showFeaturedOnly && searchQuery.length <= 2 && featuredDocs.length > 0 && (
+            <div className="mb-12">
+              <div className="flex items-center gap-2 mb-6">
+                <Star className="h-6 w-6 text-yellow-500" />
+                <h2 className="text-2xl font-bold text-gray-900">Featured Documents</h2>
+              </div>
+              <div className="grid lg:grid-cols-2 gap-6">
+                {featuredDocs.slice(0, 2).map((doc, index) => (
+                  <PDFViewer
+                    key={doc.id}
+                    title={doc.title}
+                    fileName={doc.file_name}
+                    filePath={doc.file_path}
+                    fileSize="1.2 MB"
+                    description={doc.description}
+                    type={doc.type}
+                    downloads={Math.floor(Math.random() * 1000) + 100}
+                    className="border-2 border-blue-200 shadow-lg"
+                    showPreview={true}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tabbed Content */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6 mb-16">
+            <TabsList className="grid w-full grid-cols-5 bg-white shadow-sm border">
+              {[
+                { value: "all", label: "All Documents", icon: FileText },
+                { value: "ANNUAL_REPORT", label: "Annual Reports", icon: BarChart3 },
+                { value: "QUARTERLY_RESULT", label: "Quarterly Results", icon: TrendingUp },
+                { value: "ANNOUNCEMENT", label: "Announcements", icon: Bell },
+                { value: "GOVERNANCE", label: "Governance", icon: Shield }
+              ].map((tab) => {
+                const IconComponent = tab.icon;
+                return (
+                  <TabsTrigger
+                    key={tab.value}
+                    value={tab.value}
+                    className="flex items-center gap-2 data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700"
+                    data-testid={`tab-${tab.value}`}
+                  >
+                    <IconComponent className="h-4 w-4" />
+                    <span className="hidden sm:inline">{tab.label}</span>
+                  </TabsTrigger>
+                );
+              })}
+            </TabsList>
+
+            <TabsContent value={activeTab} className="space-y-6">
+              {filteredDocs.length === 0 ? (
+                <Card className="border-0 shadow-lg">
+                  <CardContent className="p-12 text-center">
+                    <FileText className="mx-auto h-16 w-16 text-gray-300 mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No Documents Found</h3>
+                    <p className="text-gray-600">
+                      {searchQuery.length > 2 
+                        ? "Try adjusting your search terms or filters." 
+                        : "Documents will appear here when available."}
+                    </p>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {filteredDocs.map((doc, index) => (
+                    <PDFViewer
+                      key={doc.id}
+                      title={doc.title}
+                      fileName={doc.file_name}
+                      filePath={doc.file_path}
+                      fileSize="1.2 MB"
+                      description={doc.description}
+                      type={doc.type}
+                      downloads={Math.floor(Math.random() * 1000) + 100}
+                      className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                      showPreview={config.ui_settings.pdf_viewer.enable_inline_preview}
+                    />
+                  ))}
+                </div>
+              )}
+            </TabsContent>
+          </Tabs>
+
+          {/* Recent Announcements */}
+          <div className="mt-16 mb-16" id="announcements">
+            <div className="flex items-center gap-2 mb-8">
+              <Bell className="h-6 w-6 text-orange-500" />
+              <h2 className="text-2xl font-bold text-gray-900">Recent Announcements</h2>
+            </div>
+            
+            {announcements.length === 0 ? (
+              <Card className="border-0 shadow-lg">
+                <CardContent className="p-12 text-center">
+                  <Bell className="mx-auto h-16 w-16 text-gray-300 mb-4" />
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No Announcements</h3>
+                  <p className="text-gray-600">Stay tuned for important updates and announcements.</p>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="grid gap-4">
+                {announcements.slice(0, 3).map((announcement, index) => (
+                  <Card key={announcement.id} className="border-l-4 border-orange-500 shadow-lg hover:shadow-xl transition-shadow" data-testid={`announcement-${index}`}>
+                    <CardContent className="p-6">
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Badge variant="secondary" className="bg-orange-100 text-orange-800">
+                              {announcement.priority || 'NORMAL'}
+                            </Badge>
+                            <span className="text-sm text-gray-500">
+                              {new Date(announcement.createdAt!).toLocaleDateString()}
+                            </span>
+                          </div>
+                          <h3 className="text-xl font-semibold text-gray-900 mb-3" data-testid={`announcement-title-${index}`}>
+                            {announcement.title}
+                          </h3>
+                          <p className="text-gray-700 leading-relaxed" data-testid={`announcement-description-${index}`}>
+                            {announcement.description}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
           {/* Annual Reports Section */}
           <div id="annual-reports" className="scroll-mt-8 mb-16">
             <div className="text-center mb-8">
@@ -326,7 +495,6 @@ export default function InvestorRelations() {
           {/* Navigation anchor points */}
           <div id="governance-reports" className="scroll-mt-20"></div>
           <div id="offer-documents" className="scroll-mt-20"></div>
-          <div id="familiarization" className="scroll-mt-20"></div>
         </div>
       </section>
     </div>
