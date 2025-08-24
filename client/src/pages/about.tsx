@@ -101,11 +101,10 @@ export default function About() {
                   </h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  Birla Capital and Financial Services Limited is a leading
-                  Non-Banking Financial Company (NBFC) committed to providing
-                  comprehensive financial services across India. We serve
-                  individual and corporate clients with innovative financial
-                  solutions tailored to their unique needs.
+                  Birla Capital and Financial Services Limited is dedicated to
+                  delivering comprehensive financial solutions across India. We
+                  cater to both individual and corporate clients with innovative
+                  services designed to meet their unique needs.
                 </p>
               </div>
 
@@ -232,7 +231,6 @@ export default function About() {
               </Card>
             </div>
           </div>
-
 
           {/* Board Committees */}
           <div className="mt-20" id="committees">
