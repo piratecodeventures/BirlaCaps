@@ -42,6 +42,7 @@ export default function Header() {
     { href: "/policies", label: "Material Subsidiary Policy", section: "material-subsidiary" },
     { href: "/policies", label: "Archival Policy", section: "archival" },
     { href: "/policies", label: "Independent Director", section: "independent-director" },
+    { href: "/policies", label: "Familiarizations Programme", section: "familiarization" },
   ];
 
   return (
