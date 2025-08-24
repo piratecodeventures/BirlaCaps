@@ -131,7 +131,6 @@ export default function InvestorRelations() {
                     </CardContent>
                   </Card>
 
-
                   {/* Investor Grievance Reports */}
                   <div className="space-y-8">
                     <h2 className="text-2xl font-bold text-gray-900 text-center">Investor Grievance Reports</h2>
@@ -302,59 +301,6 @@ export default function InvestorRelations() {
                           ))}
                         </div>
                       )}
-                    </div>
-                  )}
-
-                  {/* Documents List */}
-                  {filteredDocs.length === 0 ? (
-                    <Card>
-                      <CardContent className="p-8 text-center">
-                        <FileText className="mx-auto h-12 w-12 text-gray-300 mb-4" />
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">No Documents Found</h3>
-                        <p className="text-gray-600">Documents will appear here when available.</p>
-                      </CardContent>
-                    </Card>
-                  ) : (
-                    <div className="space-y-4">
-                      {filteredDocs.map((doc, index) => (
-                        <Card key={doc.id} className="border border-gray-200" data-testid={`document-${index}`}>
-                          <CardContent className="p-4">
-                            <div className="flex justify-between items-center">
-                              <div className="flex-1">
-                                <h3 className="font-semibold text-gray-900 mb-1">
-                                  {doc.title}
-                                </h3>
-                                <p className="text-sm text-gray-600">{doc.type.replace('_', ' ')}</p>
-                              </div>
-                              <div className="flex gap-2">
-                                <Button 
-                                  variant="outline"
-                                  size="sm"
-                                  onClick={() => {
-                                    const link = document.createElement('a');
-                                    link.href = doc.file_path;
-                                    link.download = doc.file_name;
-                                    link.click();
-                                  }}
-                                  data-testid={`download-doc-${index}`}
-                                >
-                                  <Download className="mr-2 h-4 w-4" />
-                                  Download
-                                </Button>
-                                <Button 
-                                  variant="ghost" 
-                                  size="sm" 
-                                  onClick={() => window.open(doc.file_path, '_blank')}
-                                  data-testid={`view-doc-${index}`}
-                                >
-                                  <FileText className="mr-2 h-4 w-4" />
-                                  View
-                                </Button>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
                     </div>
                   )}
 
