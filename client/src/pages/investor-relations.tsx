@@ -183,8 +183,8 @@ export default function InvestorRelations() {
                 <Star className="h-6 w-6 text-yellow-500" />
                 <h2 className="text-2xl font-bold text-gray-900">Featured Documents</h2>
               </div>
-              <div className="grid lg:grid-cols-2 gap-6">
-                {featuredDocs.slice(0, 2).map((doc, index) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {featuredDocs.slice(0, 4).map((doc, index) => (
                   <PDFViewer
                     key={doc.id}
                     title={doc.title}
@@ -194,7 +194,7 @@ export default function InvestorRelations() {
                     description={doc.description}
                     type={doc.type}
                     downloads={Math.floor(Math.random() * 1000) + 100}
-                    className="border-2 border-blue-200 shadow-lg"
+                    className="border-2 border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                     showPreview={true}
                   />
                 ))}
@@ -241,7 +241,7 @@ export default function InvestorRelations() {
                   </CardContent>
                 </Card>
               ) : (
-                <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {filteredDocs.map((doc, index) => (
                     <PDFViewer
                       key={doc.id}
@@ -317,7 +317,7 @@ export default function InvestorRelations() {
               Comprehensive annual reports showcasing our financial performance, strategic initiatives, and business outlook for the last five years.
             </p>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 stagger-children mb-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-children mb-12">
               {[
                 { year: "2023-24", revenue: "₹45.2 Cr", growth: "+12.5%", color: "blue" },
                 { year: "2022-23", revenue: "₹40.1 Cr", growth: "+8.3%", color: "green" },
@@ -382,7 +382,7 @@ export default function InvestorRelations() {
               </div>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 stagger-children">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-children">
               {[
                 { year: "2023-24", status: "Filed", date: "30/09/2024", color: "emerald" },
                 { year: "2022-23", status: "Filed", date: "28/09/2023", color: "green" },
@@ -472,7 +472,7 @@ export default function InvestorRelations() {
               </div>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-children">
               {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24", "Q1 2023-24"].map((quarter, index) => (
                 <Card key={quarter} className="group glass-card hover-lift shimmer-effect border-2 border-orange-200 bg-orange-50 modern-card">
                   <CardContent className="p-6 text-center">
@@ -513,7 +513,7 @@ export default function InvestorRelations() {
                     <h3 className="text-xl font-bold">Financial Year 2024-25</h3>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-children">
                   {[
                     { quarter: "Q4 2024-25", file: "/config/data/Investor Greviance/24-25/Birla capital_IG_31.03.2025.pdf", period: "Jan-Mar 2025", icon: FileText, color: "blue" },
                     { quarter: "Q3 2024-25", file: "/config/data/Investor Greviance/24-25/Birla capital_IG_31.12.2024.pdf", period: "Oct-Dec 2024", icon: FileText, color: "green" },
@@ -582,7 +582,7 @@ export default function InvestorRelations() {
                     <h3 className="text-xl font-bold">Financial Year 2023-24</h3>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-children">
                   {[
                     { quarter: "Q4 2023-24", file: "/config/data/Investor Greviance/23-24/Reg 13(3) Birla Capital_IG_31.03.2024.pdf", period: "Jan-Mar 2024", icon: FileText, color: "emerald" },
                     { quarter: "Q3 2023-24", file: "/config/data/Investor Greviance/23-24/Birla Capital IG_31.12.2023.pdf", period: "Oct-Dec 2023", icon: FileText, color: "teal" },
