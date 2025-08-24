@@ -179,25 +179,68 @@ export default function InvestorRelations() {
           {/* Featured Documents */}
           {!showFeaturedOnly && searchQuery.length <= 2 && featuredDocs.length > 0 && (
             <div className="mb-12">
-              <div className="flex items-center gap-2 mb-6">
-                <Star className="h-6 w-6 text-yellow-500" />
-                <h2 className="text-2xl font-bold text-gray-900">Featured Documents</h2>
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-600 to-amber-600 text-white px-6 py-3 rounded-full shadow-lg">
+                  <Star className="h-6 w-6" />
+                  <h2 className="text-2xl font-bold">Featured Documents</h2>
+                </div>
               </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {featuredDocs.slice(0, 4).map((doc, index) => (
-                  <PDFViewer
-                    key={doc.id}
-                    title={doc.title}
-                    fileName={doc.file_name}
-                    filePath={doc.file_path}
-                    fileSize="1.2 MB"
-                    description={doc.description}
-                    type={doc.type}
-                    downloads={Math.floor(Math.random() * 1000) + 100}
-                    className="border-2 border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                    showPreview={true}
-                  />
-                ))}
+              <p className="text-xl text-gray-600 text-center mb-12 max-w-4xl mx-auto leading-relaxed">
+                Highlighted documents for quick access to our most important financial reports and regulatory filings.
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-children">
+                {featuredDocs.slice(0, 4).map((doc, index) => {
+                  const colors = [
+                    { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
+                    { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" },
+                    { bg: "bg-purple-50", text: "text-purple-600", border: "border-purple-200", gradient: "from-purple-600 to-purple-700" },
+                    { bg: "bg-orange-50", text: "text-orange-600", border: "border-orange-200", gradient: "from-orange-600 to-orange-700" }
+                  ];
+                  const colorScheme = colors[index % colors.length];
+                  
+                  return (
+                    <Card key={doc.id} className={`group glass-card hover-lift shimmer-effect border-2 ${colorScheme.border} ${colorScheme.bg} modern-card`} data-testid={`featured-doc-${index}`}>
+                      <CardContent className="p-6 text-center">
+                        <div className={`${colorScheme.bg} ${colorScheme.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                          <FileText className="h-8 w-8 hover-rotate" />
+                        </div>
+                        <h3 className={`text-lg font-bold ${colorScheme.text} mb-2 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                          {doc.title}
+                        </h3>
+                        <div className="space-y-1 mb-4">
+                          <div className="text-sm font-semibold text-gray-700">{doc.type}</div>
+                          <div className="text-xs text-blue-600 font-medium">1.2 MB • Featured</div>
+                        </div>
+                        <div className="space-y-2">
+                          <Button 
+                            className={`w-full bg-gradient-to-r ${colorScheme.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                            size="sm"
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = doc.file_path;
+                              link.download = doc.file_name;
+                              link.click();
+                            }}
+                            data-testid={`download-featured-${index}`}
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="w-full hover:bg-gray-100"
+                            onClick={() => window.open(doc.file_path, '_blank')}
+                            data-testid={`view-featured-${index}`}
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View Document
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -241,21 +284,67 @@ export default function InvestorRelations() {
                   </CardContent>
                 </Card>
               ) : (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredDocs.map((doc, index) => (
-                    <PDFViewer
-                      key={doc.id}
-                      title={doc.title}
-                      fileName={doc.file_name}
-                      filePath={doc.file_path}
-                      fileSize="1.2 MB"
-                      description={doc.description}
-                      type={doc.type}
-                      downloads={Math.floor(Math.random() * 1000) + 100}
-                      className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                      showPreview={config.ui_settings.pdf_viewer.enable_inline_preview}
-                    />
-                  ))}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-children">
+                  {filteredDocs.map((doc, index) => {
+                    const getColorByType = (type: string) => {
+                      const typeColors: Record<string, any> = {
+                        'ANNUAL_REPORT': { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700", icon: BarChart3 },
+                        'QUARTERLY_RESULT': { bg: "bg-orange-50", text: "text-orange-600", border: "border-orange-200", gradient: "from-orange-600 to-orange-700", icon: TrendingUp },
+                        'ANNOUNCEMENT': { bg: "bg-yellow-50", text: "text-yellow-600", border: "border-yellow-200", gradient: "from-yellow-600 to-yellow-700", icon: Bell },
+                        'GOVERNANCE': { bg: "bg-purple-50", text: "text-purple-600", border: "border-purple-200", gradient: "from-purple-600 to-purple-700", icon: Shield },
+                        'POLICY': { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700", icon: FileText },
+                        'SHAREHOLDING': { bg: "bg-pink-50", text: "text-pink-600", border: "border-pink-200", gradient: "from-pink-600 to-pink-700", icon: Users },
+                        'INVESTOR_GRIEVANCE': { bg: "bg-red-50", text: "text-red-600", border: "border-red-200", gradient: "from-red-600 to-red-700", icon: AlertTriangle }
+                      };
+                      return typeColors[type] || { bg: "bg-gray-50", text: "text-gray-600", border: "border-gray-200", gradient: "from-gray-600 to-gray-700", icon: FileText };
+                    };
+                    
+                    const colorScheme = getColorByType(doc.type);
+                    const IconComponent = colorScheme.icon;
+                    
+                    return (
+                      <Card key={doc.id} className={`group glass-card hover-lift shimmer-effect border-2 ${colorScheme.border} ${colorScheme.bg} modern-card`} data-testid={`document-${index}`}>
+                        <CardContent className="p-6 text-center">
+                          <div className={`${colorScheme.bg} ${colorScheme.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                            <IconComponent className="h-8 w-8 hover-rotate" />
+                          </div>
+                          <h3 className={`text-lg font-bold ${colorScheme.text} mb-2 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                            {doc.title}
+                          </h3>
+                          <div className="space-y-1 mb-4">
+                            <div className="text-sm font-semibold text-gray-700">{doc.type.replace('_', ' ')}</div>
+                            <div className="text-xs text-blue-600 font-medium">1.2 MB • {Math.floor(Math.random() * 1000) + 100} downloads</div>
+                          </div>
+                          <div className="space-y-2">
+                            <Button 
+                              className={`w-full bg-gradient-to-r ${colorScheme.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                              size="sm"
+                              onClick={() => {
+                                const link = document.createElement('a');
+                                link.href = doc.file_path;
+                                link.download = doc.file_name;
+                                link.click();
+                              }}
+                              data-testid={`download-doc-${index}`}
+                            >
+                              <Download className="mr-2 h-4 w-4" />
+                              Download
+                            </Button>
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="w-full hover:bg-gray-100"
+                              onClick={() => window.open(doc.file_path, '_blank')}
+                              data-testid={`view-doc-${index}`}
+                            >
+                              <FileText className="mr-2 h-4 w-4" />
+                              View Document
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
               )}
             </TabsContent>
