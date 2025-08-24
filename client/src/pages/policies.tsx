@@ -33,6 +33,15 @@ export default function Policies() {
       section: 'conduct'
     },
     {
+      id: 'familiarization-conduct',
+      title: 'Familiarisation Programme',
+      description: 'Director familiarization programme for independent directors',
+      filePath: '/config/data/Policy/2_Familiarization Programme of Independent Director.pdf',
+      icon: Users,
+      color: 'emerald-600',
+      section: 'conduct'
+    },
+    {
       id: 'insider-trading-upsi',
       title: 'Code of Conduct for UPSI',
       description: 'Code of conduct for handling unpublished price sensitive information',
