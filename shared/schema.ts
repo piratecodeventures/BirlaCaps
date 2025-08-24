@@ -1,114 +1,107 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, integer, uuid, jsonb, boolean } from "drizzle-orm/pg-core";
+import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-// Users table
-export const users = pgTable("users", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: varchar("username", { length: 50 }).notNull().unique(),
-  email: varchar("email", { length: 255 }).notNull().unique(),
+// SQLite Tables for local development
+export const users = sqliteTable("users", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  username: text("username", { length: 50 }).notNull().unique(),
+  email: text("email", { length: 255 }).notNull().unique(),
   password: text("password").notNull(),
-  role: varchar("role", { length: 20 }).notNull().default("user"), // 'admin', 'user'
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  role: text("role", { length: 20 }).notNull().default("user"),
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+  updatedAt: text("updated_at").$defaultFn(() => new Date().toISOString()),
 });
 
-// Investor documents table
-export const investorDocuments = pgTable("investor_documents", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-  title: varchar("title", { length: 255 }).notNull(),
-  type: varchar("type", { length: 50 }).notNull(), // 'ANNUAL_REPORT', 'QUARTERLY_RESULT', 'ANNOUNCEMENT', 'GOVERNANCE'
+export const investorDocuments = sqliteTable("investor_documents", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  title: text("title", { length: 255 }).notNull(),
+  type: text("type", { length: 50 }).notNull(),
   description: text("description"),
   fiscalYear: integer("fiscal_year"),
-  fileUrl: varchar("file_url", { length: 512 }).notNull(),
-  fileName: varchar("file_name", { length: 255 }).notNull(),
-  fileSize: varchar("file_size", { length: 50 }),
+  fileUrl: text("file_url", { length: 512 }).notNull(),
+  fileName: text("file_name", { length: 255 }).notNull(),
+  fileSize: text("file_size", { length: 50 }),
   downloads: integer("downloads").default(0),
   version: integer("version").default(1),
-  metadata: jsonb("metadata"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  metadata: text("metadata", { mode: 'json' }),
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+  updatedAt: text("updated_at").$defaultFn(() => new Date().toISOString()),
 });
 
-// Grievances table
-export const grievances = pgTable("grievances", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-  name: varchar("name", { length: 100 }).notNull(),
-  email: varchar("email", { length: 255 }).notNull(),
-  phone: varchar("phone", { length: 20 }).notNull(),
-  grievanceType: varchar("grievance_type", { length: 50 }),
-  subject: varchar("subject", { length: 200 }).notNull(),
+export const grievances = sqliteTable("grievances", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text("name", { length: 100 }).notNull(),
+  email: text("email", { length: 255 }).notNull(),
+  phone: text("phone", { length: 20 }).notNull(),
+  grievanceType: text("grievance_type", { length: 50 }),
+  subject: text("subject", { length: 200 }).notNull(),
   description: text("description").notNull(),
-  attachments: jsonb("attachments"), // Array of file paths
-  status: varchar("status", { length: 20 }).default("OPEN"), // 'OPEN', 'IN_PROGRESS', 'RESOLVED', 'ESCALATED'
-  assignedTo: uuid("assigned_to").references(() => users.id),
-  resolutionDeadline: timestamp("resolution_deadline"),
+  attachments: text("attachments", { mode: 'json' }),
+  status: text("status", { length: 20 }).default("OPEN"),
+  assignedTo: text("assigned_to"),
+  resolutionDeadline: text("resolution_deadline"),
   resolution: text("resolution"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+  updatedAt: text("updated_at").$defaultFn(() => new Date().toISOString()),
 });
 
-// Policies table
-export const policies = pgTable("policies", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-  title: varchar("title", { length: 255 }).notNull(),
+export const policies = sqliteTable("policies", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  title: text("title", { length: 255 }).notNull(),
   description: text("description"),
-  category: varchar("category", { length: 50 }).notNull(),
-  fileUrl: varchar("file_url", { length: 512 }).notNull(),
-  fileName: varchar("file_name", { length: 255 }).notNull(),
-  effectiveDate: timestamp("effective_date").notNull(),
+  category: text("category", { length: 50 }).notNull(),
+  fileUrl: text("file_url", { length: 512 }).notNull(),
+  fileName: text("file_name", { length: 255 }).notNull(),
+  effectiveDate: text("effective_date").notNull(),
   version: integer("version").default(1),
-  changeHistory: jsonb("change_history"),
-  isActive: boolean("is_active").default(true),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  changeHistory: text("change_history", { mode: 'json' }),
+  isActive: integer("is_active", { mode: 'boolean' }).default(true),
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+  updatedAt: text("updated_at").$defaultFn(() => new Date().toISOString()),
 });
 
-// Announcements table
-export const announcements = pgTable("announcements", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-  title: varchar("title", { length: 255 }).notNull(),
+export const announcements = sqliteTable("announcements", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  title: text("title", { length: 255 }).notNull(),
   description: text("description").notNull(),
   content: text("content"),
-  priority: varchar("priority", { length: 20 }).default("NORMAL"), // 'HIGH', 'NORMAL', 'LOW'
-  isPublished: boolean("is_published").default(false),
-  publishedAt: timestamp("published_at"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  priority: text("priority", { length: 20 }).default("NORMAL"),
+  isPublished: integer("is_published", { mode: 'boolean' }).default(false),
+  publishedAt: text("published_at"),
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+  updatedAt: text("updated_at").$defaultFn(() => new Date().toISOString()),
 });
 
-// Company information table
-export const companyInfo = pgTable("company_info", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-  section: varchar("section", { length: 50 }).notNull().unique(), // 'MISSION', 'VISION', 'COMPANY_SECRETARY'
-  title: varchar("title", { length: 255 }),
+export const companyInfo = sqliteTable("company_info", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  section: text("section", { length: 50 }).notNull().unique(),
+  title: text("title", { length: 255 }),
   content: text("content").notNull(),
-  metadata: jsonb("metadata"),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  metadata: text("metadata", { mode: 'json' }),
+  updatedAt: text("updated_at").$defaultFn(() => new Date().toISOString()),
 });
 
-// Board of Directors table
-export const boardDirectors = pgTable("board_directors", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-  name: varchar("name", { length: 255 }).notNull(),
+export const boardDirectors = sqliteTable("board_directors", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text("name", { length: 255 }).notNull(),
   address: text("address").notNull(),
-  designation: varchar("designation", { length: 100 }).notNull(),
-  din: varchar("din", { length: 20 }).notNull().unique(), // Director Identification Number
+  designation: text("designation", { length: 100 }).notNull(),
+  din: text("din", { length: 20 }).notNull().unique(),
   experience: text("experience").notNull(),
   sortOrder: integer("sort_order").default(0),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+  updatedAt: text("updated_at").$defaultFn(() => new Date().toISOString()),
 });
 
-// Promoters table
-export const promoters = pgTable("promoters", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-  name: varchar("name", { length: 255 }).notNull(),
-  category: varchar("category", { length: 50 }).notNull(), // 'Individual' or 'Company'
+export const promoters = sqliteTable("promoters", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text("name", { length: 255 }).notNull(),
+  category: text("category", { length: 50 }).notNull(),
   sortOrder: integer("sort_order").default(0),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+  updatedAt: text("updated_at").$defaultFn(() => new Date().toISOString()),
 });
 
 // Insert schemas
