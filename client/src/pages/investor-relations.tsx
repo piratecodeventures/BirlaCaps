@@ -1,21 +1,11 @@
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { z } from "zod";
 import { InvestorDocument, Announcement } from "@shared/schema";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Badge } from "@/components/ui/badge";
 import { Download, FileText, TrendingUp, BarChart3, Bell, Shield, MessageSquare, Users, Calendar } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import FileUpload from "@/components/ui/file-upload";
 import { 
   getAllDocuments, 
   getDocumentsByType, 
@@ -25,21 +15,9 @@ import {
   getDocumentConfig
 } from "@/lib/document-config";
 
-const grievanceSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  grievanceType: z.string().optional(),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  description: z.string().min(20, "Description must be at least 20 characters"),
-});
-
-type GrievanceFormData = z.infer<typeof grievanceSchema>;
 
 export default function InvestorRelations() {
   const [activeTab, setActiveTab] = useState("all");
-  const [files, setFiles] = useState<File[]>([]);
-  const { toast } = useToast();
 
   // Get document configuration
   const config = getDocumentConfig();
@@ -73,70 +51,6 @@ export default function InvestorRelations() {
     queryKey: ["/api/announcements"]
   });
 
-  // Grievance form
-  const form = useForm<GrievanceFormData>({
-    resolver: zodResolver(grievanceSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      grievanceType: "",
-      subject: "",
-      description: "",
-    },
-  });
-
-  const submitGrievance = useMutation({
-    mutationFn: async (data: GrievanceFormData) => {
-      const formData = new FormData();
-      
-      Object.entries(data).forEach(([key, value]) => {
-        if (value) formData.append(key, value);
-      });
-      
-      files.forEach(file => {
-        formData.append('attachments', file);
-      });
-
-      const response = await fetch('/api/grievances', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit grievance');
-      }
-
-      return response.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Grievance Submitted Successfully",
-        description: "Your grievance has been submitted and will be reviewed within 7 working days.",
-      });
-      form.reset();
-      setFiles([]);
-    },
-    onError: (error) => {
-      toast({
-        title: "Submission Failed",
-        description: "Failed to submit grievance. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const onSubmit = (data: GrievanceFormData) => {
-    submitGrievance.mutate(data);
-  };
-
-  const grievanceTypes = [
-    "Dividend Related",
-    "Share Transfer",
-    "Annual Report",
-    "Corporate Actions",
-    "Others"
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -217,135 +131,6 @@ export default function InvestorRelations() {
                     </CardContent>
                   </Card>
 
-                  {/* Grievance Form */}
-                  <Card>
-                    <CardContent className="p-6">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-6">Submit a Grievance</h2>
-                      <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormField
-                              control={form.control}
-                              name="name"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Full Name</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="Enter your full name" {...field} data-testid="input-name" />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                            <FormField
-                              control={form.control}
-                              name="email"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Email Address</FormLabel>
-                                  <FormControl>
-                                    <Input type="email" placeholder="Enter your email" {...field} data-testid="input-email" />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormField
-                              control={form.control}
-                              name="phone"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Phone Number</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="Enter your phone number" {...field} data-testid="input-phone" />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                            <FormField
-                              control={form.control}
-                              name="grievanceType"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Grievance Type</FormLabel>
-                                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <FormControl>
-                                      <SelectTrigger data-testid="select-grievance-type">
-                                        <SelectValue placeholder="Select grievance type" />
-                                      </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                      {grievanceTypes.map((type) => (
-                                        <SelectItem key={type} value={type}>{type}</SelectItem>
-                                      ))}
-                                    </SelectContent>
-                                  </Select>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                          </div>
-
-                          <FormField
-                            control={form.control}
-                            name="subject"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Subject</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="Enter the subject of your grievance" {...field} data-testid="input-subject" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <FormField
-                            control={form.control}
-                            name="description"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Description</FormLabel>
-                                <FormControl>
-                                  <Textarea
-                                    placeholder="Describe your grievance in detail"
-                                    className="min-h-[120px]"
-                                    {...field}
-                                    data-testid="textarea-description"
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <div>
-                            <label className="text-sm font-medium text-gray-700 mb-2 block">
-                              Attachments (Optional)
-                            </label>
-                            <FileUpload
-                              onFilesChange={setFiles}
-                              maxFiles={5}
-                              acceptedTypes={['.pdf', '.doc', '.docx', '.jpg', '.png']}
-                            />
-                          </div>
-
-                          <Button 
-                            type="submit" 
-                            className="w-full" 
-                            disabled={submitGrievance.isPending}
-                            data-testid="button-submit-grievance"
-                          >
-                            {submitGrievance.isPending ? "Submitting..." : "Submit Grievance"}
-                          </Button>
-                        </form>
-                      </Form>
-                    </CardContent>
-                  </Card>
 
                   {/* Investor Grievance Reports */}
                   <div className="space-y-8">
