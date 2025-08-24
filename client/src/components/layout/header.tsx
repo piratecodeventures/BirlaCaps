@@ -226,7 +226,7 @@ export default function Header() {
                       href="/admin" 
                       onClick={() => setIsMobileMenuOpen(false)} 
                       data-testid="mobile-nav-admin"
-                      className="text-gray-900 hover:text-primary hover:bg-blue-50 px-3 py-3 rounded-md transition-colors font-medium border-t border-gray-200 mt-4 pt-4"
+                      className="text-gray-900 hover:text-primary hover:bg-blue-50 px-3 py-3 rounded-md transition-colors font-medium border-t border-gray-200 mt-4 pt-4 hidden"
                     >
                       Admin
                     </Link>
@@ -238,7 +238,7 @@ export default function Header() {
 
           {/* User Actions */}
           <div className="hidden lg:flex items-center space-x-2 flex-shrink-0">
-            <Button variant="outline" size="sm" asChild data-testid="button-admin" className="text-sm">
+            <Button variant="outline" size="sm" asChild data-testid="button-admin" className="text-sm hidden">
               <Link href="/admin">Admin</Link>
             </Button>
           </div>
