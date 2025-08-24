@@ -2,6 +2,7 @@ import ManagementTeam from "@/components/sections/management-team";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import financialImage from "@assets/image_1756027604442.png";
 import {
   Users,
   ArrowRight,
@@ -85,7 +86,7 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 items-center stagger-children">
             <div className="fade-in-left">
               <img
-                src="https://sl.bing.net/iYfgR09Sram&auto=format&fit=crop&w=800&h=600"
+                src={financialImage}
                 alt="Abstract futuristic digital financial technology visualization"
                 className="rounded-2xl shadow-2xl hover-lift shimmer-effect glass-card"
                 data-testid="about-image"
