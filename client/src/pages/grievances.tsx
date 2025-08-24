@@ -133,7 +133,7 @@ export default function Grievances() {
                 </div>
                 <div>
                   <span className="font-semibold text-blue-800">Email:</span>
-                  <span className="ml-2 text-gray-700">hemant.agrawal@birlacaps.com</span>
+                  <span className="ml-2 text-gray-700">info@birlainternational.net</span>
                 </div>
                 <div>
                   <span className="font-semibold text-blue-800">Phone:</span>
