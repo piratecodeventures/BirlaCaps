@@ -70,6 +70,12 @@ export default function PDFViewer({
     return colors[docType as keyof typeof colors] || 'bg-gray-100 text-gray-800 border-gray-200';
   };
 
+  const handleViewPDF = () => {
+    // Open PDF in new window to avoid Edge iframe restrictions
+    const pdfUrl = `${filePath}#zoom=${Math.round(zoom * 100)}`;
+    window.open(pdfUrl, '_blank', 'width=1000,height=800,scrollbars=yes,resizable=yes');
+  };
+
   const PDFContent = () => (
     <div className="space-y-4">
       {/* PDF Controls */}
@@ -109,25 +115,17 @@ export default function PDFViewer({
           </Button>
           
           <Button
-            variant="outline"
+            variant="default"
             size="sm"
-            onClick={() => setRotation((rotation + 90) % 360)}
-            data-testid="rotate-btn"
+            onClick={handleViewPDF}
+            data-testid="open-pdf-btn"
           >
-            <RotateCw className="h-4 w-4" />
+            <Eye className="h-4 w-4 mr-1" />
+            Open PDF
           </Button>
         </div>
         
         <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handlePrint}
-            data-testid="print-btn"
-          >
-            <Printer className="h-4 w-4" />
-          </Button>
-          
           <Button
             variant="outline"
             size="sm"
@@ -136,41 +134,19 @@ export default function PDFViewer({
           >
             <Download className="h-4 w-4" />
           </Button>
-          
-          {isFullscreen && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setIsFullscreen(false)}
-              data-testid="exit-fullscreen-btn"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          )}
         </div>
       </div>
 
-      {/* PDF Viewer */}
+      {/* PDF Preview Information */}
       <div className="relative">
-        {isDialogOpen ? (
-          <iframe
-            ref={iframeRef}
-            src={`${filePath}#zoom=${Math.round(zoom * 100)}&rotation=${rotation}`}
-            className={cn(
-              "w-full border rounded-lg",
-              isFullscreen ? "h-screen" : "h-96"
-            )}
-            title={`PDF Viewer - ${title}`}
-            data-testid="pdf-iframe"
-          />
-        ) : (
-          <div className="w-full h-96 border rounded-lg bg-gray-50 flex items-center justify-center">
-            <div className="text-center">
-              <FileText className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">PDF will load when opened</p>
-            </div>
+        <div className="w-full h-96 border rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+          <div className="text-center">
+            <FileText className="h-16 w-16 text-blue-500 mx-auto mb-4" />
+            <p className="text-gray-700 font-medium mb-2">{title}</p>
+            <p className="text-gray-600 text-sm mb-4">Click "Open PDF" to view in a new window</p>
+            <p className="text-xs text-gray-500">This method works reliably in all browsers including Microsoft Edge</p>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
@@ -233,25 +209,16 @@ export default function PDFViewer({
         )}
 
         <div className="flex flex-wrap gap-2">
-          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger asChild>
-              <Button variant="default" size="sm" className="flex-1" data-testid="view-pdf-btn">
-                <Eye className="h-4 w-4 mr-1" />
-                View PDF
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl h-[80vh]">
-              <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                  <FileText className="h-5 w-5" />
-                  {title}
-                </DialogTitle>
-              </DialogHeader>
-              <div className="flex-1 overflow-hidden">
-                <PDFContent />
-              </div>
-            </DialogContent>
-          </Dialog>
+          <Button 
+            variant="default" 
+            size="sm" 
+            className="flex-1" 
+            onClick={handleViewPDF}
+            data-testid="view-pdf-btn"
+          >
+            <Eye className="h-4 w-4 mr-1" />
+            View PDF
+          </Button>
 
           <Button 
             variant="outline" 
@@ -263,15 +230,29 @@ export default function PDFViewer({
             Download
           </Button>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsFullscreen(true)}
-            data-testid="fullscreen-btn"
-          >
-            <Maximize2 className="h-4 w-4 mr-1" />
-            Fullscreen
-          </Button>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                data-testid="pdf-settings-btn"
+              >
+                <Maximize2 className="h-4 w-4 mr-1" />
+                Settings
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5" />
+                  PDF Viewer Settings - {title}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="overflow-hidden">
+                <PDFContent />
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </CardContent>
     </Card>
