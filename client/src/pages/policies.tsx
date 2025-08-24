@@ -21,22 +21,22 @@ export default function Policies() {
     window.open(filePath, '_blank', 'width=1000,height=800,scrollbars=yes,resizable=yes');
   };
 
-  // Static policy documents data
+  // Static policy documents data - matching actual files in config/data/Policy/
   const staticPolicies = [
     {
-      id: 'conduct',
+      id: 'code-of-conduct',
       title: 'Code of Conduct',
       description: 'Ethical guidelines for all employees and stakeholders',
-      filePath: '/config/data/policies/code-of-conduct.pdf',
+      filePath: '/config/data/Policy/12_Code of Conduct.pdf',
       icon: FileX,
       color: 'blue-600',
       section: 'conduct'
     },
     {
-      id: 'governance',
-      title: 'Code of Governance', 
-      description: 'Framework for effective corporate governance practices',
-      filePath: '/config/data/policies/code-of-governance.pdf',
+      id: 'insider-trading-upsi',
+      title: 'Code of Conduct for UPSI',
+      description: 'Code of conduct for handling unpublished price sensitive information',
+      filePath: '/config/data/Policy/11_Code of Conduct for unpublished price sensitive information.pdf',
       icon: Scale,
       color: 'green-600',
       section: 'governance'
@@ -45,16 +45,16 @@ export default function Policies() {
       id: 'risk-management',
       title: 'Risk Management Policy',
       description: 'Comprehensive risk assessment and mitigation strategies',
-      filePath: '/config/data/policies/risk-management-policy.pdf',
+      filePath: '/config/data/Policy/3_Risk Management Policy.pdf',
       icon: Shield,
       color: 'red-600',
       section: 'risk-management'
     },
     {
-      id: 'party-transaction',
-      title: 'Policy Related to Party Transaction',
+      id: 'related-party',
+      title: 'Related Party Policy',
       description: 'Guidelines for managing related party transactions',
-      filePath: '/config/data/policies/related-party-transactions.pdf',
+      filePath: '/config/data/Policy/8_Related Party Policy.pdf',
       icon: Handshake,
       color: 'purple-600',
       section: 'party-transaction'
@@ -63,16 +63,16 @@ export default function Policies() {
       id: 'nomination-remuneration',
       title: 'Nomination & Remuneration Policy',
       description: 'Framework for board appointments and compensation',
-      filePath: '/config/data/policies/nomination-remuneration-policy.pdf',
+      filePath: '/config/data/Policy/5_Nomination and Remuneration Policy.pdf',
       icon: Users,
       color: 'indigo-600',
       section: 'nomination-remuneration'
     },
     {
       id: 'insider-trading',
-      title: 'Code for Prohibition of Insider Trading',
+      title: 'Code of Conduct for Insider Trading',
       description: 'Compliance framework preventing insider trading',
-      filePath: '/config/data/policies/insider-trading-code.pdf',
+      filePath: '/config/data/Policy/9_Code of Conduct for Insider Trading Policy.pdf',
       icon: AlertTriangle,
       color: 'orange-600',
       section: 'insider-trading'
@@ -81,7 +81,7 @@ export default function Policies() {
       id: 'whistle-blower',
       title: 'Whistle Blower Policy',
       description: 'Secure reporting mechanism for unethical practices',
-      filePath: '/config/data/policies/whistleblower-policy.pdf',
+      filePath: '/config/data/Policy/6_Whistle Blower Policy.pdf',
       icon: FileText,
       color: 'teal-600',
       section: 'whistle-blower'
@@ -90,7 +90,7 @@ export default function Policies() {
       id: 'material-subsidiary',
       title: 'Material Subsidiary Policy',
       description: 'Framework for managing material subsidiaries',
-      filePath: '/config/data/policies/material-subsidiary-policy.pdf',
+      filePath: '/config/data/Policy/7_Policy for determining material subsidiary.pdf',
       icon: FileText,
       color: 'cyan-600',
       section: 'material-subsidiary'
@@ -99,19 +99,37 @@ export default function Policies() {
       id: 'archival',
       title: 'Archival Policy',
       description: 'Policy for document retention and archival',
-      filePath: '/config/data/policies/archival-policy.pdf',
+      filePath: '/config/data/Policy/4_Archival Policy.pdf',
       icon: FileText,
       color: 'gray-600',
       section: 'archival'
     },
     {
       id: 'independent-director',
-      title: 'Independent Director',
-      description: 'Guidelines for independent director roles and responsibilities',
-      filePath: '/config/data/policies/independent-director-framework.pdf',
+      title: 'Familiarisation Programme',
+      description: 'Director familiarization programme for independent directors',
+      filePath: '/config/data/Policy/2_Familiarization Programme of Independent Director.pdf',
       icon: Users,
       color: 'emerald-600',
       section: 'independent-director'
+    },
+    {
+      id: 'auditor-terms',
+      title: 'Terms of Appointment of Independent Auditor',
+      description: 'Terms and conditions for independent auditor appointment',
+      filePath: '/config/data/Policy/1_Terms of Appointment of Independent Auditor.pdf',
+      icon: FileText,
+      color: 'pink-600',
+      section: 'auditor'
+    },
+    {
+      id: 'materiality-events',
+      title: 'Policy for Determining Materiality of Events',
+      description: 'Framework for determining materiality of events and information',
+      filePath: '/config/data/Policy/10_Policy for determining materiality of event.pdf',
+      icon: Scale,
+      color: 'violet-600',
+      section: 'materiality'
     }
   ];
 
