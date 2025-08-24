@@ -178,48 +178,109 @@ export default function Policies() {
               Comprehensive collection of corporate governance policies, compliance frameworks, and codes that guide our ethical business practices and regulatory compliance.
             </p>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
               {staticPolicies.map((policy, index) => {
                 const IconComponent = policy.icon;
+                const colorClasses = {
+                  'blue-600': { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
+                  'green-600': { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" },
+                  'red-600': { bg: "bg-red-50", text: "text-red-600", border: "border-red-200", gradient: "from-red-600 to-red-700" },
+                  'purple-600': { bg: "bg-purple-50", text: "text-purple-600", border: "border-purple-200", gradient: "from-purple-600 to-purple-700" },
+                  'indigo-600': { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-200", gradient: "from-indigo-600 to-indigo-700" },
+                  'orange-600': { bg: "bg-orange-50", text: "text-orange-600", border: "border-orange-200", gradient: "from-orange-600 to-orange-700" },
+                  'teal-600': { bg: "bg-teal-50", text: "text-teal-600", border: "border-teal-200", gradient: "from-teal-600 to-teal-700" },
+                  'cyan-600': { bg: "bg-cyan-50", text: "text-cyan-600", border: "border-cyan-200", gradient: "from-cyan-600 to-cyan-700" },
+                  'gray-600': { bg: "bg-gray-50", text: "text-gray-600", border: "border-gray-200", gradient: "from-gray-600 to-gray-700" },
+                  'emerald-600': { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200", gradient: "from-emerald-600 to-emerald-700" },
+                  'pink-600': { bg: "bg-pink-50", text: "text-pink-600", border: "border-pink-200", gradient: "from-pink-600 to-pink-700" },
+                  'violet-600': { bg: "bg-violet-50", text: "text-violet-600", border: "border-violet-200", gradient: "from-violet-600 to-violet-700" }
+                };
+                const colors = colorClasses[policy.color as keyof typeof colorClasses];
+                
                 return (
-                  <PDFViewer
-                    key={policy.id}
-                    title={policy.title}
-                    fileName={`${policy.title.toLowerCase().replace(/ /g, '-')}.pdf`}
-                    filePath={policy.filePath}
-                    fileSize="850 KB"
-                    description={policy.description}
-                    type="GOVERNANCE"
-                    downloads={Math.floor(Math.random() * 500) + 100}
-                    className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                    showPreview={false}
-                  />
+                  <Card 
+                    key={policy.id} 
+                    className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`}
+                    data-testid={`policy-${index}`}
+                  >
+                    <CardContent className="p-6 text-center">
+                      <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                        <IconComponent className="h-8 w-8 hover-rotate" />
+                      </div>
+                      <h3 className={`text-lg font-bold ${colors.text} mb-3 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                        {policy.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-6 leading-relaxed fade-in-up">
+                        {policy.description}
+                      </p>
+                      <div className="space-y-3">
+                        <Button 
+                          className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                          onClick={() => {
+                            const link = document.createElement('a');
+                            link.href = policy.filePath;
+                            link.download = policy.filePath.split('/').pop() || 'policy.pdf';
+                            link.click();
+                          }}
+                          data-testid={`download-policy-${policy.id}`}
+                        >
+                          <Download className="mr-2 h-4 w-4" />
+                          Download PDF
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="w-full hover:bg-gray-100"
+                          onClick={() => window.open(policy.filePath, '_blank')}
+                          data-testid={`view-policy-${policy.id}`}
+                        >
+                          <FileText className="mr-2 h-4 w-4" />
+                          View Document
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
                 );
               })}
             </div>
 
             {/* Additional Information */}
-            <div className="mt-12 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
-              <div className="text-center mb-4">
-                <Shield className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <h3 className="text-xl font-semibold text-gray-900">Compliance & Governance</h3>
+            <div className="mt-16 p-8 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 rounded-xl shadow-lg border border-blue-200">
+              <div className="text-center mb-8">
+                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow">
+                  <Shield className="h-8 w-8" />
+                </div>
+                <h3 className="text-2xl font-bold gradient-text mb-2">Compliance & Governance</h3>
+                <p className="text-gray-600">Ensuring transparency and accountability in all our practices</p>
               </div>
-              <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
-                <div>
-                  <h4 className="font-semibold mb-2">Policy Updates</h4>
-                  <p>All policies are reviewed annually and updated as per regulatory requirements and best practices.</p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover-lift">
+                  <div className="bg-blue-100 text-blue-600 p-3 rounded-full w-12 h-12 mx-auto flex items-center justify-center mb-3">
+                    <FileText className="h-6 w-6" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Policy Updates</h4>
+                  <p className="text-xs text-gray-600">All policies are reviewed annually and updated as per regulatory requirements and best practices.</p>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Compliance Training</h4>
-                  <p>Regular training programs are conducted to ensure understanding and implementation of these policies.</p>
+                <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover-lift">
+                  <div className="bg-green-100 text-green-600 p-3 rounded-full w-12 h-12 mx-auto flex items-center justify-center mb-3">
+                    <Users className="h-6 w-6" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Compliance Training</h4>
+                  <p className="text-xs text-gray-600">Regular training programs are conducted to ensure understanding and implementation of these policies.</p>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Board Oversight</h4>
-                  <p>All policies are approved by the Board and regularly monitored by respective board committees.</p>
+                <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover-lift">
+                  <div className="bg-purple-100 text-purple-600 p-3 rounded-full w-12 h-12 mx-auto flex items-center justify-center mb-3">
+                    <Shield className="h-6 w-6" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Board Oversight</h4>
+                  <p className="text-xs text-gray-600">All policies are approved by the Board and regularly monitored by respective board committees.</p>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Stakeholder Access</h4>
-                  <p>Key policies are made available to stakeholders to ensure transparency in our governance practices.</p>
+                <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover-lift">
+                  <div className="bg-orange-100 text-orange-600 p-3 rounded-full w-12 h-12 mx-auto flex items-center justify-center mb-3">
+                    <Eye className="h-6 w-6" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Stakeholder Access</h4>
+                  <p className="text-xs text-gray-600">Key policies are made available to stakeholders to ensure transparency in our governance practices.</p>
                 </div>
               </div>
             </div>
@@ -244,19 +305,51 @@ export default function Policies() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
                 {policies.map((policy, index) => {
                   const IconComponent = getPolicyIcon(policy.category);
+                  const colors = { bg: "bg-gray-50", text: "text-gray-600", border: "border-gray-200", gradient: "from-gray-600 to-gray-700" };
+                  
                   return (
-                    <PDFViewer
-                      key={policy.id}
-                      title={policy.title}
-                      fileName={`${policy.title.toLowerCase().replace(/ /g, '-')}.pdf`}
-                      filePath={`/config/data/policies/${policy.id}.pdf`}
-                      fileSize="750 KB"
-                      description={policy.description || 'Corporate policy document'}
-                      type="GOVERNANCE"
-                      downloads={Math.floor(Math.random() * 300) + 50}
-                      className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                      showPreview={false}
-                    />
+                    <Card 
+                      key={policy.id} 
+                      className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`}
+                      data-testid={`dynamic-policy-${index}`}
+                    >
+                      <CardContent className="p-6 text-center">
+                        <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                          <IconComponent className="h-8 w-8 hover-rotate" />
+                        </div>
+                        <h3 className={`text-lg font-bold ${colors.text} mb-3 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                          {policy.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-6 leading-relaxed fade-in-up">
+                          {policy.description || 'Corporate policy document'}
+                        </p>
+                        <div className="space-y-3">
+                          <Button 
+                            className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = `/config/data/policies/${policy.id}.pdf`;
+                              link.download = `${policy.title.toLowerCase().replace(/ /g, '-')}.pdf`;
+                              link.click();
+                            }}
+                            data-testid={`download-dynamic-policy-${policy.id}`}
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download PDF
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full hover:bg-gray-100"
+                            onClick={() => window.open(`/config/data/policies/${policy.id}.pdf`, '_blank')}
+                            data-testid={`view-dynamic-policy-${policy.id}`}
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View Document
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
                   );
                 })}
               </div>
