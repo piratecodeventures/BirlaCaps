@@ -111,7 +111,7 @@ export default function Policies() {
       filePath: '/config/data/Policy/2_Familiarization Programme of Independent Director.pdf',
       icon: Users,
       color: 'emerald-600',
-      section: 'independent-director'
+      section: 'governance'
     },
     {
       id: 'auditor-terms',
@@ -530,7 +530,6 @@ export default function Policies() {
             <div id="whistle-blower" className="scroll-mt-20"></div>
             <div id="material-subsidiary" className="scroll-mt-20"></div>
             <div id="archival" className="scroll-mt-20"></div>
-            <div id="independent-director" className="scroll-mt-20"></div>
 
             {/* Additional Information */}
             <div className="mt-16 p-8 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 rounded-xl shadow-lg border border-blue-200">
@@ -643,65 +642,6 @@ export default function Policies() {
             </div>
           ) : null}
 
-          {/* Familiarization Programme Section */}
-          <div id="independent-director" className="mb-16">
-            <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Independent Director Familiarization Programme</h2>
-            <p className="text-gray-600 text-center mb-12 max-w-4xl mx-auto">
-              Comprehensive familiarization programme designed to enhance the understanding of independent directors about the company's operations, industry landscape, and governance framework.
-            </p>
-            
-            <div className="grid md:grid-cols-1 gap-6">
-              {staticPolicies.filter(policy => policy.section === 'independent-director').map((policy, index) => {
-                const IconComponent = policy.icon;
-                const colors = { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200", gradient: "from-emerald-600 to-emerald-700" };
-                
-                return (
-                  <Card 
-                    key={policy.id} 
-                    className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`}
-                    data-testid={`policy-familiarization-${index}`}
-                  >
-                    <CardContent className="p-8 text-center">
-                      <div className={`${colors.bg} ${colors.text} p-6 rounded-full w-20 h-20 mx-auto flex items-center justify-center mb-6 float-animation hover-glow`}>
-                        <IconComponent className="h-10 w-10 hover-rotate" />
-                      </div>
-                      <h3 className={`text-2xl font-bold ${colors.text} mb-4 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
-                        {policy.title}
-                      </h3>
-                      <p className="text-gray-600 text-lg mb-8 leading-relaxed fade-in-up">
-                        {policy.description}
-                      </p>
-                      <div className="space-y-4">
-                        <Button 
-                          className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive text-lg py-6`}
-                          onClick={() => {
-                            const link = document.createElement('a');
-                            link.href = policy.filePath;
-                            link.download = policy.filePath.split('/').pop() || 'policy.pdf';
-                            link.click();
-                          }}
-                          data-testid={`download-policy-${policy.id}`}
-                        >
-                          <Download className="mr-3 h-5 w-5" />
-                          Download Programme Document
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="lg" 
-                          className="w-full hover:bg-gray-100 text-lg py-6"
-                          onClick={() => window.open(policy.filePath, '_blank')}
-                          data-testid={`view-policy-${policy.id}`}
-                        >
-                          <FileText className="mr-3 h-5 w-5" />
-                          View Programme Details
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
         </div>
       </section>
     </div>
