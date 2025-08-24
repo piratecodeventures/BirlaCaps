@@ -81,7 +81,6 @@ export default function Hero() {
               </Button>
               <Button
                 size="lg"
-                variant="outline"
                 className="bg-white text-blue-900 hover:bg-gray-100 btn-interactive hover-glow py-3 px-6 text-sm sm:text-base"
                 asChild
                 data-testid="button-investor-relations"
