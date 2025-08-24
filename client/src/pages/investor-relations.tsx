@@ -492,6 +492,159 @@ export default function InvestorRelations() {
             </div>
           </div>
 
+          {/* Investor Grievance Reports Section */}
+          <div id="investor-grievances" className="scroll-mt-8 mb-16">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-full shadow-lg">
+                <Bell className="h-6 w-6" />
+                <h2 className="text-2xl font-bold">Investor Grievance Reports</h2>
+              </div>
+            </div>
+            <p className="text-xl text-gray-600 text-center mb-12 max-w-4xl mx-auto leading-relaxed">
+              Quarterly reports on investor grievances received, processed, and resolved as per regulatory requirements.
+            </p>
+            
+            <div className="space-y-12 stagger-children">
+              {/* FY 2024-25 */}
+              <div>
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full shadow-lg">
+                    <TrendingUp className="h-6 w-6" />
+                    <h3 className="text-xl font-bold">Financial Year 2024-25</h3>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+                  {[
+                    { quarter: "Q4 2024-25", file: "/config/data/Investor Greviance/24-25/Birla capital_IG_31.03.2025.pdf", period: "Jan-Mar 2025", icon: FileText, color: "blue" },
+                    { quarter: "Q3 2024-25", file: "/config/data/Investor Greviance/24-25/Birla capital_IG_31.12.2024.pdf", period: "Oct-Dec 2024", icon: FileText, color: "green" },
+                    { quarter: "Q2 2024-25", file: "/config/data/Investor Greviance/24-25/Birla capital_IG_30.09.2024.pdf", period: "Jul-Sep 2024", icon: FileText, color: "purple" },
+                    { quarter: "Q1 2024-25", file: "/config/data/Investor Greviance/24-25/Birla Capital_IG_30.06.2024.pdf", period: "Apr-Jun 2024", icon: FileText, color: "indigo" }
+                  ].map((report, index) => {
+                    const colorClasses = {
+                      blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
+                      green: { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" },
+                      purple: { bg: "bg-purple-50", text: "text-purple-600", border: "border-purple-200", gradient: "from-purple-600 to-purple-700" },
+                      indigo: { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-200", gradient: "from-indigo-600 to-indigo-700" }
+                    };
+                    const colors = colorClasses[report.color as keyof typeof colorClasses];
+                    const IconComponent = report.icon;
+                    
+                    return (
+                      <Card key={report.quarter} className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`} data-testid={`grievance-report-${index}`}>
+                        <CardContent className="p-6 text-center">
+                          <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                            <IconComponent className="h-8 w-8 hover-rotate" />
+                          </div>
+                          <h4 className={`text-lg font-bold ${colors.text} mb-2 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                            {report.quarter}
+                          </h4>
+                          <p className="text-gray-600 text-sm mb-4 leading-relaxed fade-in-up">
+                            {report.period}
+                          </p>
+                          <div className="space-y-2">
+                            <Button 
+                              className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                              size="sm"
+                              onClick={() => {
+                                const link = document.createElement('a');
+                                link.href = report.file;
+                                link.download = report.file.split('/').pop() || 'grievance-report.pdf';
+                                link.click();
+                              }}
+                              data-testid={`download-grievance-${report.quarter}`}
+                            >
+                              <Download className="mr-2 h-4 w-4" />
+                              Download
+                            </Button>
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="w-full hover:bg-gray-100"
+                              onClick={() => window.open(report.file, '_blank')}
+                              data-testid={`view-grievance-${report.quarter}`}
+                            >
+                              <FileText className="mr-2 h-4 w-4" />
+                              View Report
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* FY 2023-24 */}
+              <div>
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-full shadow-lg">
+                    <TrendingUp className="h-6 w-6" />
+                    <h3 className="text-xl font-bold">Financial Year 2023-24</h3>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+                  {[
+                    { quarter: "Q4 2023-24", file: "/config/data/Investor Greviance/23-24/Reg 13(3) Birla Capital_IG_31.03.2024.pdf", period: "Jan-Mar 2024", icon: FileText, color: "emerald" },
+                    { quarter: "Q3 2023-24", file: "/config/data/Investor Greviance/23-24/Birla Capital IG_31.12.2023.pdf", period: "Oct-Dec 2023", icon: FileText, color: "teal" },
+                    { quarter: "Q2 2023-24", file: "/config/data/Investor Greviance/23-24/Birla Capital IG_30.09.2023.pdf", period: "Jul-Sep 2023", icon: FileText, color: "cyan" },
+                    { quarter: "Q1 2023-24", file: "/config/data/Investor Greviance/23-24/Birla Capital_IG_30.06.2023.pdf", period: "Apr-Jun 2023", icon: FileText, color: "green" }
+                  ].map((report, index) => {
+                    const colorClasses = {
+                      emerald: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200", gradient: "from-emerald-600 to-emerald-700" },
+                      teal: { bg: "bg-teal-50", text: "text-teal-600", border: "border-teal-200", gradient: "from-teal-600 to-teal-700" },
+                      cyan: { bg: "bg-cyan-50", text: "text-cyan-600", border: "border-cyan-200", gradient: "from-cyan-600 to-cyan-700" },
+                      green: { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" }
+                    };
+                    const colors = colorClasses[report.color as keyof typeof colorClasses];
+                    const IconComponent = report.icon;
+                    
+                    return (
+                      <Card key={report.quarter} className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`} data-testid={`grievance-report-23-24-${index}`}>
+                        <CardContent className="p-6 text-center">
+                          <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                            <IconComponent className="h-8 w-8 hover-rotate" />
+                          </div>
+                          <h4 className={`text-lg font-bold ${colors.text} mb-2 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                            {report.quarter}
+                          </h4>
+                          <p className="text-gray-600 text-sm mb-4 leading-relaxed fade-in-up">
+                            {report.period}
+                          </p>
+                          <div className="space-y-2">
+                            <Button 
+                              className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                              size="sm"
+                              onClick={() => {
+                                const link = document.createElement('a');
+                                link.href = report.file;
+                                link.download = report.file.split('/').pop() || 'grievance-report.pdf';
+                                link.click();
+                              }}
+                              data-testid={`download-grievance-23-24-${report.quarter}`}
+                            >
+                              <Download className="mr-2 h-4 w-4" />
+                              Download
+                            </Button>
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="w-full hover:bg-gray-100"
+                              onClick={() => window.open(report.file, '_blank')}
+                              data-testid={`view-grievance-23-24-${report.quarter}`}
+                            >
+                              <FileText className="mr-2 h-4 w-4" />
+                              View Report
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Navigation anchor points */}
           <div id="governance-reports" className="scroll-mt-20"></div>
           <div id="offer-documents" className="scroll-mt-20"></div>
