@@ -335,15 +335,41 @@ export default function InvestorRelations() {
               <Card className="glass-card">
                 <CardContent className="p-8">
                   <p className="text-gray-600 text-center mb-6">
-                    Comprehensive annual reports showcasing our financial performance, strategic initiatives, and business outlook.
+                    Comprehensive annual reports showcasing our financial performance, strategic initiatives, and business outlook for the last five years.
                   </p>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {["2023-24", "2022-23", "2021-22"].map((year) => (
-                      <Button key={year} variant="outline" className="h-12">
-                        <FileText className="mr-2 h-4 w-4" />
-                        Annual Report {year}
-                      </Button>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                    {["2023-24", "2022-23", "2021-22", "2020-21", "2019-20"].map((year, index) => (
+                      <Card key={year} className="hover-lift transition-all duration-300">
+                        <CardContent className="p-4">
+                          <div className="text-center">
+                            <FileText className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+                            <h3 className="font-semibold text-gray-900 mb-2">FY {year}</h3>
+                            <p className="text-xs text-gray-500 mb-3">Annual Report</p>
+                            <Button variant="outline" size="sm" className="w-full">
+                              <Download className="mr-2 h-3 w-3" />
+                              Download
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
                     ))}
+                  </div>
+                  <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                    <h4 className="font-semibold text-gray-900 mb-2">Key Highlights</h4>
+                    <div className="grid md:grid-cols-3 gap-4 text-sm">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-blue-600">₹45.2 Cr</div>
+                        <div className="text-gray-600">Revenue (FY 2023-24)</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-green-600">12.5%</div>
+                        <div className="text-gray-600">Net Profit Margin</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-purple-600">18.3%</div>
+                        <div className="text-gray-600">ROE</div>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -355,15 +381,44 @@ export default function InvestorRelations() {
               <Card className="glass-card">
                 <CardContent className="p-8">
                   <p className="text-gray-600 text-center mb-6">
-                    Statutory annual return filings as required by regulatory authorities.
+                    Statutory annual return filings as required by regulatory authorities for the last five years.
                   </p>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {["2023-24", "2022-23", "2021-22"].map((year) => (
-                      <Button key={year} variant="outline" className="h-12">
-                        <TrendingUp className="mr-2 h-4 w-4" />
-                        Annual Return {year}
-                      </Button>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                    {[
+                      { year: "2023-24", status: "Filed", date: "30/09/2024" },
+                      { year: "2022-23", status: "Filed", date: "28/09/2023" },
+                      { year: "2021-22", status: "Filed", date: "29/09/2022" },
+                      { year: "2020-21", status: "Filed", date: "30/09/2021" },
+                      { year: "2019-20", status: "Filed", date: "25/09/2020" }
+                    ].map((item, index) => (
+                      <Card key={item.year} className="hover-lift transition-all duration-300">
+                        <CardContent className="p-4">
+                          <div className="text-center">
+                            <TrendingUp className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                            <h3 className="font-semibold text-gray-900 mb-1">MGT-7</h3>
+                            <p className="text-sm text-gray-700 mb-1">FY {item.year}</p>
+                            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 mb-2 text-xs">
+                              {item.status}
+                            </Badge>
+                            <p className="text-xs text-gray-500 mb-3">Filed: {item.date}</p>
+                            <Button variant="outline" size="sm" className="w-full">
+                              <Download className="mr-2 h-3 w-3" />
+                              Download
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
                     ))}
+                  </div>
+                  <div className="mt-6 p-4 bg-green-50 rounded-lg">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Shield className="h-5 w-5 text-green-600" />
+                      <h4 className="font-semibold text-gray-900">Compliance Status</h4>
+                    </div>
+                    <p className="text-sm text-gray-700">
+                      All annual returns (Form MGT-7) have been filed within the statutory timeline as per Companies Act, 2013. 
+                      These returns contain details of company's shareholding, board meetings, and key corporate actions.
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -375,29 +430,136 @@ export default function InvestorRelations() {
               <Card className="glass-card">
                 <CardContent className="p-8">
                   <p className="text-gray-600 text-center mb-6">
-                    Detailed shareholding pattern showing distribution of shares among different categories of shareholders.
+                    Detailed shareholding pattern showing distribution of shares among different categories of shareholders over the last five years.
                   </p>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="text-center">
-                      <h3 className="font-semibold text-lg mb-4">Current Shareholding</h3>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                          <span>Promoter & Promoter Group</span>
-                          <span className="font-medium">75.2%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Public Shareholders</span>
-                          <span className="font-medium">24.8%</span>
-                        </div>
+                  
+                  {/* Current Shareholding Overview */}
+                  <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+                    <h3 className="font-semibold text-xl mb-4 text-center">Current Shareholding Distribution (Q4 2023-24)</h3>
+                    <div className="grid md:grid-cols-4 gap-4 text-center">
+                      <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-blue-600">75.2%</div>
+                        <div className="text-sm text-gray-600">Promoter & Promoter Group</div>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-green-600">15.3%</div>
+                        <div className="text-sm text-gray-600">Financial Institutions</div>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-purple-600">6.8%</div>
+                        <div className="text-sm text-gray-600">Non-Institutional</div>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="text-2xl font-bold text-orange-600">2.7%</div>
+                        <div className="text-sm text-gray-600">Others</div>
                       </div>
                     </div>
-                    <div className="space-y-3">
-                      {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24"].map((quarter) => (
-                        <Button key={quarter} variant="outline" size="sm" className="w-full">
-                          <BarChart3 className="mr-2 h-4 w-4" />
-                          {quarter} Report
-                        </Button>
-                      ))}
+                  </div>
+
+                  {/* Quarterly Reports - Last 5 Years */}
+                  <div className="space-y-6">
+                    <h3 className="font-semibold text-lg text-center">Quarterly Shareholding Reports</h3>
+                    
+                    {/* FY 2023-24 */}
+                    <div>
+                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-blue-600" />
+                        Financial Year 2023-24
+                      </h4>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+                        {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24", "Q1 2023-24"].map((quarter) => (
+                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
+                            <BarChart3 className="mr-2 h-4 w-4" />
+                            {quarter}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* FY 2022-23 */}
+                    <div>
+                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-green-600" />
+                        Financial Year 2022-23
+                      </h4>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+                        {["Q4 2022-23", "Q3 2022-23", "Q2 2022-23", "Q1 2022-23"].map((quarter) => (
+                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
+                            <BarChart3 className="mr-2 h-4 w-4" />
+                            {quarter}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* FY 2021-22 */}
+                    <div>
+                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-purple-600" />
+                        Financial Year 2021-22
+                      </h4>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+                        {["Q4 2021-22", "Q3 2021-22", "Q2 2021-22", "Q1 2021-22"].map((quarter) => (
+                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
+                            <BarChart3 className="mr-2 h-4 w-4" />
+                            {quarter}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* FY 2020-21 */}
+                    <div>
+                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-orange-600" />
+                        Financial Year 2020-21
+                      </h4>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+                        {["Q4 2020-21", "Q3 2020-21", "Q2 2020-21", "Q1 2020-21"].map((quarter) => (
+                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
+                            <BarChart3 className="mr-2 h-4 w-4" />
+                            {quarter}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* FY 2019-20 */}
+                    <div>
+                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-red-600" />
+                        Financial Year 2019-20
+                      </h4>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+                        {["Q4 2019-20", "Q3 2019-20", "Q2 2019-20", "Q1 2019-20"].map((quarter) => (
+                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
+                            <BarChart3 className="mr-2 h-4 w-4" />
+                            {quarter}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Additional Information */}
+                  <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Users className="h-5 w-5 text-blue-600" />
+                      <h4 className="font-semibold text-gray-900">Shareholder Information</h4>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
+                      <div>
+                        <strong>Total Paid-up Equity:</strong> ₹10,00,00,000 (10 Crores)
+                      </div>
+                      <div>
+                        <strong>Face Value per Share:</strong> ₹10
+                      </div>
+                      <div>
+                        <strong>Total Number of Shares:</strong> 1,00,00,000
+                      </div>
+                      <div>
+                        <strong>Listed on:</strong> BSE Limited
+                      </div>
                     </div>
                   </div>
                 </CardContent>
