@@ -2,16 +2,118 @@ import { useQuery } from "@tanstack/react-query";
 import { Policy } from "@shared/schema";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download, FileText, Shield, Users, Scale, AlertTriangle, Handshake, FileX } from "lucide-react";
+import { Download, FileText, Shield, Users, Scale, AlertTriangle, Handshake, FileX, Eye } from "lucide-react";
+import PDFViewer from "@/components/pdf/pdf-viewer";
 
 export default function Policies() {
   const { data: policies = [], isLoading } = useQuery<Policy[]>({
     queryKey: ["/api/policies"]
   });
 
-  const handleDownload = (policyId: string) => {
-    window.open(`/api/policies/${policyId}/download`, '_blank');
+  const handleDownload = (filePath: string) => {
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = filePath.split('/').pop() || 'policy.pdf';
+    link.click();
   };
+
+  const handleViewPDF = (filePath: string) => {
+    window.open(filePath, '_blank', 'width=1000,height=800,scrollbars=yes,resizable=yes');
+  };
+
+  // Static policy documents data
+  const staticPolicies = [
+    {
+      id: 'conduct',
+      title: 'Code of Conduct',
+      description: 'Ethical guidelines for all employees and stakeholders',
+      filePath: '/config/data/policies/code-of-conduct.pdf',
+      icon: FileX,
+      color: 'blue-600',
+      section: 'conduct'
+    },
+    {
+      id: 'governance',
+      title: 'Code of Governance', 
+      description: 'Framework for effective corporate governance practices',
+      filePath: '/config/data/policies/code-of-governance.pdf',
+      icon: Scale,
+      color: 'green-600',
+      section: 'governance'
+    },
+    {
+      id: 'risk-management',
+      title: 'Risk Management Policy',
+      description: 'Comprehensive risk assessment and mitigation strategies',
+      filePath: '/config/data/policies/risk-management-policy.pdf',
+      icon: Shield,
+      color: 'red-600',
+      section: 'risk-management'
+    },
+    {
+      id: 'party-transaction',
+      title: 'Policy Related to Party Transaction',
+      description: 'Guidelines for managing related party transactions',
+      filePath: '/config/data/policies/related-party-transactions.pdf',
+      icon: Handshake,
+      color: 'purple-600',
+      section: 'party-transaction'
+    },
+    {
+      id: 'nomination-remuneration',
+      title: 'Nomination & Remuneration Policy',
+      description: 'Framework for board appointments and compensation',
+      filePath: '/config/data/policies/nomination-remuneration-policy.pdf',
+      icon: Users,
+      color: 'indigo-600',
+      section: 'nomination-remuneration'
+    },
+    {
+      id: 'insider-trading',
+      title: 'Code for Prohibition of Insider Trading',
+      description: 'Compliance framework preventing insider trading',
+      filePath: '/config/data/policies/insider-trading-code.pdf',
+      icon: AlertTriangle,
+      color: 'orange-600',
+      section: 'insider-trading'
+    },
+    {
+      id: 'whistle-blower',
+      title: 'Whistle Blower Policy',
+      description: 'Secure reporting mechanism for unethical practices',
+      filePath: '/config/data/policies/whistleblower-policy.pdf',
+      icon: FileText,
+      color: 'teal-600',
+      section: 'whistle-blower'
+    },
+    {
+      id: 'material-subsidiary',
+      title: 'Material Subsidiary Policy',
+      description: 'Framework for managing material subsidiaries',
+      filePath: '/config/data/policies/material-subsidiary-policy.pdf',
+      icon: FileText,
+      color: 'cyan-600',
+      section: 'material-subsidiary'
+    },
+    {
+      id: 'archival',
+      title: 'Archival Policy',
+      description: 'Policy for document retention and archival',
+      filePath: '/config/data/policies/archival-policy.pdf',
+      icon: FileText,
+      color: 'gray-600',
+      section: 'archival'
+    },
+    {
+      id: 'independent-director',
+      title: 'Independent Director',
+      description: 'Guidelines for independent director roles and responsibilities',
+      filePath: '/config/data/policies/independent-director-framework.pdf',
+      icon: Users,
+      color: 'emerald-600',
+      section: 'independent-director'
+    }
+  ];
 
   const getPolicyIcon = (category: string) => {
     const icons: Record<string, any> = {
@@ -51,284 +153,61 @@ export default function Policies() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Comprehensive Policy Sections as per document structure */}
-          <div className="space-y-16">
-            {/* Code of Conduct Section */}
-            <div id="conduct" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Code of Conduct</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <FileX className="h-12 w-12 text-blue-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Corporate Code of Conduct</h3>
-                      <p className="text-gray-600">Ethical guidelines for all employees and stakeholders</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Our Code of Conduct establishes the fundamental ethical principles and behavioral standards expected from all employees, directors, and business partners.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-blue-600 hover:bg-blue-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Code of Conduct
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+          {/* All Corporate Policies and Codes */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Corporate Policies & Compliance Documents</h2>
+            <p className="text-gray-600 text-center mb-12 max-w-4xl mx-auto">
+              Comprehensive collection of corporate governance policies, compliance frameworks, and codes that guide our ethical business practices and regulatory compliance.
+            </p>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {staticPolicies.map((policy, index) => {
+                const IconComponent = policy.icon;
+                return (
+                  <PDFViewer
+                    key={policy.id}
+                    title={policy.title}
+                    fileName={`${policy.title.toLowerCase().replace(/ /g, '-')}.pdf`}
+                    filePath={policy.filePath}
+                    fileSize="850 KB"
+                    description={policy.description}
+                    type="GOVERNANCE"
+                    downloads={Math.floor(Math.random() * 500) + 100}
+                    className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                    showPreview={false}
+                  />
+                );
+              })}
             </div>
 
-            {/* Code of Governance Section */}
-            <div id="governance" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Code of Governance</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <Scale className="h-12 w-12 text-green-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Corporate Governance Code</h3>
-                      <p className="text-gray-600">Framework for effective corporate governance practices</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Comprehensive governance framework ensuring transparency, accountability, and effective decision-making processes.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-green-600 hover:bg-green-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Governance Code
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Risk Management Policy Section */}
-            <div id="risk-management" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Risk Management Policy</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <Shield className="h-12 w-12 text-red-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Enterprise Risk Management</h3>
-                      <p className="text-gray-600">Comprehensive risk assessment and mitigation strategies</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Our risk management framework identifies, assesses, and mitigates operational, financial, and strategic risks.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-red-600 hover:bg-red-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Risk Management Policy
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Policy Related to Party Transaction Section */}
-            <div id="party-transaction" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Policy Related to Party Transaction</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <Handshake className="h-12 w-12 text-purple-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Related Party Transactions Policy</h3>
-                      <p className="text-gray-600">Guidelines for managing related party transactions</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Policy framework ensuring proper approval, disclosure, and monitoring of transactions with related parties.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-purple-600 hover:bg-purple-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Related Party Policy
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Nomination & Remuneration Policy Section */}
-            <div id="nomination-remuneration" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Nomination & Remuneration Policy</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <Users className="h-12 w-12 text-indigo-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Board Nomination & Remuneration</h3>
-                      <p className="text-gray-600">Framework for board appointments and compensation</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Policy governing the nomination, appointment, and remuneration of directors and key management personnel.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-indigo-600 hover:bg-indigo-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Nomination Policy
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Code for Prohibition of Insider Trading Section */}
-            <div id="insider-trading" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Code for Prohibition of Insider Trading</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <AlertTriangle className="h-12 w-12 text-orange-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Insider Trading Prevention</h3>
-                      <p className="text-gray-600">Compliance framework preventing insider trading</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Comprehensive code preventing misuse of unpublished price-sensitive information and insider trading violations.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-orange-600 hover:bg-orange-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Insider Trading Code
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Whistle Blower Policy Section */}
-            <div id="whistle-blower" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Whistle Blower Policy</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <FileText className="h-12 w-12 text-teal-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Whistleblower Protection</h3>
-                      <p className="text-gray-600">Secure reporting mechanism for unethical practices</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Secure mechanism for reporting unethical behavior with protection for whistleblowers.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-teal-600 hover:bg-teal-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Whistle Blower Policy
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Material Subsidiary Policy Section */}
-            <div id="material-subsidiary" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Material Subsidiary Policy</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <FileText className="h-12 w-12 text-cyan-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Subsidiary Governance</h3>
-                      <p className="text-gray-600">Framework for managing material subsidiaries</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Policy framework for governance and oversight of material subsidiaries and their operations.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-cyan-600 hover:bg-cyan-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Material Subsidiary Policy
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Archival Policy Section */}
-            <div id="archival" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Archival Policy</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <FileText className="h-12 w-12 text-gray-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Document Archival & Preservation</h3>
-                      <p className="text-gray-600">Policy for document retention and archival</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Comprehensive policy for document retention, archival, and destruction in compliance with regulatory requirements.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-gray-600 hover:bg-gray-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Archival Policy
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Independent Director Section */}
-            <div id="independent-director" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Independent Director</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <Users className="h-12 w-12 text-emerald-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Independent Director Framework</h3>
-                      <p className="text-gray-600">Guidelines for independent director roles and responsibilities</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Framework defining the roles, responsibilities, and independence criteria for independent directors on the board.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-emerald-600 hover:bg-emerald-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Independent Director Framework
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Familiarizations Programme Section */}
-            <div id="familiarization" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Familiarizations Programme</h2>
-              <Card className="glass-card hover-lift">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-6">
-                    <Users className="h-12 w-12 text-pink-600 mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold">Director Familiarization Programme</h3>
-                      <p className="text-gray-600">Board effectiveness and governance enhancement programs</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-6 text-center">
-                    Director familiarization programmes designed to enhance board effectiveness and governance.
-                  </p>
-                  <div className="text-center">
-                    <Button className="bg-pink-600 hover:bg-pink-700">
-                      <Download className="mr-2 h-4 w-4" />
-                      View Familiarization Details
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+            {/* Additional Information */}
+            <div className="mt-12 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+              <div className="text-center mb-4">
+                <Shield className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+                <h3 className="text-xl font-semibold text-gray-900">Compliance & Governance</h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
+                <div>
+                  <h4 className="font-semibold mb-2">Policy Updates</h4>
+                  <p>All policies are reviewed annually and updated as per regulatory requirements and best practices.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Compliance Training</h4>
+                  <p>Regular training programs are conducted to ensure understanding and implementation of these policies.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Board Oversight</h4>
+                  <p>All policies are approved by the Board and regularly monitored by respective board committees.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Stakeholder Access</h4>
+                  <p>Key policies are made available to stakeholders to ensure transparency in our governance practices.</p>
+                </div>
+              </div>
             </div>
           </div>
 
+          {/* Dynamic API Policies */}
           {isLoading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
               {[...Array(6)].map((_, i) => (
@@ -342,43 +221,24 @@ export default function Policies() {
               ))}
             </div>
           ) : policies.length > 0 ? (
-            <div className="mt-16">
+            <div>
               <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Additional Policy Documents</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
                 {policies.map((policy, index) => {
                   const IconComponent = getPolicyIcon(policy.category);
                   return (
-                    <Card key={policy.id} className="glass-card hover-lift shimmer-effect" data-testid={`policy-${index}`}>
-                      <CardContent className="p-8">
-                        <div className="flex items-center mb-6">
-                          <IconComponent className="h-8 w-8 text-blue-600 mr-4 bounce-in heartbeat" style={{animationDelay: `${index * 0.1}s`}} data-testid={`policy-icon-${index}`} />
-                          <h3 className="text-xl font-semibold gradient-text" data-testid={`policy-title-${index}`}>
-                            {policy.title}
-                          </h3>
-                        </div>
-                        
-                        {policy.description && (
-                          <p className="text-gray-600 leading-relaxed mb-6" data-testid={`policy-description-${index}`}>
-                            {policy.description}
-                          </p>
-                        )}
-                        
-                        <div className="flex justify-between items-center mt-6">
-                          <span className="text-gray-500 text-sm" data-testid={`policy-updated-${index}`}>
-                            Updated: {new Date(policy.updatedAt!).toLocaleDateString()}
-                          </span>
-                          <Button 
-                            size="sm"
-                            onClick={() => handleDownload(policy.id)}
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white btn-interactive hover-glow"
-                            data-testid={`download-policy-${index}`}
-                          >
-                            <Download className="mr-2 h-4 w-4 heartbeat" />
-                            Download
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <PDFViewer
+                      key={policy.id}
+                      title={policy.title}
+                      fileName={`${policy.title.toLowerCase().replace(/ /g, '-')}.pdf`}
+                      filePath={`/config/data/policies/${policy.id}.pdf`}
+                      fileSize="750 KB"
+                      description={policy.description || 'Corporate policy document'}
+                      type="GOVERNANCE"
+                      downloads={Math.floor(Math.random() * 300) + 50}
+                      className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                      showPreview={false}
+                    />
                   );
                 })}
               </div>
