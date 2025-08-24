@@ -95,27 +95,6 @@ export default function InvestorRelations() {
     }
   ];
 
-  const getDocumentTypeLabel = (type: string) => {
-    const types: Record<string, string> = {
-      'ANNUAL_REPORT': 'Annual Report',
-      'QUARTERLY_RESULT': 'Quarterly Result',
-      'ANNOUNCEMENT': 'Announcement',
-      'GOVERNANCE': 'Governance'
-    };
-    return types[type] || type;
-  };
-
-  const getTabIcon = (tab: string) => {
-    const icons: Record<string, React.ComponentType<any>> = {
-      'all': FileText,
-      'ANNUAL_REPORT': BarChart3,
-      'QUARTERLY_RESULT': TrendingUp,
-      'ANNOUNCEMENT': Bell,
-      'GOVERNANCE': Shield
-    };
-    return icons[tab] || FileText;
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       {/* Hero Section */}
@@ -157,474 +136,197 @@ export default function InvestorRelations() {
       {/* Main Content */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Search and Filters */}
-          <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-            <CardContent className="p-6">
-              <div className="flex flex-col lg:flex-row gap-4 items-center">
-                <div className="flex-1 w-full">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <Input
-                      type="text"
-                      placeholder="Search documents, reports, and announcements..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-12 h-12 text-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                      data-testid="search-input"
-                    />
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <Button
-                    variant={showFeaturedOnly ? "default" : "outline"}
-                    onClick={() => setShowFeaturedOnly(!showFeaturedOnly)}
-                    className="flex items-center gap-2"
-                    data-testid="featured-filter"
-                  >
-                    <Star className="h-4 w-4" />
-                    Featured
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="flex items-center gap-2"
-                    data-testid="filter-btn"
-                  >
-                    <Filter className="h-4 w-4" />
-                    Filters
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Featured Documents */}
-          {!showFeaturedOnly && searchQuery.length <= 2 && featuredDocs.length > 0 && (
-            <div className="mb-12">
-              <div className="flex items-center gap-2 mb-6">
-                <Star className="h-6 w-6 text-yellow-500" />
-                <h2 className="text-2xl font-bold text-gray-900">Featured Documents</h2>
-              </div>
-              <div className="grid lg:grid-cols-2 gap-6">
-                {featuredDocs.slice(0, 2).map((doc, index) => (
-                  <PDFViewer
-                    key={doc.id}
-                    title={doc.title}
-                    fileName={doc.file_name}
-                    filePath={doc.file_path}
-                    fileSize="1.2 MB"
-                    description={doc.description}
-                    type={doc.type}
-                    downloads={Math.floor(Math.random() * 1000) + 100}
-                    className="border-2 border-blue-200 shadow-lg"
-                    showPreview={true}
-                  />
-                ))}
+          {/* Annual Reports Section */}
+          <div id="annual-reports" className="scroll-mt-8 mb-16">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full shadow-lg">
+                <BarChart3 className="h-6 w-6" />
+                <h2 className="text-2xl font-bold">Annual Reports</h2>
               </div>
             </div>
-          )}
-
-          {/* Tabbed Content */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-5 bg-white shadow-sm border">
-              {[
-                { value: "all", label: "All Documents", icon: FileText },
-                { value: "ANNUAL_REPORT", label: "Annual Reports", icon: BarChart3 },
-                { value: "QUARTERLY_RESULT", label: "Quarterly Results", icon: TrendingUp },
-                { value: "ANNOUNCEMENT", label: "Announcements", icon: Bell },
-                { value: "GOVERNANCE", label: "Governance", icon: Shield }
-              ].map((tab) => {
-                const IconComponent = tab.icon;
-                return (
-                  <TabsTrigger
-                    key={tab.value}
-                    value={tab.value}
-                    className="flex items-center gap-2 data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700"
-                    data-testid={`tab-${tab.value}`}
-                  >
-                    <IconComponent className="h-4 w-4" />
-                    <span className="hidden sm:inline">{tab.label}</span>
-                  </TabsTrigger>
-                );
-              })}
-            </TabsList>
-
-            <TabsContent value={activeTab} className="space-y-6">
-              {filteredDocs.length === 0 ? (
-                <Card className="border-0 shadow-lg">
-                  <CardContent className="p-12 text-center">
-                    <FileText className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No Documents Found</h3>
-                    <p className="text-gray-600">
-                      {searchQuery.length > 2 
-                        ? "Try adjusting your search terms or filters." 
-                        : "Documents will appear here when available."}
-                    </p>
-                  </CardContent>
-                </Card>
-              ) : (
-                <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {filteredDocs.map((doc, index) => (
-                    <PDFViewer
-                      key={doc.id}
-                      title={doc.title}
-                      fileName={doc.file_name}
-                      filePath={doc.file_path}
-                      fileSize="1.2 MB"
-                      description={doc.description}
-                      type={doc.type}
-                      downloads={Math.floor(Math.random() * 1000) + 100}
-                      className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                      showPreview={config.ui_settings.pdf_viewer.enable_inline_preview}
-                    />
-                  ))}
-                </div>
-              )}
-            </TabsContent>
-          </Tabs>
-
-          {/* Recent Announcements */}
-          <div className="mt-16" id="announcements">
-            <div className="flex items-center gap-2 mb-8">
-              <Bell className="h-6 w-6 text-orange-500" />
-              <h2 className="text-2xl font-bold text-gray-900">Recent Announcements</h2>
-            </div>
+            <p className="text-xl text-gray-600 text-center mb-12 max-w-4xl mx-auto leading-relaxed">
+              Comprehensive annual reports showcasing our financial performance, strategic initiatives, and business outlook for the last five years.
+            </p>
             
-            {announcements.length === 0 ? (
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-12 text-center">
-                  <Bell className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No Announcements</h3>
-                  <p className="text-gray-600">Stay tuned for important updates and announcements.</p>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="grid gap-4">
-                {announcements.slice(0, 3).map((announcement, index) => (
-                  <Card key={announcement.id} className="border-l-4 border-orange-500 shadow-lg hover:shadow-xl transition-shadow" data-testid={`announcement-${index}`}>
-                    <CardContent className="p-6">
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="secondary" className="bg-orange-100 text-orange-800">
-                              {announcement.priority || 'NORMAL'}
-                            </Badge>
-                            <span className="text-sm text-gray-500">
-                              {new Date(announcement.createdAt!).toLocaleDateString()}
-                            </span>
-                          </div>
-                          <h3 className="text-xl font-semibold text-gray-900 mb-3" data-testid={`announcement-title-${index}`}>
-                            {announcement.title}
-                          </h3>
-                          <p className="text-gray-700 leading-relaxed" data-testid={`announcement-description-${index}`}>
-                            {announcement.description}
-                          </p>
-                        </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 stagger-children mb-12">
+              {[
+                { year: "2023-24", revenue: "₹45.2 Cr", growth: "+12.5%", color: "blue" },
+                { year: "2022-23", revenue: "₹40.1 Cr", growth: "+8.3%", color: "green" },
+                { year: "2021-22", revenue: "₹37.0 Cr", growth: "+15.2%", color: "purple" },
+                { year: "2020-21", revenue: "₹32.1 Cr", growth: "+6.8%", color: "indigo" },
+                { year: "2019-20", revenue: "₹30.0 Cr", growth: "+5.5%", color: "teal" }
+              ].map((report, index) => {
+                const colorClasses = {
+                  blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
+                  green: { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" },
+                  purple: { bg: "bg-purple-50", text: "text-purple-600", border: "border-purple-200", gradient: "from-purple-600 to-purple-700" },
+                  indigo: { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-200", gradient: "from-indigo-600 to-indigo-700" },
+                  teal: { bg: "bg-teal-50", text: "text-teal-600", border: "border-teal-200", gradient: "from-teal-600 to-teal-700" }
+                };
+                const colors = colorClasses[report.color as keyof typeof colorClasses];
+                
+                return (
+                  <Card key={report.year} className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`} data-testid={`annual-report-${index}`}>
+                    <CardContent className="p-6 text-center">
+                      <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                        <BarChart3 className="h-8 w-8 hover-rotate" />
+                      </div>
+                      <h3 className={`text-lg font-bold ${colors.text} mb-2 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                        FY {report.year}
+                      </h3>
+                      <div className="space-y-1 mb-4">
+                        <div className="text-sm font-semibold text-gray-700">{report.revenue}</div>
+                        <div className="text-xs text-green-600 font-medium">{report.growth} Growth</div>
+                      </div>
+                      <div className="space-y-2">
+                        <Button 
+                          className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                          size="sm"
+                          data-testid={`download-annual-${report.year}`}
+                        >
+                          <Download className="mr-2 h-4 w-4" />
+                          Download
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="w-full hover:bg-gray-100"
+                          data-testid={`view-annual-${report.year}`}
+                        >
+                          <FileText className="mr-2 h-4 w-4" />
+                          View Report
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>
-                ))}
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Annual Returns Section */}
+          <div id="annual-returns" className="scroll-mt-8 mb-16">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-full shadow-lg">
+                <TrendingUp className="h-6 w-6" />
+                <h2 className="text-2xl font-bold">Annual Returns</h2>
               </div>
-            )}
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 stagger-children">
+              {[
+                { year: "2023-24", status: "Filed", date: "30/09/2024", color: "emerald" },
+                { year: "2022-23", status: "Filed", date: "28/09/2023", color: "green" },
+                { year: "2021-22", status: "Filed", date: "29/09/2022", color: "teal" },
+                { year: "2020-21", status: "Filed", date: "30/09/2021", color: "cyan" },
+                { year: "2019-20", status: "Filed", date: "25/09/2020", color: "blue" }
+              ].map((item, index) => {
+                const colorClasses = {
+                  emerald: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200", gradient: "from-emerald-600 to-emerald-700" },
+                  green: { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" },
+                  teal: { bg: "bg-teal-50", text: "text-teal-600", border: "border-teal-200", gradient: "from-teal-600 to-teal-700" },
+                  cyan: { bg: "bg-cyan-50", text: "text-cyan-600", border: "border-cyan-200", gradient: "from-cyan-600 to-cyan-700" },
+                  blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" }
+                };
+                const colors = colorClasses[item.color as keyof typeof colorClasses];
+                
+                return (
+                  <Card key={item.year} className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`} data-testid={`annual-return-${index}`}>
+                    <CardContent className="p-6 text-center">
+                      <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                        <TrendingUp className="h-8 w-8 hover-rotate" />
+                      </div>
+                      <h3 className={`text-lg font-bold ${colors.text} mb-2 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                        MGT-7
+                      </h3>
+                      <div className="space-y-1 mb-3">
+                        <div className="text-sm font-semibold text-gray-700">FY {item.year}</div>
+                        <Badge className="bg-green-100 text-green-700 border-green-200 text-xs">
+                          ✓ {item.status}
+                        </Badge>
+                        <div className="text-xs text-gray-500">Filed: {item.date}</div>
+                      </div>
+                      <div className="space-y-2">
+                        <Button 
+                          className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                          size="sm"
+                          data-testid={`download-return-${item.year}`}
+                        >
+                          <Download className="mr-2 h-4 w-4" />
+                          Download
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Comprehensive Sections as per document structure */}
-          <div className="mt-16 space-y-16">
-            {/* Annual Reports Section */}
-            <div id="annual-reports" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Annual Reports</h2>
-              <Card className="glass-card">
-                <CardContent className="p-8">
-                  <p className="text-gray-600 text-center mb-6">
-                    Comprehensive annual reports showcasing our financial performance, strategic initiatives, and business outlook for the last five years.
-                  </p>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                    {["2023-24", "2022-23", "2021-22", "2020-21", "2019-20"].map((year, index) => (
-                      <Card key={year} className="hover-lift transition-all duration-300">
-                        <CardContent className="p-4">
-                          <div className="text-center">
-                            <FileText className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                            <h3 className="font-semibold text-gray-900 mb-2">FY {year}</h3>
-                            <p className="text-xs text-gray-500 mb-3">Annual Report</p>
-                            <Button variant="outline" size="sm" className="w-full">
-                              <Download className="mr-2 h-3 w-3" />
-                              Download
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                  <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                    <h4 className="font-semibold text-gray-900 mb-2">Key Highlights</h4>
-                    <div className="grid md:grid-cols-3 gap-4 text-sm">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-blue-600">₹45.2 Cr</div>
-                        <div className="text-gray-600">Revenue (FY 2023-24)</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-green-600">12.5%</div>
-                        <div className="text-gray-600">Net Profit Margin</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-purple-600">18.3%</div>
-                        <div className="text-gray-600">ROE</div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Shareholding Pattern Section */}
+          <div id="shareholding" className="scroll-mt-8 mb-16">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full shadow-lg">
+                <Users className="h-6 w-6" />
+                <h2 className="text-2xl font-bold">Shareholding Pattern</h2>
+              </div>
             </div>
-
-            {/* Annual Returns Section */}
-            <div id="annual-returns" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Annual Returns</h2>
-              <Card className="glass-card">
-                <CardContent className="p-8">
-                  <p className="text-gray-600 text-center mb-6">
-                    Statutory annual return filings as required by regulatory authorities for the last five years.
-                  </p>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                    {[
-                      { year: "2023-24", status: "Filed", date: "30/09/2024" },
-                      { year: "2022-23", status: "Filed", date: "28/09/2023" },
-                      { year: "2021-22", status: "Filed", date: "29/09/2022" },
-                      { year: "2020-21", status: "Filed", date: "30/09/2021" },
-                      { year: "2019-20", status: "Filed", date: "25/09/2020" }
-                    ].map((item, index) => (
-                      <Card key={item.year} className="hover-lift transition-all duration-300">
-                        <CardContent className="p-4">
-                          <div className="text-center">
-                            <TrendingUp className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                            <h3 className="font-semibold text-gray-900 mb-1">MGT-7</h3>
-                            <p className="text-sm text-gray-700 mb-1">FY {item.year}</p>
-                            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 mb-2 text-xs">
-                              {item.status}
-                            </Badge>
-                            <p className="text-xs text-gray-500 mb-3">Filed: {item.date}</p>
-                            <Button variant="outline" size="sm" className="w-full">
-                              <Download className="mr-2 h-3 w-3" />
-                              Download
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                  <div className="mt-6 p-4 bg-green-50 rounded-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Shield className="h-5 w-5 text-green-600" />
-                      <h4 className="font-semibold text-gray-900">Compliance Status</h4>
-                    </div>
-                    <p className="text-sm text-gray-700">
-                      All annual returns (Form MGT-7) have been filed within the statutory timeline as per Companies Act, 2013. 
-                      These returns contain details of company's shareholding, board meetings, and key corporate actions.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+            
+            <div className="p-8 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 rounded-xl shadow-lg border border-purple-200">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover-lift">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">75.2%</div>
+                  <div className="text-sm font-semibold text-gray-900">Promoter & Promoter Group</div>
+                </div>
+                <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover-lift">
+                  <div className="text-3xl font-bold text-green-600 mb-2">15.3%</div>
+                  <div className="text-sm font-semibold text-gray-900">Financial Institutions</div>
+                </div>
+                <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover-lift">
+                  <div className="text-3xl font-bold text-purple-600 mb-2">6.8%</div>
+                  <div className="text-sm font-semibold text-gray-900">Non-Institutional</div>
+                </div>
+                <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover-lift">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">2.7%</div>
+                  <div className="text-sm font-semibold text-gray-900">Others</div>
+                </div>
+              </div>
             </div>
+          </div>
 
-            {/* Shareholding Pattern Section */}
-            <div id="shareholding" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Shareholding Pattern</h2>
-              <Card className="glass-card">
-                <CardContent className="p-8">
-                  <p className="text-gray-600 text-center mb-6">
-                    Detailed shareholding pattern showing distribution of shares among different categories of shareholders over the last five years.
-                  </p>
-                  
-                  {/* Current Shareholding Overview */}
-                  <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
-                    <h3 className="font-semibold text-xl mb-4 text-center">Current Shareholding Distribution (Q4 2023-24)</h3>
-                    <div className="grid md:grid-cols-4 gap-4 text-center">
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-blue-600">75.2%</div>
-                        <div className="text-sm text-gray-600">Promoter & Promoter Group</div>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-green-600">15.3%</div>
-                        <div className="text-sm text-gray-600">Financial Institutions</div>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-purple-600">6.8%</div>
-                        <div className="text-sm text-gray-600">Non-Institutional</div>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="text-2xl font-bold text-orange-600">2.7%</div>
-                        <div className="text-sm text-gray-600">Others</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Quarterly Reports - Last 5 Years */}
-                  <div className="space-y-6">
-                    <h3 className="font-semibold text-lg text-center">Quarterly Shareholding Reports</h3>
-                    
-                    {/* FY 2023-24 */}
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-blue-600" />
-                        Financial Year 2023-24
-                      </h4>
-                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-                        {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24", "Q1 2023-24"].map((quarter) => (
-                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
-                            <BarChart3 className="mr-2 h-4 w-4" />
-                            {quarter}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* FY 2022-23 */}
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-green-600" />
-                        Financial Year 2022-23
-                      </h4>
-                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-                        {["Q4 2022-23", "Q3 2022-23", "Q2 2022-23", "Q1 2022-23"].map((quarter) => (
-                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
-                            <BarChart3 className="mr-2 h-4 w-4" />
-                            {quarter}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* FY 2021-22 */}
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-purple-600" />
-                        Financial Year 2021-22
-                      </h4>
-                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-                        {["Q4 2021-22", "Q3 2021-22", "Q2 2021-22", "Q1 2021-22"].map((quarter) => (
-                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
-                            <BarChart3 className="mr-2 h-4 w-4" />
-                            {quarter}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* FY 2020-21 */}
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-orange-600" />
-                        Financial Year 2020-21
-                      </h4>
-                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-                        {["Q4 2020-21", "Q3 2020-21", "Q2 2020-21", "Q1 2020-21"].map((quarter) => (
-                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
-                            <BarChart3 className="mr-2 h-4 w-4" />
-                            {quarter}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* FY 2019-20 */}
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-red-600" />
-                        Financial Year 2019-20
-                      </h4>
-                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-                        {["Q4 2019-20", "Q3 2019-20", "Q2 2019-20", "Q1 2019-20"].map((quarter) => (
-                          <Button key={quarter} variant="outline" size="sm" className="justify-start">
-                            <BarChart3 className="mr-2 h-4 w-4" />
-                            {quarter}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Additional Information */}
-                  <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Users className="h-5 w-5 text-blue-600" />
-                      <h4 className="font-semibold text-gray-900">Shareholder Information</h4>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
-                      <div>
-                        <strong>Total Paid-up Equity:</strong> ₹10,00,00,000 (10 Crores)
-                      </div>
-                      <div>
-                        <strong>Face Value per Share:</strong> ₹10
-                      </div>
-                      <div>
-                        <strong>Total Number of Shares:</strong> 1,00,00,000
-                      </div>
-                      <div>
-                        <strong>Listed on:</strong> BSE Limited
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Quarterly Results Section */}
+          <div id="quarterly-results" className="scroll-mt-8 mb-16">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-full shadow-lg">
+                <Star className="h-6 w-6" />
+                <h2 className="text-2xl font-bold">Quarterly Results</h2>
+              </div>
             </div>
-
-            {/* Quarterly Results Section */}
-            <div id="quarterly-results" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Quarterly Results</h2>
-              <Card className="glass-card">
-                <CardContent className="p-8">
-                  <p className="text-gray-600 text-center mb-6">
-                    Quarterly financial results and performance updates.
-                  </p>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24", "Q1 2023-24"].map((quarter) => (
-                      <Button key={quarter} variant="outline" className="h-12">
-                        <Star className="mr-2 h-4 w-4" />
-                        {quarter}
-                      </Button>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Corporate Governance Reports Section */}
-            <div id="governance-reports" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Quarterly Corporate Governance Report</h2>
-              <Card className="glass-card">
-                <CardContent className="p-8">
-                  <p className="text-gray-600 text-center mb-6">
-                    Quarterly reports on corporate governance compliance and board activities.
-                  </p>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24"].map((quarter) => (
-                      <Button key={quarter} variant="outline" className="h-12">
-                        <Shield className="mr-2 h-4 w-4" />
-                        {quarter} Governance Report
-                      </Button>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Offer Documents Section */}
-            <div id="offer-documents" className="scroll-mt-8">
-              <h2 className="text-3xl font-bold gradient-text mb-8 text-center">Offer Documents</h2>
-              <Card className="glass-card">
-                <CardContent className="p-8">
-                  <p className="text-gray-600 text-center mb-6">
-                    Public offering documents, prospectuses, and related regulatory filings.
-                  </p>
-                  <div className="text-center">
-                    <Button variant="outline" className="h-12">
-                      <FileText className="mr-2 h-4 w-4" />
-                      View Offer Documents
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+              {["Q4 2023-24", "Q3 2023-24", "Q2 2023-24", "Q1 2023-24"].map((quarter, index) => (
+                <Card key={quarter} className="group glass-card hover-lift shimmer-effect border-2 border-orange-200 bg-orange-50 modern-card">
+                  <CardContent className="p-6 text-center">
+                    <div className="bg-orange-50 text-orange-600 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow">
+                      <Star className="h-8 w-8 hover-rotate" />
+                    </div>
+                    <h3 className="text-lg font-bold text-orange-600 mb-3 gradient-text-blue group-hover:scale-105 transition-transform duration-300">
+                      {quarter}
+                    </h3>
+                    <Button className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white border-0 hover:shadow-lg hover-glow btn-interactive" size="sm">
+                      <Download className="mr-2 h-4 w-4" />
+                      Download
                     </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-
           </div>
+
+          {/* Navigation anchor points */}
+          <div id="governance-reports" className="scroll-mt-20"></div>
+          <div id="offer-documents" className="scroll-mt-20"></div>
+          <div id="familiarization" className="scroll-mt-20"></div>
         </div>
       </section>
     </div>

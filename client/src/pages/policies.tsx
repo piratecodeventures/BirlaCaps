@@ -178,8 +178,289 @@ export default function Policies() {
               Comprehensive collection of corporate governance policies, compliance frameworks, and codes that guide our ethical business practices and regulatory compliance.
             </p>
             
+            {/* Code of Conduct Section */}
+            <div id="conduct" className="mb-12">
+              <h3 className="text-2xl font-semibold text-blue-900 mb-6 text-center">Code of Conduct</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {staticPolicies.filter(policy => policy.section === 'conduct').map((policy, index) => {
+                  const IconComponent = policy.icon;
+                  const colors = { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" };
+                  
+                  return (
+                    <Card 
+                      key={policy.id} 
+                      className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`}
+                      data-testid={`policy-conduct-${index}`}
+                    >
+                      <CardContent className="p-6 text-center">
+                        <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                          <IconComponent className="h-8 w-8 hover-rotate" />
+                        </div>
+                        <h3 className={`text-lg font-bold ${colors.text} mb-3 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                          {policy.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-6 leading-relaxed fade-in-up">
+                          {policy.description}
+                        </p>
+                        <div className="space-y-3">
+                          <Button 
+                            className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = policy.filePath;
+                              link.download = policy.filePath.split('/').pop() || 'policy.pdf';
+                              link.click();
+                            }}
+                            data-testid={`download-policy-${policy.id}`}
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download PDF
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full hover:bg-gray-100"
+                            onClick={() => window.open(policy.filePath, '_blank')}
+                            data-testid={`view-policy-${policy.id}`}
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View Document
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Governance Section */}
+            <div id="governance" className="mb-12">
+              <h3 className="text-2xl font-semibold text-green-900 mb-6 text-center">Governance Policies</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {staticPolicies.filter(policy => policy.section === 'governance').map((policy, index) => {
+                  const IconComponent = policy.icon;
+                  const colors = { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" };
+                  
+                  return (
+                    <Card 
+                      key={policy.id} 
+                      className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`}
+                      data-testid={`policy-governance-${index}`}
+                    >
+                      <CardContent className="p-6 text-center">
+                        <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                          <IconComponent className="h-8 w-8 hover-rotate" />
+                        </div>
+                        <h3 className={`text-lg font-bold ${colors.text} mb-3 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                          {policy.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-6 leading-relaxed fade-in-up">
+                          {policy.description}
+                        </p>
+                        <div className="space-y-3">
+                          <Button 
+                            className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = policy.filePath;
+                              link.download = policy.filePath.split('/').pop() || 'policy.pdf';
+                              link.click();
+                            }}
+                            data-testid={`download-policy-${policy.id}`}
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download PDF
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full hover:bg-gray-100"
+                            onClick={() => window.open(policy.filePath, '_blank')}
+                            data-testid={`view-policy-${policy.id}`}
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View Document
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Risk Management Section */}
+            <div id="risk-management" className="mb-12">
+              <h3 className="text-2xl font-semibold text-red-900 mb-6 text-center">Risk Management</h3>
+              <div className="grid md:grid-cols-1 gap-6">
+                {staticPolicies.filter(policy => policy.section === 'risk-management').map((policy, index) => {
+                  const IconComponent = policy.icon;
+                  const colors = { bg: "bg-red-50", text: "text-red-600", border: "border-red-200", gradient: "from-red-600 to-red-700" };
+                  
+                  return (
+                    <Card 
+                      key={policy.id} 
+                      className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`}
+                      data-testid={`policy-risk-${index}`}
+                    >
+                      <CardContent className="p-6 text-center">
+                        <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                          <IconComponent className="h-8 w-8 hover-rotate" />
+                        </div>
+                        <h3 className={`text-lg font-bold ${colors.text} mb-3 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                          {policy.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-6 leading-relaxed fade-in-up">
+                          {policy.description}
+                        </p>
+                        <div className="space-y-3">
+                          <Button 
+                            className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = policy.filePath;
+                              link.download = policy.filePath.split('/').pop() || 'policy.pdf';
+                              link.click();
+                            }}
+                            data-testid={`download-policy-${policy.id}`}
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download PDF
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full hover:bg-gray-100"
+                            onClick={() => window.open(policy.filePath, '_blank')}
+                            data-testid={`view-policy-${policy.id}`}
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View Document
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Party Transaction Section */}
+            <div id="party-transaction" className="mb-12">
+              <h3 className="text-2xl font-semibold text-purple-900 mb-6 text-center">Related Party Transactions</h3>
+              <div className="grid md:grid-cols-1 gap-6">
+                {staticPolicies.filter(policy => policy.section === 'party-transaction').map((policy, index) => {
+                  const IconComponent = policy.icon;
+                  const colors = { bg: "bg-purple-50", text: "text-purple-600", border: "border-purple-200", gradient: "from-purple-600 to-purple-700" };
+                  
+                  return (
+                    <Card 
+                      key={policy.id} 
+                      className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`}
+                      data-testid={`policy-party-${index}`}
+                    >
+                      <CardContent className="p-6 text-center">
+                        <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                          <IconComponent className="h-8 w-8 hover-rotate" />
+                        </div>
+                        <h3 className={`text-lg font-bold ${colors.text} mb-3 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                          {policy.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-6 leading-relaxed fade-in-up">
+                          {policy.description}
+                        </p>
+                        <div className="space-y-3">
+                          <Button 
+                            className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = policy.filePath;
+                              link.download = policy.filePath.split('/').pop() || 'policy.pdf';
+                              link.click();
+                            }}
+                            data-testid={`download-policy-${policy.id}`}
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download PDF
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full hover:bg-gray-100"
+                            onClick={() => window.open(policy.filePath, '_blank')}
+                            data-testid={`view-policy-${policy.id}`}
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View Document
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Nomination & Remuneration Section */}
+            <div id="nomination-remuneration" className="mb-12">
+              <h3 className="text-2xl font-semibold text-indigo-900 mb-6 text-center">Nomination & Remuneration</h3>
+              <div className="grid md:grid-cols-1 gap-6">
+                {staticPolicies.filter(policy => policy.section === 'nomination-remuneration').map((policy, index) => {
+                  const IconComponent = policy.icon;
+                  const colors = { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-200", gradient: "from-indigo-600 to-indigo-700" };
+                  
+                  return (
+                    <Card 
+                      key={policy.id} 
+                      className={`group glass-card hover-lift shimmer-effect border-2 ${colors.border} ${colors.bg} modern-card`}
+                      data-testid={`policy-nomination-${index}`}
+                    >
+                      <CardContent className="p-6 text-center">
+                        <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4 float-animation hover-glow`}>
+                          <IconComponent className="h-8 w-8 hover-rotate" />
+                        </div>
+                        <h3 className={`text-lg font-bold ${colors.text} mb-3 gradient-text-blue group-hover:scale-105 transition-transform duration-300`}>
+                          {policy.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-6 leading-relaxed fade-in-up">
+                          {policy.description}
+                        </p>
+                        <div className="space-y-3">
+                          <Button 
+                            className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = policy.filePath;
+                              link.download = policy.filePath.split('/').pop() || 'policy.pdf';
+                              link.click();
+                            }}
+                            data-testid={`download-policy-${policy.id}`}
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download PDF
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full hover:bg-gray-100"
+                            onClick={() => window.open(policy.filePath, '_blank')}
+                            data-testid={`view-policy-${policy.id}`}
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View Document
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* All Other Policies */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
-              {staticPolicies.map((policy, index) => {
+              {staticPolicies.filter(policy => !['conduct', 'governance', 'risk-management', 'party-transaction', 'nomination-remuneration'].includes(policy.section)).map((policy, index) => {
                 const IconComponent = policy.icon;
                 const colorClasses = {
                   'blue-600': { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
@@ -243,6 +524,13 @@ export default function Policies() {
                 );
               })}
             </div>
+
+            {/* Hidden Navigation Anchors for remaining policy sections */}
+            <div id="insider-trading" className="scroll-mt-20"></div>
+            <div id="whistle-blower" className="scroll-mt-20"></div>
+            <div id="material-subsidiary" className="scroll-mt-20"></div>
+            <div id="archival" className="scroll-mt-20"></div>
+            <div id="independent-director" className="scroll-mt-20"></div>
 
             {/* Additional Information */}
             <div className="mt-16 p-8 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 rounded-xl shadow-lg border border-blue-200">

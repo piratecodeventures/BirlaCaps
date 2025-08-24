@@ -232,6 +232,45 @@ export default function About() {
             </div>
           </div>
 
+          {/* Compliance Officer */}
+          <div className="mt-20" id="compliance">
+            <h2 className="text-3xl font-bold gradient-text mb-12 text-center fade-in-up">
+              Compliance Officer
+            </h2>
+            <div className="max-w-4xl mx-auto">
+              <Card className="glass-card hover-lift">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <Shield className="h-8 w-8 text-blue-600 mr-4" />
+                    <h3 className="text-xl font-semibold">Chief Compliance Officer</h3>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-gray-600 leading-relaxed mb-4">
+                        Our Chief Compliance Officer ensures adherence to all regulatory requirements and maintains the highest standards of corporate governance.
+                      </p>
+                      <div className="space-y-2 text-sm">
+                        <div><strong>Email:</strong> compliance@birlainternational.net</div>
+                        <div><strong>Phone:</strong> +91 22 6789 1234</div>
+                        <div><strong>Office Hours:</strong> Monday to Friday, 10:00 AM to 6:00 PM</div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-3">Key Responsibilities:</h4>
+                      <ul className="text-gray-600 text-sm space-y-1">
+                        <li>• Regulatory Compliance Monitoring</li>
+                        <li>• Policy Implementation & Updates</li>
+                        <li>• Risk Assessment & Management</li>
+                        <li>• Stakeholder Communication</li>
+                        <li>• Audit Coordination</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
           {/* Board Committees */}
           <div className="mt-20" id="committees">
             <h2
