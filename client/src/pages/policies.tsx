@@ -623,7 +623,7 @@ export default function Policies() {
                             className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
                             onClick={() => {
                               const link = document.createElement('a');
-                              link.href = `/config/data/policies/${policy.id}.pdf`;
+                              link.href = `/policies/${policy.id}.pdf`;
                               link.download = `${policy.title.toLowerCase().replace(/ /g, '-')}.pdf`;
                               link.click();
                             }}
@@ -636,7 +636,7 @@ export default function Policies() {
                             variant="outline" 
                             size="sm" 
                             className="w-full hover:bg-gray-100"
-                            onClick={() => window.open(`/config/data/policies/${policy.id}.pdf`, '_blank')}
+                            onClick={() => window.open(`/policies/${policy.id}.pdf`, '_blank')}
                             data-testid={`view-dynamic-policy-${policy.id}`}
                           >
                             <FileText className="mr-2 h-4 w-4" />

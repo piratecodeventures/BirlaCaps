@@ -250,6 +250,18 @@ export default function Header() {
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
+
+              <Link
+                href="/contact-us"
+                className={`font-medium transition-colors py-2 px-2 xl:px-3 rounded-md whitespace-nowrap text-sm xl:text-base ${
+                  isActive("/contact-us")
+                    ? "text-primary bg-blue-50"
+                    : "text-gray-900 hover:text-primary hover:bg-blue-50"
+                }`}
+                data-testid="nav-contact-us"
+              >
+                Contact Us
+              </Link>
             </div>
           </nav>
 
@@ -311,6 +323,14 @@ export default function Header() {
                       className="text-gray-900 hover:text-primary hover:bg-blue-50 px-3 py-3 rounded-md transition-colors font-medium"
                     >
                       Code and Policies
+                    </Link>
+                    <Link
+                      href="/contact-us"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      data-testid="mobile-nav-contact-us"
+                      className="text-gray-900 hover:text-primary hover:bg-blue-50 px-3 py-3 rounded-md transition-colors font-medium"
+                    >
+                      Contact Us
                     </Link>
                     <Link
                       href="/admin"

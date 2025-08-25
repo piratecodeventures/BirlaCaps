@@ -200,7 +200,7 @@ export default function Grievances() {
                               className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
                               onClick={() => {
                                 const link = document.createElement('a');
-                                link.href = `/config/data/Investor Greviance/24-25/${report.file}`;
+                                link.href = `/Investor Greviance/24-25/${report.file}`;
                                 link.download = report.file;
                                 link.click();
                               }}
@@ -213,7 +213,7 @@ export default function Grievances() {
                               variant="ghost" 
                               size="sm" 
                               className="w-full hover:bg-gray-100"
-                              onClick={() => window.open(`/config/data/Investor Greviance/24-25/${report.file}`, '_blank')}
+                              onClick={() => window.open(`/Investor Greviance/24-25/${report.file}`, '_blank')}
                               data-testid={`view-${report.quarter}`}
                             >
                               <FileText className="mr-2 h-4 w-4" />
@@ -270,7 +270,7 @@ export default function Grievances() {
                               className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
                               onClick={() => {
                                 const link = document.createElement('a');
-                                link.href = `/config/data/Investor Greviance/23-24/${report.file}`;
+                                link.href = `/Investor Greviance/23-24/${report.file}`;
                                 link.download = report.file;
                                 link.click();
                               }}
@@ -283,7 +283,7 @@ export default function Grievances() {
                               variant="ghost" 
                               size="sm" 
                               className="w-full hover:bg-gray-100"
-                              onClick={() => window.open(`/config/data/Investor Greviance/23-24/${report.file}`, '_blank')}
+                              onClick={() => window.open(`/Investor Greviance/23-24/${report.file}`, '_blank')}
                               data-testid={`view-${report.quarter}`}
                             >
                               <FileText className="mr-2 h-4 w-4" />
@@ -340,7 +340,7 @@ export default function Grievances() {
                               className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
                               onClick={() => {
                                 const link = document.createElement('a');
-                                link.href = `/config/data/Investor Greviance/23-22/${report.file}`;
+                                link.href = `/Investor Greviance/23-22/${report.file}`;
                                 link.download = report.file;
                                 link.click();
                               }}
@@ -353,7 +353,7 @@ export default function Grievances() {
                               variant="ghost" 
                               size="sm" 
                               className="w-full hover:bg-gray-100"
-                              onClick={() => window.open(`/config/data/Investor Greviance/23-22/${report.file}`, '_blank')}
+                              onClick={() => window.open(`/Investor Greviance/23-22/${report.file}`, '_blank')}
                               data-testid={`view-${report.quarter}`}
                             >
                               <FileText className="mr-2 h-4 w-4" />
@@ -408,7 +408,7 @@ export default function Grievances() {
                               className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
                               onClick={() => {
                                 const link = document.createElement('a');
-                                link.href = `/config/data/Investor Greviance/21-22/${report.file}`;
+                                link.href = `/Investor Greviance/21-22/${report.file}`;
                                 link.download = report.file;
                                 link.click();
                               }}
@@ -421,7 +421,7 @@ export default function Grievances() {
                               variant="ghost" 
                               size="sm" 
                               className="w-full hover:bg-gray-100"
-                              onClick={() => window.open(`/config/data/Investor Greviance/21-22/${report.file}`, '_blank')}
+                              onClick={() => window.open(`/Investor Greviance/21-22/${report.file}`, '_blank')}
                               data-testid={`view-${report.quarter}`}
                             >
                               <FileText className="mr-2 h-4 w-4" />
@@ -478,7 +478,7 @@ export default function Grievances() {
                               className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0 hover:shadow-lg hover-glow btn-interactive`}
                               onClick={() => {
                                 const link = document.createElement('a');
-                                link.href = `/config/data/Investor Greviance/20-21/${report.file}`;
+                                link.href = `/Investor Greviance/20-21/${report.file}`;
                                 link.download = report.file;
                                 link.click();
                               }}
@@ -491,7 +491,7 @@ export default function Grievances() {
                               variant="ghost" 
                               size="sm" 
                               className="w-full hover:bg-gray-100"
-                              onClick={() => window.open(`/config/data/Investor Greviance/20-21/${report.file}`, '_blank')}
+                              onClick={() => window.open(`/Investor Greviance/20-21/${report.file}`, '_blank')}
                               data-testid={`view-${report.quarter}`}
                             >
                               <FileText className="mr-2 h-4 w-4" />
