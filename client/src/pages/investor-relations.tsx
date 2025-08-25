@@ -34,6 +34,94 @@ export default function InvestorRelations() {
   // Memoized document data from YAML config
   const allConfigDocs = useMemo(() => getAllDocuments(), []);
 
+  // Comprehensive color classes used throughout the component
+  const getColorClasses = () => ({
+    blue: {
+      bg: "bg-blue-50",
+      text: "text-blue-600",
+      border: "border-blue-200",
+      gradient: "from-blue-600 to-blue-700",
+    },
+    green: {
+      bg: "bg-green-50",
+      text: "text-green-600",
+      border: "border-green-200",
+      gradient: "from-green-600 to-green-700",
+    },
+    purple: {
+      bg: "bg-purple-50",
+      text: "text-purple-600",
+      border: "border-purple-200",
+      gradient: "from-purple-600 to-purple-700",
+    },
+    indigo: {
+      bg: "bg-indigo-50",
+      text: "text-indigo-600",
+      border: "border-indigo-200",
+      gradient: "from-indigo-600 to-indigo-700",
+    },
+    emerald: {
+      bg: "bg-emerald-50",
+      text: "text-emerald-600",
+      border: "border-emerald-200",
+      gradient: "from-emerald-600 to-emerald-700",
+    },
+    teal: {
+      bg: "bg-teal-50",
+      text: "text-teal-600",
+      border: "border-teal-200",
+      gradient: "from-teal-600 to-teal-700",
+    },
+    cyan: {
+      bg: "bg-cyan-50",
+      text: "text-cyan-600",
+      border: "border-cyan-200",
+      gradient: "from-cyan-600 to-cyan-700",
+    },
+    violet: {
+      bg: "bg-violet-50",
+      text: "text-violet-600",
+      border: "border-violet-200",
+      gradient: "from-violet-600 to-violet-700",
+    },
+    pink: {
+      bg: "bg-pink-50",
+      text: "text-pink-600",
+      border: "border-pink-200",
+      gradient: "from-pink-600 to-pink-700",
+    },
+    rose: {
+      bg: "bg-rose-50",
+      text: "text-rose-600",
+      border: "border-rose-200",
+      gradient: "from-rose-600 to-rose-700",
+    },
+    orange: {
+      bg: "bg-orange-50",
+      text: "text-orange-600",
+      border: "border-orange-200",
+      gradient: "from-orange-600 to-orange-700",
+    },
+    amber: {
+      bg: "bg-amber-50",
+      text: "text-amber-600",
+      border: "border-amber-200",
+      gradient: "from-amber-600 to-amber-700",
+    },
+    yellow: {
+      bg: "bg-yellow-50",
+      text: "text-yellow-600",
+      border: "border-yellow-200",
+      gradient: "from-yellow-600 to-yellow-700",
+    },
+    lime: {
+      bg: "bg-lime-50",
+      text: "text-lime-600",
+      border: "border-lime-200",
+      gradient: "from-lime-600 to-lime-700",
+    },
+  });
+
   // Filter docs by tab
   const filteredDocs = useMemo(() => {
     let docs = allConfigDocs;
@@ -229,36 +317,8 @@ export default function InvestorRelations() {
                             color: "indigo",
                           },
                         ].map((report, index) => {
-                          const colorClasses = {
-                            blue: {
-                              bg: "bg-blue-50",
-                              text: "text-blue-600",
-                              border: "border-blue-200",
-                              gradient: "from-blue-600 to-blue-700",
-                            },
-                            green: {
-                              bg: "bg-green-50",
-                              text: "text-green-600",
-                              border: "border-green-200",
-                              gradient: "from-green-600 to-green-700",
-                            },
-                            purple: {
-                              bg: "bg-purple-50",
-                              text: "text-purple-600",
-                              border: "border-purple-200",
-                              gradient: "from-purple-600 to-purple-700",
-                            },
-                            indigo: {
-                              bg: "bg-indigo-50",
-                              text: "text-indigo-600",
-                              border: "border-indigo-200",
-                              gradient: "from-indigo-600 to-indigo-700",
-                            },
-                          };
-                          const colors =
-                            colorClasses[
-                              report.color as keyof typeof colorClasses
-                            ];
+                          const colorClasses = getColorClasses();
+                          const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                           return (
                             <Card
@@ -352,36 +412,8 @@ export default function InvestorRelations() {
                             color: "green",
                           },
                         ].map((report, index) => {
-                          const colorClasses = {
-                            emerald: {
-                              bg: "bg-emerald-50",
-                              text: "text-emerald-600",
-                              border: "border-emerald-200",
-                              gradient: "from-emerald-600 to-emerald-700",
-                            },
-                            teal: {
-                              bg: "bg-teal-50",
-                              text: "text-teal-600",
-                              border: "border-teal-200",
-                              gradient: "from-teal-600 to-teal-700",
-                            },
-                            cyan: {
-                              bg: "bg-cyan-50",
-                              text: "text-cyan-600",
-                              border: "border-cyan-200",
-                              gradient: "from-cyan-600 to-cyan-700",
-                            },
-                            green: {
-                              bg: "bg-green-50",
-                              text: "text-green-600",
-                              border: "border-green-200",
-                              gradient: "from-green-600 to-green-700",
-                            },
-                          };
-                          const colors =
-                            colorClasses[
-                              report.color as keyof typeof colorClasses
-                            ];
+                          const colorClasses = getColorClasses();
+                          const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                           return (
                             <Card
@@ -480,42 +512,8 @@ export default function InvestorRelations() {
                             color: "teal",
                           },
                         ].map((report, index) => {
-                          const colorClasses = {
-                            blue: {
-                              bg: "bg-blue-50",
-                              text: "text-blue-600",
-                              border: "border-blue-200",
-                              gradient: "from-blue-600 to-blue-700",
-                            },
-                            green: {
-                              bg: "bg-green-50",
-                              text: "text-green-600",
-                              border: "border-green-200",
-                              gradient: "from-green-600 to-green-700",
-                            },
-                            purple: {
-                              bg: "bg-purple-50",
-                              text: "text-purple-600",
-                              border: "border-purple-200",
-                              gradient: "from-purple-600 to-purple-700",
-                            },
-                            indigo: {
-                              bg: "bg-indigo-50",
-                              text: "text-indigo-600",
-                              border: "border-indigo-200",
-                              gradient: "from-indigo-600 to-indigo-700",
-                            },
-                            teal: {
-                              bg: "bg-teal-50",
-                              text: "text-teal-600",
-                              border: "border-teal-200",
-                              gradient: "from-teal-600 to-teal-700",
-                            },
-                          };
-                          const colors =
-                            colorClasses[
-                              report.color as keyof typeof colorClasses
-                            ];
+                          const colorClasses = getColorClasses();
+                          const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                           return (
                             <Card
@@ -615,42 +613,8 @@ export default function InvestorRelations() {
                             file: "/config/data/Annual Return/MGT-7_2020-21.pdf",
                           },
                         ].map((item, index) => {
-                          const colorClasses = {
-                            emerald: {
-                              bg: "bg-emerald-50",
-                              text: "text-emerald-600",
-                              border: "border-emerald-200",
-                              gradient: "from-emerald-600 to-emerald-700",
-                            },
-                            green: {
-                              bg: "bg-green-50",
-                              text: "text-green-600",
-                              border: "border-green-200",
-                              gradient: "from-green-600 to-green-700",
-                            },
-                            teal: {
-                              bg: "bg-teal-50",
-                              text: "text-teal-600",
-                              border: "border-teal-200",
-                              gradient: "from-teal-600 to-teal-700",
-                            },
-                            cyan: {
-                              bg: "bg-cyan-50",
-                              text: "text-cyan-600",
-                              border: "border-cyan-200",
-                              gradient: "from-cyan-600 to-cyan-700",
-                            },
-                            blue: {
-                              bg: "bg-blue-50",
-                              text: "text-blue-600",
-                              border: "border-blue-200",
-                              gradient: "from-blue-600 to-blue-700",
-                            },
-                          };
-                          const colors =
-                            colorClasses[
-                              item.color as keyof typeof colorClasses
-                            ];
+                          const colorClasses = getColorClasses();
+                          const colors = colorClasses[item.color as keyof typeof colorClasses];
 
                           return (
                             <Card
@@ -760,36 +724,8 @@ export default function InvestorRelations() {
                               color: "indigo",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              blue: {
-                                bg: "bg-blue-50",
-                                text: "text-blue-600",
-                                border: "border-blue-200",
-                                gradient: "from-blue-600 to-blue-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
-                              purple: {
-                                bg: "bg-purple-50",
-                                text: "text-purple-600",
-                                border: "border-purple-200",
-                                gradient: "from-purple-600 to-purple-700",
-                              },
-                              indigo: {
-                                bg: "bg-indigo-50",
-                                text: "text-indigo-600",
-                                border: "border-indigo-200",
-                                gradient: "from-indigo-600 to-indigo-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -884,36 +820,8 @@ export default function InvestorRelations() {
                               color: "green",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              emerald: {
-                                bg: "bg-emerald-50",
-                                text: "text-emerald-600",
-                                border: "border-emerald-200",
-                                gradient: "from-emerald-600 to-emerald-700",
-                              },
-                              teal: {
-                                bg: "bg-teal-50",
-                                text: "text-teal-600",
-                                border: "border-teal-200",
-                                gradient: "from-teal-600 to-teal-700",
-                              },
-                              cyan: {
-                                bg: "bg-cyan-50",
-                                text: "text-cyan-600",
-                                border: "border-cyan-200",
-                                gradient: "from-cyan-600 to-cyan-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -1008,36 +916,8 @@ export default function InvestorRelations() {
                               color: "orange",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              violet: {
-                                bg: "bg-violet-50",
-                                text: "text-violet-600",
-                                border: "border-violet-200",
-                                gradient: "from-violet-600 to-violet-700",
-                              },
-                              pink: {
-                                bg: "bg-pink-50",
-                                text: "text-pink-600",
-                                border: "border-pink-200",
-                                gradient: "from-pink-600 to-pink-700",
-                              },
-                              rose: {
-                                bg: "bg-rose-50",
-                                text: "text-rose-600",
-                                border: "border-rose-200",
-                                gradient: "from-rose-600 to-rose-700",
-                              },
-                              orange: {
-                                bg: "bg-orange-50",
-                                text: "text-orange-600",
-                                border: "border-orange-200",
-                                gradient: "from-orange-600 to-orange-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -1132,36 +1012,8 @@ export default function InvestorRelations() {
                               color: "emerald",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              amber: {
-                                bg: "bg-amber-50",
-                                text: "text-amber-600",
-                                border: "border-amber-200",
-                                gradient: "from-amber-600 to-amber-700",
-                              },
-                              yellow: {
-                                bg: "bg-yellow-50",
-                                text: "text-yellow-600",
-                                border: "border-yellow-200",
-                                gradient: "from-yellow-600 to-yellow-700",
-                              },
-                              lime: {
-                                bg: "bg-lime-50",
-                                text: "text-lime-600",
-                                border: "border-lime-200",
-                                gradient: "from-lime-600 to-lime-700",
-                              },
-                              emerald: {
-                                bg: "bg-emerald-50",
-                                text: "text-emerald-600",
-                                border: "border-emerald-200",
-                                gradient: "from-emerald-600 to-emerald-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -1390,36 +1242,8 @@ export default function InvestorRelations() {
                               color: "indigo",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              blue: {
-                                bg: "bg-blue-50",
-                                text: "text-blue-600",
-                                border: "border-blue-200",
-                                gradient: "from-blue-600 to-blue-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
-                              purple: {
-                                bg: "bg-purple-50",
-                                text: "text-purple-600",
-                                border: "border-purple-200",
-                                gradient: "from-purple-600 to-purple-700",
-                              },
-                              indigo: {
-                                bg: "bg-indigo-50",
-                                text: "text-indigo-600",
-                                border: "border-indigo-200",
-                                gradient: "from-indigo-600 to-indigo-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -1514,36 +1338,8 @@ export default function InvestorRelations() {
                               color: "green",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              emerald: {
-                                bg: "bg-emerald-50",
-                                text: "text-emerald-600",
-                                border: "border-emerald-200",
-                                gradient: "from-emerald-600 to-emerald-700",
-                              },
-                              teal: {
-                                bg: "bg-teal-50",
-                                text: "text-teal-600",
-                                border: "border-teal-200",
-                                gradient: "from-teal-600 to-teal-700",
-                              },
-                              cyan: {
-                                bg: "bg-cyan-50",
-                                text: "text-cyan-600",
-                                border: "border-cyan-200",
-                                gradient: "from-cyan-600 to-cyan-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -1638,36 +1434,8 @@ export default function InvestorRelations() {
                               color: "green",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              emerald: {
-                                bg: "bg-emerald-50",
-                                text: "text-emerald-600",
-                                border: "border-emerald-200",
-                                gradient: "from-emerald-600 to-emerald-700",
-                              },
-                              teal: {
-                                bg: "bg-teal-50",
-                                text: "text-teal-600",
-                                border: "border-teal-200",
-                                gradient: "from-teal-600 to-teal-700",
-                              },
-                              cyan: {
-                                bg: "bg-cyan-50",
-                                text: "text-cyan-600",
-                                border: "border-cyan-200",
-                                gradient: "from-cyan-600 to-cyan-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -1749,36 +1517,8 @@ export default function InvestorRelations() {
                               color: "teal",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              emerald: {
-                                bg: "bg-emerald-50",
-                                text: "text-emerald-600",
-                                border: "border-emerald-200",
-                                gradient: "from-emerald-600 to-emerald-700",
-                              },
-                              teal: {
-                                bg: "bg-teal-50",
-                                text: "text-teal-600",
-                                border: "border-teal-200",
-                                gradient: "from-teal-600 to-teal-700",
-                              },
-                              cyan: {
-                                bg: "bg-cyan-50",
-                                text: "text-cyan-600",
-                                border: "border-cyan-200",
-                                gradient: "from-cyan-600 to-cyan-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -1873,36 +1613,8 @@ export default function InvestorRelations() {
                               color: "indigo",
                             },
                           ].map((report, index) => {
-                            const colorClasses = {
-                              emerald: {
-                                bg: "bg-emerald-50",
-                                text: "text-emerald-600",
-                                border: "border-emerald-200",
-                                gradient: "from-emerald-600 to-emerald-700",
-                              },
-                              teal: {
-                                bg: "bg-teal-50",
-                                text: "text-teal-600",
-                                border: "border-teal-200",
-                                gradient: "from-teal-600 to-teal-700",
-                              },
-                              cyan: {
-                                bg: "bg-cyan-50",
-                                text: "text-cyan-600",
-                                border: "border-cyan-200",
-                                gradient: "from-cyan-600 to-cyan-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
-                            };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
                               <Card
@@ -1953,6 +1665,472 @@ export default function InvestorRelations() {
                                         )
                                       }
                                       data-testid={`view-quarterly-20-21-${report.quarter}`}
+                                    >
+                                      <FileText className="mr-2 h-4 w-4" />
+                                      View Report
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Corporate Governance Section */}
+                  {(activeTab === "all" || activeTab === "GOVERNANCE") && (
+                    <div className="space-y-12">
+                      <h2 className="text-2xl font-bold text-gray-900 text-center">
+                        Corporate Governance
+                      </h2>
+
+                      {/* FY 2024-25 */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+                          Financial Year 2024-25
+                        </h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {[
+                            {
+                              quarter: "Q4 2024-25",
+                              file: "/Corporate Governance/24-25/CG_31.03.2025.pdf",
+                              period: "Jan-Mar 2025",
+                              color: "blue",
+                            },
+                            {
+                              quarter: "Q3 2024-25",
+                              file: "/Corporate Governance/24-25/CG_31.12.2024.pdf",
+                              period: "Oct-Dec 2024",
+                              color: "green",
+                            },
+                            {
+                              quarter: "Q2 2024-25",
+                              file: "/Corporate Governance/24-25/CG_30.09.2024.pdf",
+                              period: "Jul-Sep 2024",
+                              color: "purple",
+                            },
+                            {
+                              quarter: "Q1 2024-25",
+                              file: "/Corporate Governance/24-25/CG_30.06.2024.pdf",
+                              period: "Apr-Jun 2024",
+                              color: "indigo",
+                            },
+                          ].map((report, index) => {
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+
+                            return (
+                              <Card
+                                key={report.quarter}
+                                className={`border-2 ${colors.border} ${colors.bg}`}
+                                data-testid={`corporate-governance-24-25-${index}`}
+                              >
+                                <CardContent className="p-6 text-center">
+                                  <div
+                                    className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}
+                                  >
+                                    <Shield className="h-8 w-8" />
+                                  </div>
+                                  <h4
+                                    className={`text-lg font-bold ${colors.text} mb-2`}
+                                  >
+                                    {report.quarter}
+                                  </h4>
+                                  <p className="text-gray-600 text-sm mb-4">
+                                    {report.period}
+                                  </p>
+                                  <div className="space-y-2">
+                                    <Button
+                                      className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
+                                      size="sm"
+                                      onClick={() => {
+                                        const link = document.createElement("a");
+                                        link.href = encodeURI(report.file);
+                                        link.download =
+                                          report.file.split("/").pop() ||
+                                          "corporate-governance.pdf";
+                                        link.click();
+                                      }}
+                                      data-testid={`download-cg-24-25-${report.quarter}`}
+                                    >
+                                      <Download className="mr-2 h-4 w-4" />
+                                      Download
+                                    </Button>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="w-full hover:bg-gray-100"
+                                      onClick={() =>
+                                        window.open(
+                                          encodeURI(report.file),
+                                          "_blank",
+                                        )
+                                      }
+                                      data-testid={`view-cg-24-25-${report.quarter}`}
+                                    >
+                                      <FileText className="mr-2 h-4 w-4" />
+                                      View Report
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* FY 2023-24 */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+                          Financial Year 2023-24
+                        </h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {[
+                            {
+                              quarter: "Q4 2023-24",
+                              file: "/Corporate Governance/23-24/CG_31.03.2024.pdf",
+                              period: "Jan-Mar 2024",
+                              color: "emerald",
+                            },
+                            {
+                              quarter: "Q3 2023-24",
+                              file: "/Corporate Governance/23-24/CG_31.12.2023.pdf",
+                              period: "Oct-Dec 2023",
+                              color: "teal",
+                            },
+                            {
+                              quarter: "Q2 2023-24",
+                              file: "/Corporate Governance/23-24/CG_30.09.2023.pdf",
+                              period: "Jul-Sep 2023",
+                              color: "cyan",
+                            },
+                            {
+                              quarter: "Q1 2023-24",
+                              file: "/Corporate Governance/23-24/CG_30.06.2023.pdf",
+                              period: "Apr-Jun 2023",
+                              color: "green",
+                            },
+                          ].map((report, index) => {
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+
+                            return (
+                              <Card
+                                key={report.quarter}
+                                className={`border-2 ${colors.border} ${colors.bg}`}
+                                data-testid={`corporate-governance-23-24-${index}`}
+                              >
+                                <CardContent className="p-6 text-center">
+                                  <div
+                                    className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}
+                                  >
+                                    <Shield className="h-8 w-8" />
+                                  </div>
+                                  <h4
+                                    className={`text-lg font-bold ${colors.text} mb-2`}
+                                  >
+                                    {report.quarter}
+                                  </h4>
+                                  <p className="text-gray-600 text-sm mb-4">
+                                    {report.period}
+                                  </p>
+                                  <div className="space-y-2">
+                                    <Button
+                                      className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
+                                      size="sm"
+                                      onClick={() => {
+                                        const link = document.createElement("a");
+                                        link.href = encodeURI(report.file);
+                                        link.download =
+                                          report.file.split("/").pop() ||
+                                          "corporate-governance.pdf";
+                                        link.click();
+                                      }}
+                                      data-testid={`download-cg-23-24-${report.quarter}`}
+                                    >
+                                      <Download className="mr-2 h-4 w-4" />
+                                      Download
+                                    </Button>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="w-full hover:bg-gray-100"
+                                      onClick={() =>
+                                        window.open(
+                                          encodeURI(report.file),
+                                          "_blank",
+                                        )
+                                      }
+                                      data-testid={`view-cg-23-24-${report.quarter}`}
+                                    >
+                                      <FileText className="mr-2 h-4 w-4" />
+                                      View Report
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* FY 2022-23 */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+                          Financial Year 2022-23
+                        </h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {[
+                            {
+                              quarter: "Q4 2022-23",
+                              file: "/Corporate Governance/22-23/CG_31.03.2023.pdf",
+                              period: "Jan-Mar 2023",
+                              color: "violet",
+                            },
+                            {
+                              quarter: "Q3 2022-23",
+                              file: "/Corporate Governance/22-23/CG_31.12.2022.pdf",
+                              period: "Oct-Dec 2022",
+                              color: "pink",
+                            },
+                            {
+                              quarter: "Q2 2022-23",
+                              file: "/Corporate Governance/22-23/CG_30.09.2022.pdf",
+                              period: "Jul-Sep 2022",
+                              color: "rose",
+                            },
+                            {
+                              quarter: "Q1 2022-23",
+                              file: "/Corporate Governance/22-23/CG_30.06.2022.pdf",
+                              period: "Apr-Jun 2022",
+                              color: "orange",
+                            },
+                          ].map((report, index) => {
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+
+                            return (
+                              <Card
+                                key={report.quarter}
+                                className={`border-2 ${colors.border} ${colors.bg}`}
+                                data-testid={`corporate-governance-22-23-${index}`}
+                              >
+                                <CardContent className="p-6 text-center">
+                                  <div
+                                    className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}
+                                  >
+                                    <Shield className="h-8 w-8" />
+                                  </div>
+                                  <h4
+                                    className={`text-lg font-bold ${colors.text} mb-2`}
+                                  >
+                                    {report.quarter}
+                                  </h4>
+                                  <p className="text-gray-600 text-sm mb-4">
+                                    {report.period}
+                                  </p>
+                                  <div className="space-y-2">
+                                    <Button
+                                      className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
+                                      size="sm"
+                                      onClick={() => {
+                                        const link = document.createElement("a");
+                                        link.href = encodeURI(report.file);
+                                        link.download =
+                                          report.file.split("/").pop() ||
+                                          "corporate-governance.pdf";
+                                        link.click();
+                                      }}
+                                      data-testid={`download-cg-22-23-${report.quarter}`}
+                                    >
+                                      <Download className="mr-2 h-4 w-4" />
+                                      Download
+                                    </Button>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="w-full hover:bg-gray-100"
+                                      onClick={() =>
+                                        window.open(
+                                          encodeURI(report.file),
+                                          "_blank",
+                                        )
+                                      }
+                                      data-testid={`view-cg-22-23-${report.quarter}`}
+                                    >
+                                      <FileText className="mr-2 h-4 w-4" />
+                                      View Report
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* FY 2021-22 */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+                          Financial Year 2021-22
+                        </h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {[
+                            {
+                              quarter: "Q4 2021-22",
+                              file: "/Corporate Governance/21-22/CG_31.03.2022.pdf",
+                              period: "Jan-Mar 2022",
+                              color: "amber",
+                            },
+                            {
+                              quarter: "Q2 2021-22",
+                              file: "/Corporate Governance/21-22/CG_30.09.2021.PDF",
+                              period: "Jul-Sep 2021",
+                              color: "lime",
+                            },
+                            {
+                              quarter: "Q1 2021-22",
+                              file: "/Corporate Governance/21-22/CG_30.06.2021.PDF",
+                              period: "Apr-Jun 2021",
+                              color: "emerald",
+                            },
+                          ].map((report, index) => {
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+
+                            return (
+                              <Card
+                                key={report.quarter}
+                                className={`border-2 ${colors.border} ${colors.bg}`}
+                                data-testid={`corporate-governance-21-22-${index}`}
+                              >
+                                <CardContent className="p-6 text-center">
+                                  <div
+                                    className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}
+                                  >
+                                    <Shield className="h-8 w-8" />
+                                  </div>
+                                  <h4
+                                    className={`text-lg font-bold ${colors.text} mb-2`}
+                                  >
+                                    {report.quarter}
+                                  </h4>
+                                  <p className="text-gray-600 text-sm mb-4">
+                                    {report.period}
+                                  </p>
+                                  <div className="space-y-2">
+                                    <Button
+                                      className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
+                                      size="sm"
+                                      onClick={() => {
+                                        const link = document.createElement("a");
+                                        link.href = encodeURI(report.file);
+                                        link.download =
+                                          report.file.split("/").pop() ||
+                                          "corporate-governance.pdf";
+                                        link.click();
+                                      }}
+                                      data-testid={`download-cg-21-22-${report.quarter}`}
+                                    >
+                                      <Download className="mr-2 h-4 w-4" />
+                                      Download
+                                    </Button>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="w-full hover:bg-gray-100"
+                                      onClick={() =>
+                                        window.open(
+                                          encodeURI(report.file),
+                                          "_blank",
+                                        )
+                                      }
+                                      data-testid={`view-cg-21-22-${report.quarter}`}
+                                    >
+                                      <FileText className="mr-2 h-4 w-4" />
+                                      View Report
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* FY 2020-21 */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+                          Financial Year 2020-21
+                        </h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {[
+                            {
+                              quarter: "Q3 2020-21",
+                              file: "/Corporate Governance/20-21/CG_31.12.2020.PDF",
+                              period: "Oct-Dec 2020",
+                              color: "teal",
+                            },
+                            {
+                              quarter: "Q1 2020-21",
+                              file: "/Corporate Governance/20-21/CG_30.06.2020.pdf",
+                              period: "Apr-Jun 2020",
+                              color: "indigo",
+                            },
+                          ].map((report, index) => {
+                            const colorClasses = getColorClasses();
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+
+                            return (
+                              <Card
+                                key={report.quarter}
+                                className={`border-2 ${colors.border} ${colors.bg}`}
+                                data-testid={`corporate-governance-20-21-${index}`}
+                              >
+                                <CardContent className="p-6 text-center">
+                                  <div
+                                    className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}
+                                  >
+                                    <Shield className="h-8 w-8" />
+                                  </div>
+                                  <h4
+                                    className={`text-lg font-bold ${colors.text} mb-2`}
+                                  >
+                                    {report.quarter}
+                                  </h4>
+                                  <p className="text-gray-600 text-sm mb-4">
+                                    {report.period}
+                                  </p>
+                                  <div className="space-y-2">
+                                    <Button
+                                      className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
+                                      size="sm"
+                                      onClick={() => {
+                                        const link = document.createElement("a");
+                                        link.href = encodeURI(report.file);
+                                        link.download =
+                                          report.file.split("/").pop() ||
+                                          "corporate-governance.pdf";
+                                        link.click();
+                                      }}
+                                      data-testid={`download-cg-20-21-${report.quarter}`}
+                                    >
+                                      <Download className="mr-2 h-4 w-4" />
+                                      Download
+                                    </Button>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="w-full hover:bg-gray-100"
+                                      onClick={() =>
+                                        window.open(
+                                          encodeURI(report.file),
+                                          "_blank",
+                                        )
+                                      }
+                                      data-testid={`view-cg-20-21-${report.quarter}`}
                                     >
                                       <FileText className="mr-2 h-4 w-4" />
                                       View Report
