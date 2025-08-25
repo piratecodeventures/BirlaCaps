@@ -643,8 +643,8 @@ export function convertToInvestorDocument(config: DocumentConfig): InvestorDocum
       priority: config.priority,
       featured: config.featured
     },
-    createdAt: new Date(),
-    updatedAt: new Date()
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   };
 }
 
