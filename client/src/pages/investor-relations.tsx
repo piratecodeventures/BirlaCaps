@@ -280,14 +280,6 @@ export default function InvestorRelations() {
                               <CardContent className="p-4">
                                 <div className="flex justify-between items-start">
                                   <div className="flex-1">
-                                    <div className="flex items-center gap-2 mb-2">
-                                      <Badge variant="secondary" className="bg-orange-100 text-orange-800">
-                                        {announcement.priority || 'NORMAL'}
-                                      </Badge>
-                                      <span className="text-sm text-gray-500">
-                                        {new Date(announcement.createdAt!).toLocaleDateString()}
-                                      </span>
-                                    </div>
                                     <h3 className="text-lg font-semibold text-gray-900 mb-2" data-testid={`announcement-title-${index}`}>
                                       {announcement.title}
                                     </h3>
