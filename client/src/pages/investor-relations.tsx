@@ -749,85 +749,30 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = {
-                              blue: {
-                                bg: "bg-blue-50",
-                                text: "text-blue-600",
-                                border: "border-blue-200",
-                                gradient: "from-blue-600 to-blue-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
-                              purple: {
-                                bg: "bg-purple-50",
-                                text: "text-purple-600",
-                                border: "border-purple-200",
-                                gradient: "from-purple-600 to-purple-700",
-                              },
-                              indigo: {
-                                bg: "bg-indigo-50",
-                                text: "text-indigo-600",
-                                border: "border-indigo-200",
-                                gradient: "from-indigo-600 to-indigo-700",
-                              },
+                              blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
+                              green: { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" },
+                              purple: { bg: "bg-purple-50", text: "text-purple-600", border: "border-purple-200", gradient: "from-purple-600 to-purple-700" },
+                              indigo: { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-200", gradient: "from-indigo-600 to-indigo-700" }
                             };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
-                              <Card
-                                key={report.quarter}
-                                className={`border-2 ${colors.border} ${colors.bg}`}
-                                data-testid={`shareholding-pattern-${index}`}
-                              >
+                              <Card key={report.quarter} className={`border-2 ${colors.border} ${colors.bg}`} data-testid={`shareholding-pattern-24-25-${index}`}>
                                 <CardContent className="p-6 text-center">
-                                  <div
-                                    className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}
-                                  >
+                                  <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}>
                                     <Users className="h-8 w-8" />
                                   </div>
-                                  <h3
-                                    className={`text-lg font-bold ${colors.text} mb-2`}
-                                  >
-                                    {report.quarter}
-                                  </h3>
-                                  <div className="text-sm font-semibold text-gray-700 mb-4">
-                                    {report.period}
-                                  </div>
+                                  <h3 className={`text-lg font-bold ${colors.text} mb-2`}>{report.quarter}</h3>
+                                  <div className="text-sm font-semibold text-gray-700 mb-4">{report.period}</div>
                                   <div className="space-y-2">
-                                    <Button
-                                      className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
-                                      size="sm"
-                                      onClick={() => {
-                                        const link =
-                                          document.createElement("a");
-                                        link.href = encodeURI(report.file);
-                                        link.download =
-                                          report.file.split("/").pop() ||
-                                          "shareholding-pattern.xlsx";
-                                        link.click();
-                                      }}
-                                      data-testid={`download-shareholding-${report.quarter}`}
-                                    >
-                                      <Download className="mr-2 h-4 w-4" />
-                                      Download
+                                    <Button className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`} size="sm" 
+                                      onClick={() => { const link = document.createElement("a"); link.href = encodeURI(report.file); link.download = report.file.split("/").pop() || "shareholding-pattern.xlsx"; link.click(); }} 
+                                      data-testid={`download-shareholding-24-25-${report.quarter}`}>
+                                      <Download className="mr-2 h-4 w-4" />Download
                                     </Button>
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      className="w-full hover:bg-gray-100"
-                                      onClick={() =>
-                                        window.open(encodeURI(report.file), "_blank")
-                                      }
-                                      data-testid={`view-shareholding-${report.quarter}`}
-                                    >
-                                      <FileText className="mr-2 h-4 w-4" />
-                                      View Pattern
+                                    <Button variant="ghost" size="sm" className="w-full hover:bg-gray-100" 
+                                      onClick={() => window.open(encodeURI(report.file), "_blank")} data-testid={`view-shareholding-24-25-${report.quarter}`}>
+                                      <FileText className="mr-2 h-4 w-4" />View Pattern
                                     </Button>
                                   </div>
                                 </CardContent>
@@ -839,116 +784,171 @@ export default function InvestorRelations() {
 
                       {/* FY 2023-24 */}
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
-                          Financial Year 2023-24
-                        </h3>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Financial Year 2023-24</h3>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                           {[
-                            {
-                              quarter: "Q4 2023-24",
-                              file: "/config/data/Shareholding Pattern/23-24/Shareholding Pattern_31.03.2024.xlsx",
-                              period: "Jan-Mar 2024",
-                              color: "emerald",
-                            },
-                            {
-                              quarter: "Q3 2023-24",
-                              file: "/config/data/Shareholding Pattern/23-24/Shareholding Pattern_31.12.2023.xlsx",
-                              period: "Oct-Dec 2023",
-                              color: "teal",
-                            },
-                            {
-                              quarter: "Q2 2023-24",
-                              file: "/config/data/Shareholding Pattern/23-24/Shareholding Pattern_30.09.2023.xlsx",
-                              period: "Jul-Sep 2023",
-                              color: "cyan",
-                            },
-                            {
-                              quarter: "Q1 2023-24",
-                              file: "/config/data/Shareholding Pattern/23-24/Shareholding Pattern_30.06.2023.xlsm",
-                              period: "Apr-Jun 2023",
-                              color: "green",
-                            },
+                            { quarter: "Q4 2023-24", file: "/config/data/Shareholding Pattern/23-24/Shareholding Pattern_31.03.2024.xlsx", period: "Jan-Mar 2024", color: "emerald" },
+                            { quarter: "Q3 2023-24", file: "/config/data/Shareholding Pattern/23-24/Shareholding Pattern_31.12.2023.xlsx", period: "Oct-Dec 2023", color: "teal" },
+                            { quarter: "Q2 2023-24", file: "/config/data/Shareholding Pattern/23-24/Shareholding Pattern_30.09.2023.xlsx", period: "Jul-Sep 2023", color: "cyan" },
+                            { quarter: "Q1 2023-24", file: "/config/data/Shareholding Pattern/23-24/Shareholding Pattern_30.06.2023.xlsm", period: "Apr-Jun 2023", color: "green" }
                           ].map((report, index) => {
                             const colorClasses = {
-                              emerald: {
-                                bg: "bg-emerald-50",
-                                text: "text-emerald-600",
-                                border: "border-emerald-200",
-                                gradient: "from-emerald-600 to-emerald-700",
-                              },
-                              teal: {
-                                bg: "bg-teal-50",
-                                text: "text-teal-600",
-                                border: "border-teal-200",
-                                gradient: "from-teal-600 to-teal-700",
-                              },
-                              cyan: {
-                                bg: "bg-cyan-50",
-                                text: "text-cyan-600",
-                                border: "border-cyan-200",
-                                gradient: "from-cyan-600 to-cyan-700",
-                              },
-                              green: {
-                                bg: "bg-green-50",
-                                text: "text-green-600",
-                                border: "border-green-200",
-                                gradient: "from-green-600 to-green-700",
-                              },
+                              emerald: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200", gradient: "from-emerald-600 to-emerald-700" },
+                              teal: { bg: "bg-teal-50", text: "text-teal-600", border: "border-teal-200", gradient: "from-teal-600 to-teal-700" },
+                              cyan: { bg: "bg-cyan-50", text: "text-cyan-600", border: "border-cyan-200", gradient: "from-cyan-600 to-cyan-700" },
+                              green: { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", gradient: "from-green-600 to-green-700" }
                             };
-                            const colors =
-                              colorClasses[
-                                report.color as keyof typeof colorClasses
-                              ];
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
 
                             return (
-                              <Card
-                                key={report.quarter}
-                                className={`border-2 ${colors.border} ${colors.bg}`}
-                                data-testid={`shareholding-pattern-23-24-${index}`}
-                              >
+                              <Card key={report.quarter} className={`border-2 ${colors.border} ${colors.bg}`} data-testid={`shareholding-pattern-23-24-${index}`}>
                                 <CardContent className="p-6 text-center">
-                                  <div
-                                    className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}
-                                  >
+                                  <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}>
                                     <Users className="h-8 w-8" />
                                   </div>
-                                  <h3
-                                    className={`text-lg font-bold ${colors.text} mb-2`}
-                                  >
-                                    {report.quarter}
-                                  </h3>
-                                  <div className="text-sm font-semibold text-gray-700 mb-4">
-                                    {report.period}
-                                  </div>
+                                  <h3 className={`text-lg font-bold ${colors.text} mb-2`}>{report.quarter}</h3>
+                                  <div className="text-sm font-semibold text-gray-700 mb-4">{report.period}</div>
                                   <div className="space-y-2">
-                                    <Button
-                                      className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
-                                      size="sm"
-                                      onClick={() => {
-                                        const link =
-                                          document.createElement("a");
-                                        link.href = encodeURI(report.file);
-                                        link.download =
-                                          report.file.split("/").pop() ||
-                                          "shareholding-pattern.xlsx";
-                                        link.click();
-                                      }}
-                                      data-testid={`download-shareholding-23-24-${report.quarter}`}
-                                    >
-                                      <Download className="mr-2 h-4 w-4" />
-                                      Download
+                                    <Button className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`} size="sm" 
+                                      onClick={() => { const link = document.createElement("a"); link.href = encodeURI(report.file); link.download = report.file.split("/").pop() || "shareholding-pattern.xlsx"; link.click(); }} 
+                                      data-testid={`download-shareholding-23-24-${report.quarter}`}>
+                                      <Download className="mr-2 h-4 w-4" />Download
                                     </Button>
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      className="w-full hover:bg-gray-100"
-                                      onClick={() =>
-                                        window.open(encodeURI(report.file), "_blank")
-                                      }
-                                      data-testid={`view-shareholding-23-24-${report.quarter}`}
-                                    >
-                                      <FileText className="mr-2 h-4 w-4" />
-                                      View Pattern
+                                    <Button variant="ghost" size="sm" className="w-full hover:bg-gray-100" 
+                                      onClick={() => window.open(encodeURI(report.file), "_blank")} data-testid={`view-shareholding-23-24-${report.quarter}`}>
+                                      <FileText className="mr-2 h-4 w-4" />View Pattern
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* FY 2022-23 */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Financial Year 2022-23</h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {[
+                            { quarter: "Q4 2022-23", file: "/config/data/Shareholding Pattern/22-23/Shareholding Pattern_31.03.2023.xlsm", period: "Jan-Mar 2023", color: "violet" },
+                            { quarter: "Q3 2022-23", file: "/config/data/Shareholding Pattern/22-23/Shareholding Pattern_31.12.2022.xlsx", period: "Oct-Dec 2022", color: "pink" },
+                            { quarter: "Q2 2022-23", file: "/config/data/Shareholding Pattern/22-23/Shareholding Pattern_30.09.2022.xlsx", period: "Jul-Sep 2022", color: "rose" },
+                            { quarter: "Q1 2022-23", file: "/config/data/Shareholding Pattern/22-23/Shareholding Pattern_30.06.2022.xlsm", period: "Apr-Jun 2022", color: "orange" }
+                          ].map((report, index) => {
+                            const colorClasses = {
+                              violet: { bg: "bg-violet-50", text: "text-violet-600", border: "border-violet-200", gradient: "from-violet-600 to-violet-700" },
+                              pink: { bg: "bg-pink-50", text: "text-pink-600", border: "border-pink-200", gradient: "from-pink-600 to-pink-700" },
+                              rose: { bg: "bg-rose-50", text: "text-rose-600", border: "border-rose-200", gradient: "from-rose-600 to-rose-700" },
+                              orange: { bg: "bg-orange-50", text: "text-orange-600", border: "border-orange-200", gradient: "from-orange-600 to-orange-700" }
+                            };
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+
+                            return (
+                              <Card key={report.quarter} className={`border-2 ${colors.border} ${colors.bg}`} data-testid={`shareholding-pattern-22-23-${index}`}>
+                                <CardContent className="p-6 text-center">
+                                  <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}>
+                                    <Users className="h-8 w-8" />
+                                  </div>
+                                  <h3 className={`text-lg font-bold ${colors.text} mb-2`}>{report.quarter}</h3>
+                                  <div className="text-sm font-semibold text-gray-700 mb-4">{report.period}</div>
+                                  <div className="space-y-2">
+                                    <Button className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`} size="sm" 
+                                      onClick={() => { const link = document.createElement("a"); link.href = encodeURI(report.file); link.download = report.file.split("/").pop() || "shareholding-pattern.xlsx"; link.click(); }} 
+                                      data-testid={`download-shareholding-22-23-${report.quarter}`}>
+                                      <Download className="mr-2 h-4 w-4" />Download
+                                    </Button>
+                                    <Button variant="ghost" size="sm" className="w-full hover:bg-gray-100" 
+                                      onClick={() => window.open(encodeURI(report.file), "_blank")} data-testid={`view-shareholding-22-23-${report.quarter}`}>
+                                      <FileText className="mr-2 h-4 w-4" />View Pattern
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* FY 2021-22 */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Financial Year 2021-22</h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {[
+                            { quarter: "Q4 2021-22", file: "/config/data/Shareholding Pattern/21-22/Shareholding Pattern_31.03.2022.xlsx", period: "Jan-Mar 2022", color: "amber" },
+                            { quarter: "Q3 2021-22", file: "/config/data/Shareholding Pattern/21-22/Shareholding pattern_31.12.2021.xlsx", period: "Oct-Dec 2021", color: "yellow" },
+                            { quarter: "Q2 2021-22", file: "/config/data/Shareholding Pattern/21-22/Shareholding pattern_30.09.2021.xlsx", period: "Jul-Sep 2021", color: "lime" },
+                            { quarter: "Q1 2021-22", file: "/config/data/Shareholding Pattern/21-22/Shareholding pattern_30.06.2021.xls", period: "Apr-Jun 2021", color: "emerald" }
+                          ].map((report, index) => {
+                            const colorClasses = {
+                              amber: { bg: "bg-amber-50", text: "text-amber-600", border: "border-amber-200", gradient: "from-amber-600 to-amber-700" },
+                              yellow: { bg: "bg-yellow-50", text: "text-yellow-600", border: "border-yellow-200", gradient: "from-yellow-600 to-yellow-700" },
+                              lime: { bg: "bg-lime-50", text: "text-lime-600", border: "border-lime-200", gradient: "from-lime-600 to-lime-700" },
+                              emerald: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200", gradient: "from-emerald-600 to-emerald-700" }
+                            };
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+
+                            return (
+                              <Card key={report.quarter} className={`border-2 ${colors.border} ${colors.bg}`} data-testid={`shareholding-pattern-21-22-${index}`}>
+                                <CardContent className="p-6 text-center">
+                                  <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}>
+                                    <Users className="h-8 w-8" />
+                                  </div>
+                                  <h3 className={`text-lg font-bold ${colors.text} mb-2`}>{report.quarter}</h3>
+                                  <div className="text-sm font-semibold text-gray-700 mb-4">{report.period}</div>
+                                  <div className="space-y-2">
+                                    <Button className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`} size="sm" 
+                                      onClick={() => { const link = document.createElement("a"); link.href = encodeURI(report.file); link.download = report.file.split("/").pop() || "shareholding-pattern.xlsx"; link.click(); }} 
+                                      data-testid={`download-shareholding-21-22-${report.quarter}`}>
+                                      <Download className="mr-2 h-4 w-4" />Download
+                                    </Button>
+                                    <Button variant="ghost" size="sm" className="w-full hover:bg-gray-100" 
+                                      onClick={() => window.open(encodeURI(report.file), "_blank")} data-testid={`view-shareholding-21-22-${report.quarter}`}>
+                                      <FileText className="mr-2 h-4 w-4" />View Pattern
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* FY 2020-21 */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Financial Year 2020-21</h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {[
+                            { quarter: "Q4 2020-21", file: "/config/data/Shareholding Pattern/20-21/Shareholding Pattern_31.03.2021.xls", period: "Jan-Mar 2021", color: "sky" },
+                            { quarter: "Q3 2020-21", file: "/config/data/Shareholding Pattern/20-21/Shareholding Pattern_31.12.2020.xls", period: "Oct-Dec 2020", color: "blue" },
+                            { quarter: "Q2 2020-21", file: "/config/data/Shareholding Pattern/20-21/Shareholding Pattern_30.09.2020.xlsx", period: "Jul-Sep 2020", color: "indigo" },
+                            { quarter: "Q1 2020-21", file: "/config/data/Shareholding Pattern/20-21/Shareholding Pattern__30.06.2020.xlsx", period: "Apr-Jun 2020", color: "slate" }
+                          ].map((report, index) => {
+                            const colorClasses = {
+                              sky: { bg: "bg-sky-50", text: "text-sky-600", border: "border-sky-200", gradient: "from-sky-600 to-sky-700" },
+                              blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
+                              indigo: { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-200", gradient: "from-indigo-600 to-indigo-700" },
+                              slate: { bg: "bg-slate-50", text: "text-slate-600", border: "border-slate-200", gradient: "from-slate-600 to-slate-700" }
+                            };
+                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+
+                            return (
+                              <Card key={report.quarter} className={`border-2 ${colors.border} ${colors.bg}`} data-testid={`shareholding-pattern-20-21-${index}`}>
+                                <CardContent className="p-6 text-center">
+                                  <div className={`${colors.bg} ${colors.text} p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4`}>
+                                    <Users className="h-8 w-8" />
+                                  </div>
+                                  <h3 className={`text-lg font-bold ${colors.text} mb-2`}>{report.quarter}</h3>
+                                  <div className="text-sm font-semibold text-gray-700 mb-4">{report.period}</div>
+                                  <div className="space-y-2">
+                                    <Button className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`} size="sm" 
+                                      onClick={() => { const link = document.createElement("a"); link.href = encodeURI(report.file); link.download = report.file.split("/").pop() || "shareholding-pattern.xlsx"; link.click(); }} 
+                                      data-testid={`download-shareholding-20-21-${report.quarter}`}>
+                                      <Download className="mr-2 h-4 w-4" />Download
+                                    </Button>
+                                    <Button variant="ghost" size="sm" className="w-full hover:bg-gray-100" 
+                                      onClick={() => window.open(encodeURI(report.file), "_blank")} data-testid={`view-shareholding-20-21-${report.quarter}`}>
+                                      <FileText className="mr-2 h-4 w-4" />View Pattern
                                     </Button>
                                   </div>
                                 </CardContent>
