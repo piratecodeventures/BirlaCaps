@@ -6,7 +6,6 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Announcement } from "@shared/schema";
 import {
-  TrendingUp,
   Shield,
   Users,
   Globe,
@@ -15,8 +14,6 @@ import {
   BarChart3,
   Bell,
   Award,
-  Target,
-  Heart,
   Zap,
 } from "lucide-react";
 
@@ -25,44 +22,6 @@ export default function Home() {
     queryKey: ["/api/announcements"],
   });
 
-  const features = [
-    {
-      icon: Shield,
-      title: "Corporate Governance",
-      description:
-        "Transparent and accountable business practices with strong governance framework",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
-    },
-    {
-      icon: TrendingUp,
-      title: "Financial Excellence",
-      description:
-        "Consistent growth and strong financial performance across all business segments",
-      color: "text-green-600",
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200",
-    },
-    {
-      icon: Target,
-      title: "Strategic Vision",
-      description:
-        "Long-term strategic planning focused on sustainable growth and innovation",
-      color: "text-purple-600",
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
-    },
-    {
-      icon: Heart,
-      title: "Stakeholder Value",
-      description:
-        "Creating value for all stakeholders through customer-centric solutions",
-      color: "text-red-600",
-      bgColor: "bg-red-50",
-      borderColor: "border-red-200",
-    },
-  ];
 
   const services = [
     {
@@ -104,60 +63,6 @@ export default function Home() {
     <div className="min-h-screen">
       <Hero />
 
-      {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2
-              className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4"
-              data-testid="features-title"
-            >
-              Why Choose Birla Capital and Financial Services Limited
-            </h2>
-            <p
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-              data-testid="features-subtitle"
-            >
-              The financial services sector with innovation, trust, and
-              excellence
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <Card
-                  key={index}
-                  className={`text-center modern-card hover-lift shimmer-effect border-2 ${feature.borderColor} ${feature.bgColor}`}
-                  data-testid={`feature-${index}`}
-                >
-                  <CardContent className="pt-6">
-                    <div
-                      className={`mb-4 ${feature.bgColor} ${feature.color} p-3 rounded-full w-16 h-16 mx-auto flex items-center justify-center float-animation hover-glow`}
-                      data-testid={`feature-icon-${index}`}
-                    >
-                      <IconComponent className="h-8 w-8 hover-rotate" />
-                    </div>
-                    <h3
-                      className="text-lg font-semibold text-gray-900 mb-2 gradient-text-blue"
-                      data-testid={`feature-title-${index}`}
-                    >
-                      {feature.title}
-                    </h3>
-                    <p
-                      className="text-gray-600 text-sm leading-relaxed"
-                      data-testid={`feature-description-${index}`}
-                    >
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Services Section */}
       <section className="py-20 bg-white">
