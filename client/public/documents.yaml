@@ -31,8 +31,8 @@ documents:
       type: "ANNUAL_REPORT"
       description: "Annual report for fiscal year 2021-22"
       fiscal_year: 2022
-      file_path: "/config/data/Annual Report/Annual Reporrt_2021-22.pdf"
-      file_name: "Annual Reporrt_2021-22.pdf"
+      file_path: "/config/data/Annual Report/Annual Report_2021-22.pdf"
+      file_name: "Annual Report_2021-22.pdf"
       category: "finance"
       tags: ["annual", "performance", "governance", "financial"]
       priority: "NORMAL"

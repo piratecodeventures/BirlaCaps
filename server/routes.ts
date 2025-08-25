@@ -63,11 +63,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'SAMEORIGIN');
     
+    // Add error handling for missing files in production
+    res.on('error', (err) => {
+      console.error('Error serving static file:', err);
+    });
+    
     next();
-  }, express.static(path.join(import.meta.dirname, '..', 'config', 'data'), {
+  }, express.static(path.join(import.meta.dirname, '..', 'client', 'config', 'data'), {
     maxAge: process.env.NODE_ENV === 'production' ? '1d' : '0',
     etag: true,
-    lastModified: true
+    lastModified: true,
+    fallthrough: false // Return 404 for missing files instead of continuing to next middleware
   }));
 
   // Public routes
