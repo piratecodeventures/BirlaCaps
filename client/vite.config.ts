@@ -13,14 +13,15 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: 5000,
+    port: 5173,
     fs: {
-      strict: true,
-      deny: ["**/.*"],
+      allow: ['..'],
     },
   },
   build: {
     outDir: "dist",
     emptyOutDir: true,
   },
+  // Include PDF and Excel files as assets
+  assetsInclude: ['**/*.pdf', '**/*.xlsx', '**/*.xls'],
 });
