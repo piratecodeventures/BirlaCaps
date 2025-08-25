@@ -1,8 +1,9 @@
 {
-  "name": "client-app",
+  "name": "birla-capital-client",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
+  "description": "Self-contained client application for Birla Capital and Financial Services - no server required",
   "scripts": {
     "dev": "vite",
     "dev:standalone": "vite",
