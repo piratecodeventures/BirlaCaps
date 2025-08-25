@@ -34,6 +34,15 @@ task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
 
+[[workflows.workflow]]
+name = "prod"
+mode = "sequential"
+author = 46869050
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd client  npm run preview"
+
 [agent]
 integrations = ["javascript_database==1.0.0", "javascript_log_in_with_replit==1.0.0"]
 
