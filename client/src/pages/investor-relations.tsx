@@ -318,7 +318,10 @@ export default function InvestorRelations() {
                           },
                         ].map((report, index) => {
                           const colorClasses = getColorClasses();
-                          const colors = colorClasses[report.color as keyof typeof colorClasses];
+                          const colors =
+                            colorClasses[
+                              report.color as keyof typeof colorClasses
+                            ];
 
                           return (
                             <Card
@@ -413,7 +416,10 @@ export default function InvestorRelations() {
                           },
                         ].map((report, index) => {
                           const colorClasses = getColorClasses();
-                          const colors = colorClasses[report.color as keyof typeof colorClasses];
+                          const colors =
+                            colorClasses[
+                              report.color as keyof typeof colorClasses
+                            ];
 
                           return (
                             <Card
@@ -513,7 +519,10 @@ export default function InvestorRelations() {
                           },
                         ].map((report, index) => {
                           const colorClasses = getColorClasses();
-                          const colors = colorClasses[report.color as keyof typeof colorClasses];
+                          const colors =
+                            colorClasses[
+                              report.color as keyof typeof colorClasses
+                            ];
 
                           return (
                             <Card
@@ -589,32 +598,35 @@ export default function InvestorRelations() {
                             status: "Filed",
                             date: "30/09/2024",
                             color: "emerald",
-                            file: "/config/data/Annual Return/MGT-7_2023-24.pdf",
+                            file: "/Annual Return/MGT-7_2023-24.pdf",
                           },
                           {
                             year: "2022-23",
                             status: "Filed",
                             date: "28/09/2023",
                             color: "green",
-                            file: "/config/data/Annual Return/MGT-7_2022-23.pdf",
+                            file: "/Annual Return/MGT-7_2022-23.pdf",
                           },
                           {
                             year: "2021-22",
                             status: "Filed",
                             date: "29/09/2022",
                             color: "teal",
-                            file: "/config/data/Annual Return/MGT-7_2021-22.pdf",
+                            file: "/Annual Return/MGT-7_2021-22.pdf",
                           },
                           {
                             year: "2020-21",
                             status: "Filed",
                             date: "30/09/2021",
                             color: "cyan",
-                            file: "/config/data/Annual Return/MGT-7_2020-21.pdf",
+                            file: "/Annual Return/MGT-7_2020-21.pdf",
                           },
                         ].map((item, index) => {
                           const colorClasses = getColorClasses();
-                          const colors = colorClasses[item.color as keyof typeof colorClasses];
+                          const colors =
+                            colorClasses[
+                              item.color as keyof typeof colorClasses
+                            ];
 
                           return (
                             <Card
@@ -725,7 +737,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -821,7 +836,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -917,7 +935,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1013,7 +1034,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1243,7 +1267,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1339,7 +1366,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1435,7 +1465,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1518,7 +1551,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1614,7 +1650,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1719,7 +1758,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1746,7 +1788,8 @@ export default function InvestorRelations() {
                                       className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
                                       size="sm"
                                       onClick={() => {
-                                        const link = document.createElement("a");
+                                        const link =
+                                          document.createElement("a");
                                         link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
@@ -1814,7 +1857,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1841,7 +1887,8 @@ export default function InvestorRelations() {
                                       className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
                                       size="sm"
                                       onClick={() => {
-                                        const link = document.createElement("a");
+                                        const link =
+                                          document.createElement("a");
                                         link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
@@ -1909,7 +1956,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -1936,7 +1986,8 @@ export default function InvestorRelations() {
                                       className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
                                       size="sm"
                                       onClick={() => {
-                                        const link = document.createElement("a");
+                                        const link =
+                                          document.createElement("a");
                                         link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
@@ -1998,7 +2049,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -2025,7 +2079,8 @@ export default function InvestorRelations() {
                                       className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
                                       size="sm"
                                       onClick={() => {
-                                        const link = document.createElement("a");
+                                        const link =
+                                          document.createElement("a");
                                         link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
@@ -2081,7 +2136,10 @@ export default function InvestorRelations() {
                             },
                           ].map((report, index) => {
                             const colorClasses = getColorClasses();
-                            const colors = colorClasses[report.color as keyof typeof colorClasses];
+                            const colors =
+                              colorClasses[
+                                report.color as keyof typeof colorClasses
+                              ];
 
                             return (
                               <Card
@@ -2108,7 +2166,8 @@ export default function InvestorRelations() {
                                       className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
                                       size="sm"
                                       onClick={() => {
-                                        const link = document.createElement("a");
+                                        const link =
+                                          document.createElement("a");
                                         link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
