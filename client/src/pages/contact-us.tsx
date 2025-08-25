@@ -1,73 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { useToast } from "@/hooks/use-toast";
 import {
   Phone,
   Mail,
   MapPin,
   Clock,
-  Send,
   Building2,
-  User,
-  MessageSquare,
+  Globe,
 } from "lucide-react";
 
-const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-type ContactFormData = z.infer<typeof contactFormSchema>;
-
 export default function ContactUs() {
-  const { toast } = useToast();
-  
-  const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    },
-  });
-
-  const onSubmit = async (data: ContactFormData) => {
-    try {
-      // In a real implementation, you would send this data to your backend
-      console.log("Contact form data:", data);
-      
-      toast({
-        title: "Message Sent Successfully",
-        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
-      });
-      
-      form.reset();
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
@@ -103,8 +45,8 @@ export default function ContactUs() {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Corporate Office</h3>
                       <p className="text-gray-600">
-                        Birla Capital and Financial Services Limited<br />
-                        Corporate Center, Mumbai<br />
+                        5th Floor, 159, Industry House<br />
+                        Churchgate Reclamation, Mumbai - 400020<br />
                         Maharashtra, India
                       </p>
                     </div>
@@ -121,7 +63,8 @@ export default function ContactUs() {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
                       <p className="text-gray-600">
-                        +91 22 4356 8000<br />
+                        +91 22 6665 1234<br />
+                        +91 9819153922<br />
                         Monday to Friday: 9:00 AM - 6:00 PM
                       </p>
                     </div>
@@ -138,9 +81,8 @@ export default function ContactUs() {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Email</h3>
                       <p className="text-gray-600">
-                        General Inquiries: info@birlainternational.net<br />
-                        Investor Relations: investors@birlainternational.net<br />
-                        Compliance: compliance@birlainternational.net
+                        Email: info@birlainternational.net<br />
+                        General Inquiries & Support
                       </p>
                     </div>
                   </div>
@@ -164,136 +106,75 @@ export default function ContactUs() {
                   </div>
                 </CardContent>
               </Card>
+
+              <Card className="hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-indigo-100 p-3 rounded-full">
+                      <Globe className="h-6 w-6 text-indigo-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Company Registration</h3>
+                      <p className="text-gray-600">
+                        CIN: L51900MH1985PLC036156<br />
+                        Registered in Maharashtra
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Company Information */}
           <div>
             <Card className="shadow-xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Contact Information</h3>
                 
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center space-x-2">
-                            <User className="h-4 w-4" />
-                            <span>Full Name</span>
-                          </FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Enter your full name"
-                              {...field}
-                              data-testid="input-name"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                <div className="space-y-6">
+                  <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+                    <div className="bg-blue-100 p-3 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4">
+                      <MapPin className="h-8 w-8 text-blue-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Office Address</h4>
+                    <p className="text-gray-700">
+                      📍 5th Floor, 159, Industry House<br />
+                      Churchgate Reclamation, Mumbai - 400020
+                    </p>
+                  </div>
 
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center space-x-2">
-                            <Mail className="h-4 w-4" />
-                            <span>Email Address</span>
-                          </FormLabel>
-                          <FormControl>
-                            <Input
-                              type="email"
-                              placeholder="Enter your email address"
-                              {...field}
-                              data-testid="input-email"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                  <div className="text-center p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg">
+                    <div className="bg-green-100 p-3 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4">
+                      <Phone className="h-8 w-8 text-green-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Phone Numbers</h4>
+                    <p className="text-gray-700">
+                      📞 +91 22 6665 1234<br />
+                      📱 +91 9819153922
+                    </p>
+                  </div>
 
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center space-x-2">
-                            <Phone className="h-4 w-4" />
-                            <span>Phone Number</span>
-                          </FormLabel>
-                          <FormControl>
-                            <Input
-                              type="tel"
-                              placeholder="Enter your phone number"
-                              {...field}
-                              data-testid="input-phone"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                  <div className="text-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+                    <div className="bg-purple-100 p-3 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4">
+                      <Mail className="h-8 w-8 text-purple-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Email</h4>
+                    <p className="text-gray-700">
+                      ✉️ info@birlainternational.net
+                    </p>
+                  </div>
 
-                    <FormField
-                      control={form.control}
-                      name="subject"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center space-x-2">
-                            <MessageSquare className="h-4 w-4" />
-                            <span>Subject</span>
-                          </FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Enter the subject of your message"
-                              {...field}
-                              data-testid="input-subject"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center space-x-2">
-                            <MessageSquare className="h-4 w-4" />
-                            <span>Message</span>
-                          </FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Enter your message here..."
-                              className="min-h-[120px]"
-                              {...field}
-                              data-testid="textarea-message"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3"
-                      disabled={form.formState.isSubmitting}
-                      data-testid="button-submit"
-                    >
-                      <Send className="mr-2 h-5 w-5" />
-                      {form.formState.isSubmitting ? "Sending..." : "Send Message"}
-                    </Button>
-                  </form>
-                </Form>
+                  <div className="text-center p-6 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg">
+                    <div className="bg-indigo-100 p-3 rounded-full w-16 h-16 mx-auto flex items-center justify-center mb-4">
+                      <Globe className="h-8 w-8 text-indigo-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Company Registration</h4>
+                    <p className="text-gray-700">
+                      🌐 CIN: L51900MH1985PLC036156
+                    </p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
