@@ -286,7 +286,7 @@ export default function InvestorRelations() {
                                     size="sm"
                                     onClick={() => {
                                       const link = document.createElement("a");
-                                      link.href = report.file;
+                                      link.href = encodeURI(report.file);
                                       link.download =
                                         report.file.split("/").pop() ||
                                         "grievance-report.pdf";
@@ -302,7 +302,7 @@ export default function InvestorRelations() {
                                     size="sm"
                                     className="w-full hover:bg-gray-100"
                                     onClick={() =>
-                                      window.open(report.file, "_blank")
+                                      window.open(encodeURI(report.file), "_blank")
                                     }
                                     data-testid={`view-${report.quarter}`}
                                   >
@@ -406,7 +406,7 @@ export default function InvestorRelations() {
                                     size="sm"
                                     onClick={() => {
                                       const link = document.createElement("a");
-                                      link.href = report.file;
+                                      link.href = encodeURI(report.file);
                                       link.download =
                                         report.file.split("/").pop() ||
                                         "grievance-report.pdf";
@@ -422,7 +422,7 @@ export default function InvestorRelations() {
                                     size="sm"
                                     className="w-full hover:bg-gray-100"
                                     onClick={() =>
-                                      window.open(report.file, "_blank")
+                                      window.open(encodeURI(report.file), "_blank")
                                     }
                                     data-testid={`view-${report.quarter}`}
                                   >
@@ -537,7 +537,7 @@ export default function InvestorRelations() {
                                     size="sm"
                                     onClick={() => {
                                       const link = document.createElement("a");
-                                      link.href = report.file;
+                                      link.href = encodeURI(report.file);
                                       link.download =
                                         report.file.split("/").pop() ||
                                         `annual-report-${report.year}.pdf`;
@@ -553,7 +553,7 @@ export default function InvestorRelations() {
                                     size="sm"
                                     className="w-full hover:bg-gray-100"
                                     onClick={() =>
-                                      window.open(report.file, "_blank")
+                                      window.open(encodeURI(report.file), "_blank")
                                     }
                                     data-testid={`view-annual-${report.year}`}
                                   >
@@ -677,7 +677,7 @@ export default function InvestorRelations() {
                                     size="sm"
                                     onClick={() => {
                                       const link = document.createElement("a");
-                                      link.href = item.file;
+                                      link.href = encodeURI(item.file);
                                       link.download =
                                         item.file.split("/").pop() ||
                                         `MGT-7_${item.year}.pdf`;
@@ -693,7 +693,7 @@ export default function InvestorRelations() {
                                     size="sm"
                                     className="w-full hover:bg-gray-100"
                                     onClick={() =>
-                                      window.open(item.file, "_blank")
+                                      window.open(encodeURI(item.file), "_blank")
                                     }
                                     data-testid={`view-return-${item.year}`}
                                   >
@@ -806,7 +806,7 @@ export default function InvestorRelations() {
                                       onClick={() => {
                                         const link =
                                           document.createElement("a");
-                                        link.href = report.file;
+                                        link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
                                           "shareholding-pattern.xlsx";
@@ -822,7 +822,7 @@ export default function InvestorRelations() {
                                       size="sm"
                                       className="w-full hover:bg-gray-100"
                                       onClick={() =>
-                                        window.open(report.file, "_blank")
+                                        window.open(encodeURI(report.file), "_blank")
                                       }
                                       data-testid={`view-shareholding-${report.quarter}`}
                                     >
@@ -927,7 +927,7 @@ export default function InvestorRelations() {
                                       onClick={() => {
                                         const link =
                                           document.createElement("a");
-                                        link.href = report.file;
+                                        link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
                                           "shareholding-pattern.xlsx";
@@ -943,7 +943,7 @@ export default function InvestorRelations() {
                                       size="sm"
                                       className="w-full hover:bg-gray-100"
                                       onClick={() =>
-                                        window.open(report.file, "_blank")
+                                        window.open(encodeURI(report.file), "_blank")
                                       }
                                       data-testid={`view-shareholding-23-24-${report.quarter}`}
                                     >
@@ -1058,7 +1058,7 @@ export default function InvestorRelations() {
                                       onClick={() => {
                                         const link =
                                           document.createElement("a");
-                                        link.href = report.file;
+                                        link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
                                           "quarterly-result.pdf";
@@ -1074,7 +1074,7 @@ export default function InvestorRelations() {
                                       size="sm"
                                       className="w-full hover:bg-gray-100"
                                       onClick={() =>
-                                        window.open(report.file, "_blank")
+                                        window.open(encodeURI(report.file), "_blank")
                                       }
                                       data-testid={`view-quarterly-${report.quarter}`}
                                     >
@@ -1179,7 +1179,7 @@ export default function InvestorRelations() {
                                       onClick={() => {
                                         const link =
                                           document.createElement("a");
-                                        link.href = report.file;
+                                        link.href = encodeURI(report.file);
                                         link.download =
                                           report.file.split("/").pop() ||
                                           "quarterly-result.pdf";
@@ -1195,7 +1195,7 @@ export default function InvestorRelations() {
                                       size="sm"
                                       className="w-full hover:bg-gray-100"
                                       onClick={() =>
-                                        window.open(report.file, "_blank")
+                                        window.open(encodeURI(report.file), "_blank")
                                       }
                                       data-testid={`view-quarterly-23-24-${report.quarter}`}
                                     >
