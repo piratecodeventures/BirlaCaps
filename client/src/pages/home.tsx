@@ -7,12 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Announcement } from "@shared/schema";
 import {
   Shield,
-  Users,
-  Globe,
-  ArrowRight,
-  Star,
-  BarChart3,
-  Bell,
   Award,
   Zap,
 } from "lucide-react";
@@ -23,116 +17,12 @@ export default function Home() {
   });
 
 
-  const services = [
-    {
-      icon: Users,
-      title: "Personal Banking",
-      description: "Comprehensive banking solutions for individual customers",
-      features: [
-        "Savings Accounts",
-        "Personal Loans",
-        "Credit Cards",
-        "Investment Advisory",
-      ],
-    },
-    {
-      icon: Globe,
-      title: "Corporate Banking",
-      description: "Tailored financial services for businesses of all sizes",
-      features: [
-        "Trade Finance",
-        "Working Capital",
-        "Treasury Solutions",
-        "Cash Management",
-      ],
-    },
-    {
-      icon: BarChart3,
-      title: "Investment Services",
-      description: "Professional investment management and wealth advisory",
-      features: [
-        "Portfolio Management",
-        "Wealth Planning",
-        "Market Research",
-        "Risk Assessment",
-      ],
-    },
-  ];
 
   return (
     <div className="min-h-screen">
       <Hero />
 
 
-      {/* Services Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2
-              className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4"
-              data-testid="services-title"
-            >
-              Our Financial Services
-            </h2>
-            <p
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-              data-testid="services-subtitle"
-            >
-              Comprehensive financial solutions tailored to meet your personal
-              and business needs
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8 stagger-children">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card
-                  key={index}
-                  className="group glass-card hover-lift shimmer-effect border-0 shadow-xl"
-                  data-testid={`service-${index}`}
-                >
-                  <CardHeader className="text-center pb-4">
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full w-20 h-20 mx-auto flex items-center justify-center mb-4 gradient-shift heartbeat hover-glow">
-                      <IconComponent className="h-10 w-10 hover-rotate" />
-                    </div>
-                    <CardTitle
-                      className="text-xl font-bold gradient-text group-hover:scale-105 transition-transform duration-300"
-                      data-testid={`service-title-${index}`}
-                    >
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <p
-                      className="text-gray-700 mb-6 leading-relaxed fade-in-up"
-                      data-testid={`service-description-${index}`}
-                    >
-                      {service.description}
-                    </p>
-                    <div className="space-y-3">
-                      {service.features.map((feature, featureIndex) => (
-                        <div
-                          key={featureIndex}
-                          className="flex items-center justify-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-300 hover-lift"
-                        >
-                          <Star
-                            className="h-4 w-4 text-yellow-500 bounce-in"
-                            style={{ animationDelay: `${featureIndex * 0.1}s` }}
-                          />
-                          <span className="hover:scale-105 transition-transform duration-300">
-                            {feature}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-blue-900 via-purple-900 to-blue-900 text-white relative overflow-hidden">
@@ -175,7 +65,7 @@ export default function Home() {
                 data-testid="button-contact-us"
               >
                 <Link href="/grievances">
-                  <Users className="h-5 w-5 mr-2 heartbeat" />
+                  <Shield className="h-5 w-5 mr-2 heartbeat" />
                   Get Started Today
                 </Link>
               </Button>
@@ -196,7 +86,7 @@ export default function Home() {
                   <span className="text-sm">Award Winning</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Users className="h-5 w-5" />
+                  <Shield className="h-5 w-5" />
                   <span className="text-sm">Customer Focused</span>
                 </div>
               </div>
