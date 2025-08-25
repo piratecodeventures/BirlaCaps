@@ -140,10 +140,10 @@ export default function InvestorRelations() {
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Financial Year 2024-25</h3>
                       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
-                          { quarter: "Q4 2024-25", file: "/config/data/Investor Greviance/24-25/Birla capital_IG_31.03.2025.pdf", period: "Jan-Mar 2025", color: "blue" },
-                          { quarter: "Q3 2024-25", file: "/config/data/Investor Greviance/24-25/Birla capital_IG_31.12.2024.pdf", period: "Oct-Dec 2024", color: "green" },
-                          { quarter: "Q2 2024-25", file: "/config/data/Investor Greviance/24-25/Birla capital_IG_30.09.2024.pdf", period: "Jul-Sep 2024", color: "purple" },
-                          { quarter: "Q1 2024-25", file: "/config/data/Investor Greviance/24-25/Birla Capital_IG_30.06.2024.pdf", period: "Apr-Jun 2024", color: "indigo" }
+                          { quarter: "Q4 2024-25", file: "/Investor Greviance/24-25/Birla capital_IG_31.03.2025.pdf", period: "Jan-Mar 2025", color: "blue" },
+                          { quarter: "Q3 2024-25", file: "/Investor Greviance/24-25/Birla capital_IG_31.12.2024.pdf", period: "Oct-Dec 2024", color: "green" },
+                          { quarter: "Q2 2024-25", file: "/Investor Greviance/24-25/Birla capital_IG_30.09.2024.pdf", period: "Jul-Sep 2024", color: "purple" },
+                          { quarter: "Q1 2024-25", file: "/Investor Greviance/24-25/Birla Capital_IG_30.06.2024.pdf", period: "Apr-Jun 2024", color: "indigo" }
                         ].map((report, index) => {
                           const colorClasses = {
                             blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
@@ -201,10 +201,10 @@ export default function InvestorRelations() {
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Financial Year 2023-24</h3>
                       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
-                          { quarter: "Q4 2023-24", file: "/config/data/Investor Greviance/23-24/Reg 13(3) Birla Capital_IG_31.03.2024.pdf", period: "Jan-Mar 2024", color: "emerald" },
-                          { quarter: "Q3 2023-24", file: "/config/data/Investor Greviance/23-24/Birla Capital IG_31.12.2023.pdf", period: "Oct-Dec 2023", color: "teal" },
-                          { quarter: "Q2 2023-24", file: "/config/data/Investor Greviance/23-24/Birla Capital IG_30.09.2023.pdf", period: "Jul-Sep 2023", color: "cyan" },
-                          { quarter: "Q1 2023-24", file: "/config/data/Investor Greviance/23-24/Birla Capital_IG_30.06.2023.pdf", period: "Apr-Jun 2023", color: "green" }
+                          { quarter: "Q4 2023-24", file: "/Investor Greviance/23-24/Reg 13(3) Birla Capital_IG_31.03.2024.pdf", period: "Jan-Mar 2024", color: "emerald" },
+                          { quarter: "Q3 2023-24", file: "/Investor Greviance/23-24/Birla Capital IG_31.12.2023.pdf", period: "Oct-Dec 2023", color: "teal" },
+                          { quarter: "Q2 2023-24", file: "/Investor Greviance/23-24/Birla Capital IG_30.09.2023.pdf", period: "Jul-Sep 2023", color: "cyan" },
+                          { quarter: "Q1 2023-24", file: "/Investor Greviance/23-24/Birla Capital_IG_30.06.2023.pdf", period: "Apr-Jun 2023", color: "green" }
                         ].map((report, index) => {
                           const colorClasses = {
                             emerald: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200", gradient: "from-emerald-600 to-emerald-700" },
@@ -310,11 +310,11 @@ export default function InvestorRelations() {
                       <h2 className="text-2xl font-bold text-gray-900 text-center">Annual Reports</h2>
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {[
-                          { year: "2023-24", file: "/config/data/annual-reports/AR_2023-24.pdf", color: "blue" },
-                          { year: "2022-23", file: "/config/data/annual-reports/AR_2022-23.pdf", color: "green" },
-                          { year: "2021-22", file: "/config/data/annual-reports/AR_2021-22.pdf", color: "purple" },
-                          { year: "2020-21", file: "/config/data/annual-reports/AR_2020-21.pdf", color: "indigo" },
-                          { year: "2019-20", file: "/config/data/annual-reports/AR_2019-20.pdf", color: "teal" }
+                          { year: "2023-24", file: "/Annual Report/Annual Report_2023-24.pdf", color: "blue" },
+                          { year: "2022-23", file: "/Annual Report/Annual Report 2022-23.pdf", color: "green" },
+                          { year: "2021-22", file: "/Annual Report/Annual Reporrt_2021-22.pdf", color: "purple" },
+                          { year: "2020-21", file: "/Annual Report/Annual Report 2020-21.pdf", color: "indigo" },
+                          { year: "2019-20", file: "/Annual Report/Annual Report 2019-20.pdf", color: "teal" }
                         ].map((report, index) => {
                           const colorClasses = {
                             blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
@@ -339,6 +339,12 @@ export default function InvestorRelations() {
                                   <Button 
                                     className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
                                     size="sm"
+                                    onClick={() => {
+                                      const link = document.createElement('a');
+                                      link.href = report.file;
+                                      link.download = report.file.split('/').pop() || `annual-report-${report.year}.pdf`;
+                                      link.click();
+                                    }}
                                     data-testid={`download-annual-${report.year}`}
                                   >
                                     <Download className="mr-2 h-4 w-4" />
@@ -348,6 +354,7 @@ export default function InvestorRelations() {
                                     variant="ghost" 
                                     size="sm" 
                                     className="w-full hover:bg-gray-100"
+                                    onClick={() => window.open(report.file, '_blank')}
                                     data-testid={`view-annual-${report.year}`}
                                   >
                                     <FileText className="mr-2 h-4 w-4" />
@@ -368,11 +375,10 @@ export default function InvestorRelations() {
                       <h2 className="text-2xl font-bold text-gray-900 text-center">Annual Returns</h2>
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {[
-                          { year: "2023-24", status: "Filed", date: "30/09/2024", color: "emerald" },
-                          { year: "2022-23", status: "Filed", date: "28/09/2023", color: "green" },
-                          { year: "2021-22", status: "Filed", date: "29/09/2022", color: "teal" },
-                          { year: "2020-21", status: "Filed", date: "30/09/2021", color: "cyan" },
-                          { year: "2019-20", status: "Filed", date: "25/09/2020", color: "blue" }
+                          { year: "2023-24", status: "Filed", date: "30/09/2024", color: "emerald", file: "/Annual Return/MGT-7_2023-24.pdf" },
+                          { year: "2022-23", status: "Filed", date: "28/09/2023", color: "green", file: "/Annual Return/MGT-7_2022-23.pdf" },
+                          { year: "2021-22", status: "Filed", date: "29/09/2022", color: "teal", file: "/Annual Return/MGT-7_2021-22.pdf" },
+                          { year: "2020-21", status: "Filed", date: "30/09/2021", color: "cyan", file: "/Annual Return/MGT-7_2020-21.pdf" }
                         ].map((item, index) => {
                           const colorClasses = {
                             emerald: { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-200", gradient: "from-emerald-600 to-emerald-700" },
@@ -403,10 +409,26 @@ export default function InvestorRelations() {
                                   <Button 
                                     className={`w-full bg-gradient-to-r ${colors.gradient} text-white border-0`}
                                     size="sm"
+                                    onClick={() => {
+                                      const link = document.createElement('a');
+                                      link.href = item.file;
+                                      link.download = item.file.split('/').pop() || `MGT-7_${item.year}.pdf`;
+                                      link.click();
+                                    }}
                                     data-testid={`download-return-${item.year}`}
                                   >
                                     <Download className="mr-2 h-4 w-4" />
                                     Download
+                                  </Button>
+                                  <Button 
+                                    variant="ghost" 
+                                    size="sm" 
+                                    className="w-full hover:bg-gray-100"
+                                    onClick={() => window.open(item.file, '_blank')}
+                                    data-testid={`view-return-${item.year}`}
+                                  >
+                                    <FileText className="mr-2 h-4 w-4" />
+                                    View MGT-7
                                   </Button>
                                 </div>
                               </CardContent>
@@ -556,10 +578,10 @@ export default function InvestorRelations() {
                         <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Financial Year 2024-25</h3>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                           {[
-                            { quarter: "Q4 2024-25", file: "/config/data/quater/24-25/FR_31.03.2025.pdf", period: "Jan-Mar 2025", color: "blue" },
-                            { quarter: "Q3 2024-25", file: "/config/data/quater/24-25/FR_31.12.2024.pdf", period: "Oct-Dec 2024", color: "green" },
-                            { quarter: "Q2 2024-25", file: "/config/data/quater/24-25/FR_30.09.2024.pdf", period: "Jul-Sep 2024", color: "purple" },
-                            { quarter: "Q1 2024-25", file: "/config/data/quater/24-25/FR_30.06.2024.pdf", period: "Apr-Jun 2024", color: "indigo" }
+                            { quarter: "Q4 2024-25", file: "/quater/24-25/FR_31.03.2025.pdf", period: "Jan-Mar 2025", color: "blue" },
+                            { quarter: "Q3 2024-25", file: "/quater/24-25/FR_31.12.2024.pdf", period: "Oct-Dec 2024", color: "green" },
+                            { quarter: "Q2 2024-25", file: "/quater/24-25/FR_30.09.2024.pdf", period: "Jul-Sep 2024", color: "purple" },
+                            { quarter: "Q1 2024-25", file: "/quater/24-25/FR_30.06.2024.pdf", period: "Apr-Jun 2024", color: "indigo" }
                           ].map((report, index) => {
                             const colorClasses = {
                               blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-blue-700" },
