@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "dev:standalone": "VITE_STANDALONE=true vite",
+    "dev:standalone": "vite",
     "build": "vite build",
-    "build:standalone": "VITE_STANDALONE=true vite build",
+    "build:standalone": "vite build",
     "preview": "vite preview",
     "check": "tsc --noEmit"
   },
