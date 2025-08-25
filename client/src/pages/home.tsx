@@ -171,60 +171,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Recent Announcements */}
-      {announcements.length > 0 && (
-        <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <Bell className="h-8 w-8 text-orange-500" />
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900" data-testid="announcements-title">
-                  Latest Announcements
-                </h2>
-              </div>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Stay informed with our latest updates and important notices
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 mb-12 stagger-children">
-              {announcements.slice(0, 4).map((announcement, index) => (
-                <Card key={announcement.id} className="border-l-4 border-orange-500 glass-card hover-lift shimmer-effect" data-testid={`announcement-${index}`}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <Badge variant="secondary" className="bg-gradient-to-r from-orange-500 to-red-500 text-white hover-glow pulse-effect">
-                        Important
-                      </Badge>
-                      <div className="text-sm text-gray-500 fade-in-right" data-testid={`announcement-date-${index}`}>
-                        {new Date(announcement.createdAt!).toLocaleDateString()}
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight gradient-text-blue hover:scale-105 transition-transform duration-300" data-testid={`announcement-title-${index}`}>
-                      {announcement.title}
-                    </h3>
-                    <p className="text-gray-700 mb-4 leading-relaxed fade-in-up" data-testid={`announcement-description-${index}`}>
-                      {announcement.description}
-                    </p>
-                    <Button variant="outline" size="sm" className="group btn-interactive hover-glow">
-                      Read More
-                      <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-2 transition-transform duration-300 bounce-in" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="text-center">
-              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg" data-testid="button-view-all-announcements">
-                <Link href="/investor-relations#announcements">
-                  View All Announcements
-                  <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-blue-900 via-purple-900 to-blue-900 text-white relative overflow-hidden">
