@@ -251,7 +251,7 @@ export default function About() {
                         Our Chief Compliance Officer ensures adherence to all regulatory requirements and maintains the highest standards of corporate governance.
                       </p>
                       <div className="space-y-2 text-sm">
-                        <div><strong>Email:</strong> compliance@birlainternational.net</div>
+                        <div><strong>Email:</strong> info@birlainternational.net</div>
                         <div><strong>Phone:</strong> +91 22 6789 1234</div>
                         <div><strong>Office Hours:</strong> Monday to Friday, 10:00 AM to 6:00 PM</div>
                       </div>
