@@ -287,8 +287,8 @@ PORT=5000
 For technical support or questions about the website:
 
 - **Company**: Birla Capital and Financial Services Limited
-- **Email**: info@bcfsl.com
-- **Website**: [Company Website]
+- **Email**: info@birlainternational.net
+- **Website**: [Company Website](https://www.birlacaps.in/)
 - **Technical Documentation**: [WEBSITE_DOCUMENTATION.md](./WEBSITE_DOCUMENTATION.md)
 
 ## 📄 License
