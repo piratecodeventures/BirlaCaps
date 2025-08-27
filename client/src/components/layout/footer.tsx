@@ -12,8 +12,8 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-blue-100">
-              Leading financial services company empowering India's financial
-              future through innovative solutions and governance excellence.
+              A financial services company empowering India's financial future
+              through innovative solutions and governance excellence.
             </p>
           </div>
 

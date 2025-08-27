@@ -33,9 +33,8 @@ export default function Hero() {
                 className="text-lg sm:text-xl text-blue-100 leading-relaxed fade-in-left mobile-text-lg"
                 data-testid="hero-description"
               >
-                Leading financial services company offering comprehensive
-                solutions in loans, investments, insurance, and payments across
-                India.
+                A financial services company offering comprehensive solutions in
+                loans, investments, insurance, and payments across India.
               </p>
             </div>
 
